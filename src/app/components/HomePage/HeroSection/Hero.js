@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { Github, Linkedin, Twitter, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
-import Counter from './SubComponents/Counter.js/Counter' // Import the separate Counter component
+import Counter from './SubComponents/Counter/Counter' // Import the Counter component
 
 // Array for decorative dots
 const decorativeDots = Array(6).fill('')
@@ -15,7 +15,7 @@ export default function Hero() {
 
   // Typing effect for name
   useEffect(() => {
-    const text = "John Doe."
+    const text = 'John Doe.'
     let currentIndex = 0
     const interval = setInterval(() => {
       if (currentIndex <= text.length) {
@@ -29,7 +29,7 @@ export default function Hero() {
 
     // Blinking cursor effect
     const cursorInterval = setInterval(() => {
-      setShowCursor(prev => !prev)
+      setShowCursor((prev) => !prev)
     }, 800)
 
     return () => {
@@ -272,7 +272,7 @@ export default function Hero() {
               style={{ animationDelay: '0.6s' }}
             >
               <button className="group flex bg-emerald-600 hover:bg-emerald-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full btn-hover text-sm sm:text-base">
-                Let's Talk
+                Let&apos;s Talk
                 <ArrowRight className="ml-2 mt-1 h-4 w-4 arrow" />
               </button>
               <div className="flex gap-4">
@@ -297,7 +297,6 @@ export default function Hero() {
             {/* Image container with responsive sizing */}
             <div className="relative w-full aspect-square max-w-[78vw] sm:max-w-md image-container mx-auto">
               {/* Decorative circles */}
-              
               <div className="absolute -top-6 -right-6 w-20 sm:w-24 h-20 sm:h-24 border-4 border-emerald-500 rounded-full rotate" />
               <div className="absolute -bottom-6 -left-6 w-24 sm:w-32 h-24 sm:h-32 border-4 border-teal-300 rounded-full pulse" />
 
