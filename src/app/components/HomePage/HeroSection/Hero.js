@@ -41,7 +41,7 @@ export default function Hero() {
   return (
     <section className="min-h-screen lg:min-h-0 flex items-center pt-16 bg-gradient-to-br from-emerald-50 via-teal-100 to-cyan-200">
       {/* Container with max-width for large screens */}
-      <div className="w-full max-w-[1300px] lg:my-0 my-12 mx-auto px-4">
+      <div className="w-full max-w-[1300px] lg:my-0 my-5 mx-auto px-4">
         <style jsx>{`
           /* Fade-in animation */
           .fade-in {
@@ -204,7 +204,7 @@ export default function Hero() {
         `}</style>
 
         {/* Grid layout for content */}
-        <div className="grid lg:grid-cols-2 mt-5 pb-6 gap-8 sm:gap-12 items-center">
+        <div className="grid lg:grid-cols-2 mt-0 lg:mt-5 pb-6 gap-8 sm:gap-12 items-center">
           {/* Left Column: Text Content */}
           <div className="space-y-6 sm:space-y-8">
             {/* Decorative dots */}
@@ -303,7 +303,7 @@ export default function Hero() {
               {/* Profile image */}
               <div className="relative rounded-full overflow-hidden border-8 border-white shadow-2xl image-hover">
                 <Image
-                  src="/pic1.png"
+                  src={'/images/hero.png'}
                   alt="Profile"
                   width={500}
                   height={500}
