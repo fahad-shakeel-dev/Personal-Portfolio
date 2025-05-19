@@ -23,6 +23,11 @@ export default function ContactSection() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
+    // Store refs in variables to avoid cleanup issues
+    const leftForm = leftFormRef.current
+    const rightForm = rightFormRef.current
+    const socialLinks = socialRef.current.children
+
     // Main timeline for section animation
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -45,26 +50,26 @@ export default function ContactSection() {
         "-=0.4",
       )
       .fromTo(
-        leftFormRef.current,
+        leftForm,
         { x: -50, opacity: 0 },
         { x: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
         "-=0.4",
       )
       .fromTo(
-        rightFormRef.current,
+        rightForm,
         { x: 50, opacity: 0 },
         { x: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
         "-=0.6",
       )
       .fromTo(
-        socialRef.current.children,
+        socialLinks,
         { y: 20, opacity: 0 },
         { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "back.out(1.7)" },
         "-=0.4",
       )
 
     // Floating animation for forms
-    gsap.to([leftFormRef.current, rightFormRef.current], {
+    gsap.to([leftForm, rightForm], {
       y: 10,
       duration: 2,
       ease: "sine.inOut",
@@ -89,7 +94,7 @@ export default function ContactSection() {
         particle,
         { opacity: 0, scale: 0, x: 0, y: 0 },
         {
-          opacity: 0.2,
+          opacity: 0.1,
           scale: 1.2,
           x: () => (Math.random() - 0.5) * 150,
           y: () => (Math.random() - 0.5) * 150,
@@ -106,7 +111,6 @@ export default function ContactSection() {
     })
 
     // Social link hover animations
-    const socialLinks = socialRef.current.children
     Array.from(socialLinks).forEach((link) => {
       const icon = link.querySelector(".social-icon")
       const tl = gsap.timeline({ paused: true })
@@ -132,10 +136,13 @@ export default function ContactSection() {
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-      gsap.killTweensOf([leftFormRef.current, rightFormRef.current])
+      gsap.killTweensOf([leftForm, rightForm])
       Array.from(socialLinks).forEach((link) => {
-        link.removeEventListener("mouseenter", () => {})
-        link.removeEventListener("mouseleave", () => {})
+        if (link.animation) {
+          link.animation.kill()
+          link.removeEventListener("mouseenter", () => {})
+          link.removeEventListener("mouseleave", () => {})
+        }
       })
     }
   }, [])
@@ -189,7 +196,7 @@ export default function ContactSection() {
       {/* Wave Background */}
       <svg
         ref={waveRef}
-        className="absolute inset-0 w-[120%] h-full opacity-15"
+        className="absolute inset-0 w-[120%] h-full opacity-10"
         viewBox="0 0 1440 320"
         preserveAspectRatio="none"
       >
@@ -200,8 +207,8 @@ export default function ContactSection() {
         />
         <defs>
           <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style={{ stopColor: "#2dd4bf", stopOpacity: 0.8 }} />
-            <stop offset="100%" style={{ stopColor: "#10b981", stopOpacity: 0.8 }} />
+            <stop offset="0%" style={{ stopColor: "#5eead4", stopOpacity: 0.8 }} />
+            <stop offset="100%" style={{ stopColor: "#6ee7b7", stopOpacity: 0.8 }} />
           </linearGradient>
         </defs>
       </svg>
@@ -225,17 +232,17 @@ export default function ContactSection() {
         <div className="text-center mb-12">
           <h2
             ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-600 via-cyan-500 to-emerald-500 tracking-tight font-[Poppins,Inter,sans-serif] leading-tight drop-shadow-[0_2px_4px_rgba(16,185,129,0.3)]"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-500 via-cyan-400 to-emerald-500 tracking-tight font-[Poppins,Inter,sans-serif] leading-tight drop-shadow-[0_2px_4px_rgba(16,185,129,0.3)]"
             id="contact-heading"
           >
             Get in Touch
           </h2>
           <p
             ref={subtitleRef}
-            className="mt-4 text-sm sm:text-base md:text-lg text-teal-100 dark:text-teal-200 max-w-2xl mx-auto drop-shadow-md"
+            className="mt-4 text-sm sm:text-base md:text-lg text-teal-700 dark:text-teal-200 max-w-2xl mx-auto drop-shadow-md"
             aria-describedby="contact-heading"
           >
-            Have a question or idea? Reach out, and let's create something amazing together.
+            Have a question or idea? Reach out, and let\u2019s create something amazing together.
           </p>
         </div>
 
@@ -243,7 +250,7 @@ export default function ContactSection() {
           {/* Left Form - Contact */}
           <div
             ref={leftFormRef}
-            className="bg-gradient-to-br from-teal-900/30 to-cyan-900/30 backdrop-blur-md rounded-2xl p-6 border border-teal-500/20 shadow-xl hover:border-emerald-400/50 transition-all duration-300"
+            className="bg-gradient-to-br from-teal-800/30 to-cyan-800/30 backdrop-blur-md rounded-2xl p-6 border border-teal-600/50 shadow-xl hover:border-emerald-400/50 transition-all duration-300"
           >
             <div className="mb-6">
               <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
@@ -252,8 +259,8 @@ export default function ContactSection() {
                 </span>
                 <Send size={18} className="text-emerald-400" />
               </h3>
-              <p className="text-teal-200 dark:text-teal-300 text-sm mt-2">
-                Let's discuss your project or ideas. I'm all ears!
+              <p className="text-teal-800 dark:text-teal-300 text-sm mt-2">
+                Let\u2019s discuss your project or ideas. I\u2019m all ears!
               </p>
             </div>
 
@@ -266,7 +273,7 @@ export default function ContactSection() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="bg-teal-900/50 border border-teal-700 text-teal-100 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full pl-10 p-3 transition-all duration-300"
+                  className="bg-teal-800/30 border border-teal-600/50 text-teal-50 placeholder-teal-300/70 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 block w-full pl-10 p-3 transition-all duration-300"
                   placeholder="Your Name"
                   required
                   aria-label="Your Name"
@@ -281,7 +288,7 @@ export default function ContactSection() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-teal-900/50 border border-teal-700 text-teal-100 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full pl-10 p-3 transition-all duration-300"
+                  className="bg-teal-800/30 border border-teal-600/50 text-teal-50 placeholder-teal-300/70 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 block w-full pl-10 p-3 transition-all duration-300"
                   placeholder="Your Email"
                   required
                   aria-label="Your Email"
@@ -296,7 +303,7 @@ export default function ContactSection() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   rows="5"
-                  className="bg-teal-900/50 border border-teal-700 text-teal-100 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full pl-10 p-3 transition-all duration-300"
+                  className="bg-teal-800/30 border border-teal-600/50 text-teal-50 placeholder-teal-300/70 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 block w-full pl-10 p-3 transition-all duration-300"
                   placeholder="Your Message"
                   required
                   aria-label="Your Message"
@@ -305,7 +312,7 @@ export default function ContactSection() {
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-medium rounded-lg text-sm px-5 py-3 flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-400/50 transform hover:scale-[1.02]"
+                className="w-full bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white font-medium rounded-lg text-sm px-5 py-3 flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-400/50 transform hover:scale-[1.02]"
                 aria-label="Send Message"
               >
                 <Send className="h-4 w-4" />
@@ -314,7 +321,7 @@ export default function ContactSection() {
             </form>
 
             {/* Social Links */}
-            <div className="mt-8 pt-6 border-t border-teal-700/50">
+            <div className="mt-8 pt-6 border-t border-teal-600/50">
               <h4 className="text-lg font-medium text-white mb-4">Connect With Me</h4>
               <div ref={socialRef} className="grid grid-cols-2 gap-3">
                 {[
@@ -326,13 +333,13 @@ export default function ContactSection() {
                   <a
                     key={index}
                     href={social.href}
-                    className="flex items-center gap-2 bg-teal-900/50 hover:bg-teal-800/50 p-3 rounded-lg transition-all duration-300"
+                    className="flex items-center gap-2 bg-teal-800/30 hover:bg-teal-700/30 p-3 rounded-lg transition-all duration-300"
                     aria-label={`Follow on ${social.name}`}
                   >
                     <div className="bg-gradient-to-r from-teal-500 to-emerald-500 p-2 rounded-full social-icon">
                       <social.icon size={18} className="text-white" />
                     </div>
-                    <span className="text-sm text-teal-100">{social.name}</span>
+                    <span className="text-sm text-teal-50">{social.name}</span>
                   </a>
                 ))}
               </div>
@@ -342,7 +349,7 @@ export default function ContactSection() {
           {/* Right Form - Comments */}
           <div
             ref={rightFormRef}
-            className="bg-gradient-to-br from-teal-900/30 to-cyan-900/30 backdrop-blur-md rounded-2xl p-6 border border-teal-500/20 shadow-xl hover:border-emerald-400/50 transition-all duration-300"
+            className="bg-gradient-to-br from-teal-800/30 to-cyan-800/30 backdrop-blur-md rounded-2xl p-6 border border-teal-600/50 shadow-xl hover:border-emerald-400/50 transition-all duration-300"
           >
             <div className="mb-6">
               <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
@@ -350,16 +357,16 @@ export default function ContactSection() {
                   Leave a Comment
                 </span>
                 <MessageSquare size={18} className="text-emerald-400" />
-                <span className="text-sm font-normal text-teal-200 ml-1">(1)</span>
+                <span className="text-sm font-normal text-teal-300 ml-1">(1)</span>
               </h3>
-              <p className="text-teal-200 dark:text-teal-300 text-sm mt-2">
+              <p className="text-teal-800 dark:text-teal-300 text-sm mt-2">
                 Share your thoughts or feedback below.
               </p>
             </div>
 
             <form onSubmit={handlePostComment} className="space-y-4 mb-6">
               <div>
-                <label htmlFor="comment-name" className="block mb-2 text-sm font-medium text-teal-200 dark:text-teal-300">
+                <label htmlFor="comment-name" className="block mb-2 text-sm font-medium text-teal-800 dark:text-teal-300">
                   Name
                 </label>
                 <input
@@ -367,7 +374,7 @@ export default function ContactSection() {
                   id="comment-name"
                   value={commentName}
                   onChange={(e) => setCommentName(e.target.value)}
-                  className="bg-teal-900/50 border border-teal-700 text-teal-100 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-3 transition-all duration-300"
+                  className="bg-teal-800/30 border border-teal-600/50 text-teal-50 placeholder-teal-300/70 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 block w-full p-3 transition-all duration-300"
                   placeholder="Enter your name..."
                   required
                   aria-label="Commenter Name"
@@ -375,7 +382,7 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <label htmlFor="comment-message" className="block mb-2 text-sm font-medium text-teal-200 dark:text-teal-300">
+                <label htmlFor="comment-message" className="block mb-2 text-sm font-medium text-teal-800 dark:text-teal-300">
                   Message
                 </label>
                 <textarea
@@ -383,7 +390,7 @@ export default function ContactSection() {
                   rows="4"
                   value={commentMessage}
                   onChange={(e) => setCommentMessage(e.target.value)}
-                  className="bg-teal-900/50 border border-teal-700 text-teal-100 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full p-3 transition-all duration-300"
+                  className="bg-teal-800/30 border border-teal-600/50 text-teal-50 placeholder-teal-300/70 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 block w-full p-3 transition-all duration-300"
                   placeholder="Write your message here..."
                   required
                   aria-label="Comment Message"
@@ -392,7 +399,7 @@ export default function ContactSection() {
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-medium rounded-lg text-sm px-5 py-3 flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-400/50 transform hover:scale-[1.02]"
+                className="w-full bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white font-medium rounded-lg text-sm px-5 py-3 flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-400/50 transform hover:scale-[1.02]"
                 aria-label="Post Comment"
               >
                 <Send className="h-4 w-4" />
@@ -401,7 +408,7 @@ export default function ContactSection() {
             </form>
 
             {/* Sample Comment */}
-            <div className="bg-teal-900/50 rounded-lg p-4 border border-teal-700/50 transition-all duration-300 hover:border-emerald-400/50">
+            <div className="bg-teal-800/30 rounded-lg p-4 border border-teal-600/50 transition-all duration-300 hover:border-emerald-400/50">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <div className="bg-gradient-to-r from-teal-500 to-emerald-500 p-2 rounded-full">
@@ -409,10 +416,10 @@ export default function ContactSection() {
                   </div>
                   <span className="font-medium text-white">Abdullah</span>
                 </div>
-                <span className="text-xs text-teal-200">Just now</span>
+                <span className="text-xs text-teal-300">Just now</span>
               </div>
-              <p className="text-teal-100 text-sm">
-                I'm a very good developer. I like to work with it.
+              <p className="text-teal-50 text-sm">
+                I\u2019m a very good developer. I like to work with it.
               </p>
             </div>
           </div>
