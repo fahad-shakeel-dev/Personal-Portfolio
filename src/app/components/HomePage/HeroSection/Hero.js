@@ -15,7 +15,7 @@ export default function Hero() {
 
   // Typing effect for name
   useEffect(() => {
-    const text = 'John Doe.'
+    const text = 'Fahad Joyia'
     let currentIndex = 0
     const interval = setInterval(() => {
       if (currentIndex <= text.length) {
@@ -25,7 +25,7 @@ export default function Hero() {
         clearInterval(interval)
         setShowCursor(false)
       }
-    }, 100)
+    }, 200)
 
     // Blinking cursor effect
     const cursorInterval = setInterval(() => {

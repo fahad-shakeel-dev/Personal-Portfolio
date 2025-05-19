@@ -19,7 +19,7 @@ const Counter = ({ from, to, duration = 2 }) => {
     // Animation function using requestAnimationFrame
     const animate = (timestamp) => {
       if (!startTime) startTime = timestamp
-      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1)
+      const progress = Math.min((timestamp - startTime) / (duration * 2000), 1)
 
       const newCount = Math.floor(from + progress * (to - from))
       setCount(newCount)
