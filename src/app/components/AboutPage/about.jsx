@@ -14,7 +14,9 @@ function useIntersectionObserver(options = {}) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
+        // If we've already seen this element and it's a once-only animation, don't update
         if (options.once && hasIntersected) return
+
         if (entry.isIntersecting) {
           setIsIntersecting(true)
           setHasIntersected(true)
@@ -22,13 +24,18 @@ function useIntersectionObserver(options = {}) {
           setIsIntersecting(false)
         }
       },
-      { threshold: 0.1, rootMargin: "0px", ...options }
+      { threshold: 0.1, rootMargin: "0px", ...options },
     )
 
     const currentRef = ref.current
-    if (currentRef) observer.observe(currentRef)
+    if (currentRef) {
+      observer.observe(currentRef)
+    }
+
     return () => {
-      if (currentRef) observer.unobserve(currentRef)
+      if (currentRef) {
+        observer.unobserve(currentRef)
+      }
     }
   }, [options, hasIntersected])
 
@@ -42,20 +49,18 @@ function AnimatedSection({ children, className = "", animation = "fade-up", once
   const animationClasses = {
     "fade-up": isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20",
     "fade-in": isVisible ? "opacity-100" : "opacity-0",
-    "slide-right": isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10",
-    "slide-left": isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10",
+    "slide-right": isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-20",
+    "slide-left": isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-20",
     "scale-up": isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95",
   }
 
   return (
-    <div className="overflow-hidden">
-      <div
-        ref={ref}
-        className={`transition-all duration-500 ease-out will-change-transform ${animationClasses[animation]} ${className}`}
-        style={{ maxWidth: "100%", boxSizing: "border-box" }}
-      >
-        {children}
-      </div>
+    <div
+      ref={ref}
+      className={`transition-all duration-500 ease-out will-change-transform ${animationClasses[animation]} ${className}`}
+      style={{ maxWidth: "100%" }}
+    >
+      {children}
     </div>
   )
 }
@@ -70,7 +75,7 @@ function SkillBar({ name, level, color = "teal" }) {
   }
 
   return (
-    <div ref={ref} className="transition-all duration-300 mb-4 w-full">
+    <div ref={ref} className="transform transition-all duration-300 mb-4 w-full">
       <div className="flex justify-between mb-1">
         <span className="font-medium text-gray-700">{name}</span>
         <span className="text-sm text-gray-500">{level}%</span>
@@ -88,28 +93,21 @@ function SkillBar({ name, level, color = "teal" }) {
 export default function AboutPage() {
   const [mounted, setMounted] = useState(false)
 
+  // Mount component
   useEffect(() => {
     setMounted(true)
+
+    // Add smooth scroll behavior
     document.documentElement.style.scrollBehavior = "smooth"
-    // Add global overflow fix
-    document.documentElement.style.overflow = "hidden"
-    document.body.style.overflow = "hidden"
+
     return () => {
       document.documentElement.style.scrollBehavior = ""
-      document.documentElement.style.overflow = ""
-      document.body.style.overflow = ""
     }
   }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-100 to-cyan-200 overflow-hidden">
-      <div className="container mx-auto px-4 py-8 max-w-6xl overflow-hidden box-border">
-        <style jsx global>{`
-          html, body {
-            overflow: hidden !important;
-          }
-        `}</style>
-
+      <div className="container mx-auto px-4 py-8 max-w-6xl overflow-hidden">
         {/* Navigation */}
         <AnimatedSection animation="fade-in" className="mb-12">
           <Link
@@ -128,7 +126,7 @@ export default function AboutPage() {
               <div className="flex flex-col md:flex-row gap-8 items-start">
                 <div className="md:w-1/4 w-full">
                   <AnimatedSection animation="scale-up">
-                    <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:scale-[1.02] border-2 border-teal-200">
+                    <div className="relative w-full aspect-[3/4] rounded-lg overflow-hidden shadow-md transform transition-transform duration-300 hover:scale-[1.02] border-2 border-teal-200">
                       <Image
                         src="/placeholder.svg?height=400&width=300"
                         alt="Professional Portrait"
@@ -140,13 +138,14 @@ export default function AboutPage() {
                   </AnimatedSection>
                 </div>
 
-                <div className="md:w-3/4èo w-full">
+                <div className="md:w-3/4 w-full">
                   <AnimatedSection animation="fade-up">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
                       <div>
                         <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">John Doe</h1>
                         <p className="text-xl text-teal-600 font-medium">Full Stack Developer</p>
                       </div>
+
                       <div className="mt-4 md:mt-0">
                         <a
                           href="/resume.pdf"
@@ -208,11 +207,11 @@ export default function AboutPage() {
         </AnimatedSection>
 
         {/* Main Content */}
-        <main className="space-y-12 overflow-hidden box-border">
+        <div className="space-y-12 overflow-hidden">
           {/* About Me */}
           <AnimatedSection animation="fade-up">
             <section>
-              <div className="bg-white shadow-lg rounded-lg p-6 md:p-10 border border-teal-100 overflow-hidden box-border">
+              <div className="bg-white shadow-lg rounded-lg p-6 md:p-10 border border-teal-100 overflow-hidden">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6 pb-3 border-b border-teal-100 flex items-center">
                   <span className="inline-block w-2 h-6 bg-gradient-to-b from-teal-400 to-cyan-500 mr-3 rounded-full"></span>
                   About Me
@@ -236,12 +235,13 @@ export default function AboutPage() {
           {/* Skills */}
           <AnimatedSection animation="fade-up">
             <section>
-              <div className="bg-white shadow-lg rounded-lg p-6 md:p-10 border border-teal-100 overflow-hidden box-border">
+              <div className="bg-white shadow-lg rounded-lg p-6 md:p-10 border border-teal-100 overflow-hidden">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6 pb-3 border-b border-teal-100 flex items-center">
                   <span className="inline-block w-2 h-6 bg-gradient-to-b from-teal-400 to-cyan-500 mr-3 rounded-full"></span>
                   Technical Expertise
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 overflow-hidden box-border">
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <div>
                     <AnimatedSection animation="slide-right">
                       <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
@@ -257,6 +257,7 @@ export default function AboutPage() {
                       <SkillBar name="Redux & Context API" level={80} color="teal" />
                     </div>
                   </div>
+
                   <div>
                     <AnimatedSection animation="slide-left">
                       <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
@@ -273,6 +274,7 @@ export default function AboutPage() {
                     </div>
                   </div>
                 </div>
+
                 <AnimatedSection animation="fade-up" className="mt-10">
                   <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
                     <span className="inline-block w-1.5 h-4 bg-gradient-to-b from-teal-400 to-cyan-500 mr-2 rounded-full"></span>
@@ -293,7 +295,7 @@ export default function AboutPage() {
                     ].map((skill, index) => (
                       <span
                         key={skill}
-                        className="inline-block px-3 py-1.5 bg-gradient-to-r from-teal-50 to-cyan-50 text-teal-700 rounded-md text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm border border-teal-100"
+                        className="inline-block px-3 py-1.5 bg-gradient-to-r from-teal-50 to-cyan-50 text-teal-700 rounded-md text-sm font-medium transform transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm border border-teal-100"
                       >
                         {skill}
                       </span>
@@ -307,11 +309,12 @@ export default function AboutPage() {
           {/* Experience */}
           <AnimatedSection animation="fade-up">
             <section>
-              <div className="bg-white shadow-lg rounded-lg p-6 md:p-10 border border-teal-100 overflow-hidden box-border">
+              <div className="bg-white shadow-lg rounded-lg p-6 md:p-10 border border-teal-100 overflow-hidden">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6 pb-3 border-b border-teal-100 flex items-center">
                   <span className="inline-block w-2 h-6 bg-gradient-to-b from-teal-400 to-cyan-500 mr-3 rounded-full"></span>
                   Professional Experience
                 </h2>
+
                 <div className="space-y-10">
                   {[
                     {
@@ -352,7 +355,7 @@ export default function AboutPage() {
                     },
                   ].map((job, jobIndex) => (
                     <AnimatedSection key={job.title} animation="fade-up">
-                      <div className="transition-all duration-300">
+                      <div className="transform transition-all duration-300">
                         <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
                           <h3 className="text-xl font-semibold text-gray-800">{job.title}</h3>
                           <div className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-teal-100 to-cyan-100 text-teal-700 rounded-md text-sm font-medium border border-teal-200 mt-2 md:mt-0">
@@ -379,12 +382,13 @@ export default function AboutPage() {
           {/* Education */}
           <AnimatedSection animation="fade-up">
             <section>
-              <div className="bg-white shadow-lg rounded-lg p-6 md:p-10 border border-teal-100 overflow-hidden box-border">
+              <div className="bg-white shadow-lg rounded-lg p-6 md:p-10 border border-teal-100 overflow-hidden">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6 pb-3 border-b border-teal-100 flex items-center">
                   <span className="inline-block w-2 h-6 bg-gradient-to-b from-teal-400 to-cyan-500 mr-3 rounded-full"></span>
                   Education & Certifications
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 overflow-hidden box-border">
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <AnimatedSection animation="slide-right">
                       <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
@@ -392,6 +396,7 @@ export default function AboutPage() {
                         Education
                       </h3>
                     </AnimatedSection>
+
                     <div className="space-y-6">
                       {[
                         {
@@ -404,11 +409,12 @@ export default function AboutPage() {
                           degree: "Web Development Bootcamp",
                           institution: "Code Academy",
                           period: "2016",
-                          details: "Intensive 12-week program focused on modern web development technologies and practices.",
+                          details:
+                            "Intensive 12-week program focused on modern web development technologies and practices.",
                         },
                       ].map((edu, index) => (
                         <AnimatedSection key={edu.degree} animation="scale-up">
-                          <div className="transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 p-4 rounded-md border border-teal-100 bg-gradient-to-r from-teal-50 to-cyan-50">
+                          <div className="transform transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 p-4 rounded-md border border-teal-100 bg-gradient-to-r from-teal-50 to-cyan-50">
                             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-1">
                               <div>
                                 <h4 className="font-medium text-gray-800">{edu.degree}</h4>
@@ -424,6 +430,7 @@ export default function AboutPage() {
                       ))}
                     </div>
                   </div>
+
                   <div>
                     <AnimatedSection animation="slide-left">
                       <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
@@ -431,6 +438,7 @@ export default function AboutPage() {
                         Certifications
                       </h3>
                     </AnimatedSection>
+
                     <div className="space-y-4">
                       {[
                         {
@@ -447,7 +455,7 @@ export default function AboutPage() {
                         },
                       ].map((cert, index) => (
                         <AnimatedSection key={cert.name} animation="scale-up">
-                          <div className="p-4 rounded-md transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 bg-gradient-to-r from-cyan-50 to-teal-50 border border-teal-100">
+                          <div className="p-4 rounded-md transform transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 bg-gradient-to-r from-cyan-50 to-teal-50 border border-teal-100">
                             <div className="flex items-center gap-3">
                               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center text-white font-bold text-lg shadow-sm flex-shrink-0">
                                 {cert.name.charAt(0)}
@@ -466,7 +474,7 @@ export default function AboutPage() {
               </div>
             </section>
           </AnimatedSection>
-        </main>
+        </div>
 
         <footer className="mt-16 text-center text-teal-700 py-6">
           <AnimatedSection animation="fade-in">
