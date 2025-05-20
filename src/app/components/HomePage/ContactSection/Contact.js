@@ -1,9 +1,7 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { Mail, Send, User, MessageSquare, Github, Linkedin, Twitter, Instagram } from "lucide-react"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 export default function ContactSection() {
   const sectionRef = useRef(null)
@@ -20,152 +18,12 @@ export default function ContactSection() {
   const [commentName, setCommentName] = useState("")
   const [commentMessage, setCommentMessage] = useState("")
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-
-    // Store refs in variables to avoid cleanup issues
-    const leftForm = leftFormRef.current
-    const rightForm = rightFormRef.current
-    const socialLinks = socialRef.current.children
-
-    // Main timeline for section animation
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-      },
-    })
-
-    // Entrance animations
-    tl.fromTo(
-      titleRef.current,
-      { y: 60, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
-    )
-      .fromTo(
-        subtitleRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-        "-=0.4",
-      )
-      .fromTo(
-        leftForm,
-        { x: -50, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
-        "-=0.4",
-      )
-      .fromTo(
-        rightForm,
-        { x: 50, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
-        "-=0.6",
-      )
-      .fromTo(
-        socialLinks,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "back.out(1.7)" },
-        "-=0.4",
-      )
-
-    // Floating animation for forms
-    gsap.to([leftForm, rightForm], {
-      y: 10,
-      duration: 2,
-      ease: "sine.inOut",
-      repeat: -1,
-      yoyo: true,
-      stagger: 0.5,
-    })
-
-    // Wave background animation
-    gsap.to(waveRef.current, {
-      x: "-20%",
-      duration: 12,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-    })
-
-    // Particle animation
-    const particles = gsap.utils.toArray(".particle")
-    particles.forEach((particle, i) => {
-      gsap.fromTo(
-        particle,
-        { opacity: 0, scale: 0, x: 0, y: 0 },
-        {
-          opacity: 0.1,
-          scale: 1.2,
-          x: () => (Math.random() - 0.5) * 150,
-          y: () => (Math.random() - 0.5) * 150,
-          duration: 2,
-          delay: i * 0.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 70%",
-            toggleActions: "play none none reset",
-          },
-        },
-      )
-    })
-
-    // Social link hover animations
-    Array.from(socialLinks).forEach((link) => {
-      const icon = link.querySelector(".social-icon")
-      const tl = gsap.timeline({ paused: true })
-      tl.to(link, {
-        scale: 1.05,
-        boxShadow: "0 5px 15px rgba(16, 185, 129, 0.3)",
-        duration: 0.3,
-        ease: "power2.out",
-      }).to(
-        icon,
-        {
-          rotate: 15,
-          scale: 1.2,
-          duration: 0.4,
-          ease: "back.out(1.7)",
-        },
-        0,
-      )
-      link.animation = tl
-      link.addEventListener("mouseenter", () => tl.play())
-      link.addEventListener("mouseleave", () => tl.reverse())
-    })
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-      gsap.killTweensOf([leftForm, rightForm])
-      Array.from(socialLinks).forEach((link) => {
-        if (link.animation) {
-          link.animation.kill()
-          link.removeEventListener("mouseenter", () => {})
-          link.removeEventListener("mouseleave", () => {})
-        }
-      })
-    }
-  }, [])
-
   const handleSendMessage = (e) => {
     e.preventDefault()
     console.log({ name, email, message })
     setName("")
     setEmail("")
     setMessage("")
-    gsap.to(leftFormRef.current, {
-      scale: 1.05,
-      boxShadow: "0 15px 30px rgba(16, 185, 129, 0.4)",
-      duration: 0.3,
-      ease: "back.out(1.7)",
-      onComplete: () => {
-        gsap.to(leftFormRef.current, {
-          scale: 1,
-          boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
-          duration: 0.3,
-        })
-      },
-    })
   }
 
   const handlePostComment = (e) => {
@@ -173,19 +31,6 @@ export default function ContactSection() {
     console.log({ commentName, commentMessage })
     setCommentName("")
     setCommentMessage("")
-    gsap.to(rightFormRef.current, {
-      scale: 1.05,
-      boxShadow: "0 15px 30px rgba(16, 185, 129, 0.4)",
-      duration: 0.3,
-      ease: "back.out(1.7)",
-      onComplete: () => {
-        gsap.to(rightFormRef.current, {
-          scale: 1,
-          boxShadow: "0 10px 20px rgba(0, 0, 0, 0.2)",
-          duration: 0.3,
-        })
-      },
-    })
   }
 
   return (
@@ -193,20 +38,113 @@ export default function ContactSection() {
       ref={sectionRef}
       className="relative px-4 sm:px-8 md:px-16 py-16 lg:py-24 bg-gradient-to-br from-cyan-200 via-teal-100 to-emerald-50 dark:from-teal-900 dark:via-cyan-900 dark:to-emerald-900 overflow-hidden"
     >
+      <style jsx>{`
+        /* Wave background animation */
+        .cs-wave {
+          animation: cs-waveMove 12s ease-in-out infinite alternate;
+          will-change: transform;
+        }
+        @keyframes cs-waveMove {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-20%);
+          }
+        }
+
+        /* Particle animation */
+        .cs-particle {
+          animation: cs-float 4s ease-in-out infinite;
+          will-change: transform, opacity;
+        }
+        @keyframes cs-float {
+          0%, 100% {
+            transform: translate(0, 0);
+            opacity: 0.1;
+          }
+          50% {
+            transform: translate(calc((random() - 0.5) * 150px), calc((random() - 0.5) * 150px));
+            opacity: 0.2;
+          }
+        }
+
+        /* Entrance animations for title and subtitle */
+        .cs-title,
+        .cs-subtitle {
+          opacity: 0;
+          transform: translateY(60px);
+          animation: cs-slideIn 0.8s ease-out forwards;
+        }
+        .cs-subtitle {
+          animation-delay: 0.2s;
+        }
+        @keyframes cs-slideIn {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* Form floating animation */
+        .cs-form-container {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          animation: cs-floatForm 2s ease-in-out infinite alternate;
+        }
+        @keyframes cs-floatForm {
+          from {
+            transform: translateY(0);
+          }
+          to {
+            transform: translateY(10px);
+          }
+        }
+
+        /* Form submit animation */
+        .cs-form-container:active {
+          transform: scale(1.05);
+          box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Social link hover effects */
+        .cs-social-link {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cs-social-link:hover {
+          transform: scale(1.05);
+          box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        }
+        .cs-social-link .cs-social-icon {
+          transition: transform 0.3s ease;
+        }
+        .cs-social-link:hover .cs-social-icon {
+          transform: rotate(15deg) scale(1.2);
+        }
+
+        /* Optimize for performance */
+        * {
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+        input, textarea {
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+      `}</style>
+
       {/* Wave Background */}
       <svg
         ref={waveRef}
-        className="absolute inset-0 w-[120%] h-full opacity-10"
+        className="cs-wave absolute inset-0 w-[120%] h-full opacity-10"
         viewBox="0 0 1440 320"
         preserveAspectRatio="none"
       >
         <path
-          fill="url(#wave-gradient)"
+          fill="url(#cs-wave-gradient)"
           fillOpacity="0.5"
           d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,128C672,107,768,117,864,138.7C960,160,1056,192,1152,197.3C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
         />
         <defs>
-          <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient id="cs-wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" style={{ stopColor: "#5eead4", stopOpacity: 0.8 }} />
             <stop offset="100%" style={{ stopColor: "#6ee7b7", stopOpacity: 0.8 }} />
           </linearGradient>
@@ -218,10 +156,11 @@ export default function ContactSection() {
         {Array.from({ length: 8 }).map((_, i) => (
           <div
             key={i}
-            className="particle absolute w-2 h-2 bg-emerald-300 rounded-full"
+            className="cs-particle absolute w-2 h-2 bg-emerald-300 rounded-full"
             style={{
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
+              animationDelay: `${i * 0.2}s`,
             }}
           />
         ))}
@@ -232,17 +171,17 @@ export default function ContactSection() {
         <div className="text-center mb-12">
           <h2
             ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-500 via-cyan-400 to-emerald-500 tracking-tight font-[Poppins,Inter,sans-serif] leading-tight drop-shadow-[0_2px_4px_rgba(16,185,129,0.3)]"
-            id="contact-heading"
+            className="cs-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-500 via-cyan-400 to-emerald-500 tracking-tight font-[Poppins,Inter,sans-serif] leading-tight drop-shadow-[0_2px_4px_rgba(16,185,129,0.3)]"
+            id="cs-contact-heading"
           >
             Get in Touch
           </h2>
           <p
             ref={subtitleRef}
-            className="mt-4 text-sm sm:text-base md:text-lg text-teal-700 dark:text-teal-200 max-w-2xl mx-auto drop-shadow-md"
-            aria-describedby="contact-heading"
+            className="cs-subtitle mt-4 text-sm sm:text-base md:text-lg text-teal-700 dark:text-teal-200 max-w-2xl mx-auto drop-shadow-md"
+            aria-describedby="cs-contact-heading"
           >
-            Have a question or idea? Reach out, and let\u2019s create something amazing together.
+            Have a question or idea? Reach out, and let’s create something amazing together.
           </p>
         </div>
 
@@ -250,7 +189,7 @@ export default function ContactSection() {
           {/* Left Form - Contact */}
           <div
             ref={leftFormRef}
-            className="bg-gradient-to-br from-teal-800/30 to-cyan-800/30 backdrop-blur-md rounded-2xl p-6 border border-teal-600/50 shadow-xl hover:border-emerald-400/50 transition-all duration-300"
+            className="cs-form-container bg-gradient-to-br from-teal-800/30 to-cyan-800/30 backdrop-blur-md rounded-2xl p-6 border border-teal-600/50 shadow-xl hover:border-emerald-400/50 transition-all duration-300"
           >
             <div className="mb-6">
               <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
@@ -260,7 +199,7 @@ export default function ContactSection() {
                 <Send size={18} className="text-emerald-400" />
               </h3>
               <p className="text-teal-800 dark:text-teal-300 text-sm mt-2">
-                Let\u2019s discuss your project or ideas. I\u2019m all ears!
+                Let’s discuss your project or ideas. I’m all ears!
               </p>
             </div>
 
@@ -273,7 +212,7 @@ export default function ContactSection() {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="bg-teal-800/30 border border-teal-600/50 text-teal-50 placeholder-teal-300/70 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 block w-full pl-10 p-3 transition-all duration-300"
+                  className="bg-teal-800/30 border border-teal-600/50 text-teal-50 placeholder-teal-300/70 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 block w-full pl-10 p-3"
                   placeholder="Your Name"
                   required
                   aria-label="Your Name"
@@ -288,7 +227,7 @@ export default function ContactSection() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-teal-800/30 border border-teal-600/50 text-teal-50 placeholder-teal-300/70 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 block w-full pl-10 p-3 transition-all duration-300"
+                  className="bg-teal-800/30 border border-teal-600/50 text-teal-50 placeholder-teal-300/70 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 block w-full pl-10 p-3"
                   placeholder="Your Email"
                   required
                   aria-label="Your Email"
@@ -303,7 +242,7 @@ export default function ContactSection() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   rows="5"
-                  className="bg-teal-800/30 border border-teal-600/50 text-teal-50 placeholder-teal-300/70 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 block w-full pl-10 p-3 transition-all duration-300"
+                  className="bg-teal-800/30 border border-teal-600/50 text-teal-50 placeholder-teal-300/70 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 block w-full pl-10 p-3"
                   placeholder="Your Message"
                   required
                   aria-label="Your Message"
@@ -333,10 +272,10 @@ export default function ContactSection() {
                   <a
                     key={index}
                     href={social.href}
-                    className="flex items-center gap-2 bg-teal-800/30 hover:bg-teal-700/30 p-3 rounded-lg transition-all duration-300"
+                    className="cs-social-link flex items-center gap-2 bg-teal-800/30 hover:bg-teal-700/30 p-3 rounded-lg"
                     aria-label={`Follow on ${social.name}`}
                   >
-                    <div className="bg-gradient-to-r from-teal-500 to-emerald-500 p-2 rounded-full social-icon">
+                    <div className="cs-social-icon bg-gradient-to-r from-teal-500 to-emerald-500 p-2 rounded-full">
                       <social.icon size={18} className="text-white" />
                     </div>
                     <span className="text-sm text-teal-50">{social.name}</span>
@@ -349,7 +288,7 @@ export default function ContactSection() {
           {/* Right Form - Comments */}
           <div
             ref={rightFormRef}
-            className="bg-gradient-to-br from-teal-800/30 to-cyan-800/30 backdrop-blur-md rounded-2xl p-6 border border-teal-600/50 shadow-xl hover:border-emerald-400/50 transition-all duration-300"
+            className="cs-form-container bg-gradient-to-br from-teal-800/30 to-cyan-800/30 backdrop-blur-md rounded-2xl p-6 border border-teal-600/50 shadow-xl hover:border-emerald-400/50 transition-all duration-300"
           >
             <div className="mb-6">
               <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
@@ -366,15 +305,15 @@ export default function ContactSection() {
 
             <form onSubmit={handlePostComment} className="space-y-4 mb-6">
               <div>
-                <label htmlFor="comment-name" className="block mb-2 text-sm font-medium text-teal-800 dark:text-teal-300">
+                <label htmlFor="cs-comment-name" className="block mb-2 text-sm font-medium text-teal-800 dark:text-teal-300">
                   Name
                 </label>
                 <input
                   type="text"
-                  id="comment-name"
+                  id="cs-comment-name"
                   value={commentName}
                   onChange={(e) => setCommentName(e.target.value)}
-                  className="bg-teal-800/30 border border-teal-600/50 text-teal-50 placeholder-teal-300/70 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 block w-full p-3 transition-all duration-300"
+                  className="bg-teal-800/30 border border-teal-600/50 text-teal-50 placeholder-teal-300/70 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 block w-full p-3"
                   placeholder="Enter your name..."
                   required
                   aria-label="Commenter Name"
@@ -382,15 +321,15 @@ export default function ContactSection() {
               </div>
 
               <div>
-                <label htmlFor="comment-message" className="block mb-2 text-sm font-medium text-teal-800 dark:text-teal-300">
+                <label htmlFor="cs-comment-message" className="block mb-2 text-sm font-medium text-teal-800 dark:text-teal-300">
                   Message
                 </label>
                 <textarea
-                  id="comment-message"
+                  id="cs-comment-message"
                   rows="4"
                   value={commentMessage}
                   onChange={(e) => setCommentMessage(e.target.value)}
-                  className="bg-teal-800/30 border border-teal-600/50 text-teal-50 placeholder-teal-300/70 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 block w-full p-3 transition-all duration-300"
+                  className="bg-teal-800/30 border border-teal-600/50 text-teal-50 placeholder-teal-300/70 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 block w-full p-3"
                   placeholder="Write your message here..."
                   required
                   aria-label="Comment Message"
@@ -419,7 +358,7 @@ export default function ContactSection() {
                 <span className="text-xs text-teal-300">Just now</span>
               </div>
               <p className="text-teal-50 text-sm">
-                I\u2019m a very good developer. I like to work with it.
+                I’m a very good developer. I like to work with it.
               </p>
             </div>
           </div>

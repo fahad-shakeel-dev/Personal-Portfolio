@@ -5,7 +5,7 @@ import { Menu, X, Github, Linkedin, Twitter } from 'lucide-react'
 
 const menuItems = [
   { href: '#home', label: 'Home' },
-  { href: '#skills', label: 'Skills' },
+  { href: '/about', label: 'About' },
   { href: '#projects', label: 'Projects' },
   { href: '#contact', label: 'Contact' }
 ]

@@ -39,7 +39,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="min-h-screen lg:min-h-0 flex items-center pt-16 bg-gradient-to-br from-emerald-50 via-teal-100 to-cyan-200">
+    <section className="min-h-0 flex items-center pt-16 bg-gradient-to-br from-emerald-50 via-teal-100 to-cyan-200">
       {/* Container with max-width for large screens */}
       <div className="w-full max-w-[1300px] lg:my-0 my-5 mx-auto px-4">
         <style jsx>{`
