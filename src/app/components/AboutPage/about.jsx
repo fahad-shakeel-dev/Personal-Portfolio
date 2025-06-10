@@ -109,7 +109,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-100 to-cyan-200 overflow-hidden">
       <div className="container mx-auto px-4 py-8 max-w-6xl overflow-hidden">
         {/* Navigation */}
-        <AnimatedSection animation="fade-in" className="mb-12">
+        {/* <AnimatedSection animation="fade-in" className="mb-12">
           <Link
             href="/"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-white shadow-sm hover:shadow-md transition-all text-teal-700 font-medium hover:-translate-y-0.5 active:translate-y-0 border border-teal-100"
@@ -117,10 +117,10 @@ export default function AboutPage() {
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Home</span>
           </Link>
-        </AnimatedSection>
+        </AnimatedSection> */}
 
         {/* Header Section */}
-        <AnimatedSection animation="fade-up" className="mb-16">
+        <AnimatedSection animation="fade-up" className="mt-6 lg:mt-14 mb-16">
           <header>
             <div className="bg-white shadow-lg rounded-lg p-6 md:p-10 border border-teal-100 overflow-hidden">
               <div className="flex flex-col md:flex-row gap-8 items-start">

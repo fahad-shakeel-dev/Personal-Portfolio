@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import { Menu, X, Github, Linkedin, Twitter } from 'lucide-react'
-
+import Link from 'next/link'
 const menuItems = [
-  { href: '#home', label: 'Home' },
+  { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#contact', label: 'Contact' }
+  { href: '/projects', label: 'Projects' },
+  { href: '/services', label: 'Services' }
 ]
 
 export default function Navbar() {
@@ -30,26 +30,28 @@ export default function Navbar() {
     >
       <div className="w-full max-w-[1300px] mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <a
-            href="#"
+          <Link
+            href="/"
             className="text-2xl font-bold text-emerald-600 transition-transform hover:scale-105 active:scale-95"
           >
-            JD.
-          </a>
+            FJ.
+          </Link>
 
           <div className="hidden md:flex items-center space-x-8">
             {menuItems.map((item) => (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className="text-teal-700 hover:text-emerald-500 transition-colors"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
-            <button className="bg-emerald-500 text-white px-6 py-2 rounded-full hover:bg-emerald-600 transition-colors">
-              Contact Me
-            </button>
+            <Link href="/contact" className="bg-emerald-500 text-white px-6 py-2 rounded-full hover:bg-emerald-600 transition-colors">
+       
+              Hire Me
+          
+            </Link>
           </div>
 
           <button
@@ -72,24 +74,24 @@ export default function Navbar() {
       >
         <div className="flex flex-col items-center space-y-8 transition-opacity duration-500">
           {menuItems.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className="text-3xl font-bold text-white hover:text-emerald-200"
               onClick={() => setIsMenuOpen(false)}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
           <div className="flex space-x-6 mt-8">
             {[Github, Linkedin, Twitter].map((Icon, index) => (
-              <a
+              <Link
                 key={index}
                 href="#"
                 className="text-white hover:text-emerald-200 transition-colors hover:scale-110"
               >
                 <Icon className="h-6 w-6" />
-              </a>
+              </Link>
             ))}
           </div>
         </div>

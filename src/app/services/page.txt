@@ -1,0 +1,1127 @@
+// "use client"
+
+// import { useEffect, useRef } from "react"
+// import Link from "next/link"
+// import Image from "next/image"
+// import gsap from "gsap"
+// import { ScrollTrigger } from "gsap/ScrollTrigger"
+// import {
+//   Globe,
+//   Search,
+//   Video,
+//   BarChart2,
+//   PenTool,
+//   FileText,
+//   ArrowLeft,
+//   CheckCircle,
+//   BarChart,
+//   Award,
+//   ChevronRight,
+//   Star,
+//   MessageSquare,
+//   Zap,
+//   Target,
+//   TrendingUp,
+//   Layers,
+//   PieChart,
+//   Briefcase,
+//   Code,
+//   Rocket,
+//   Lightbulb,
+// } from "lucide-react"
+
+// // Register GSAP plugins
+// if (typeof window !== "undefined") {
+//   gsap.registerPlugin(ScrollTrigger)
+// }
+
+// const services = [
+//   {
+//     id: "website-development",
+//     title: "Website Development",
+//     icon: <Globe className="w-12 h-12 text-teal-600" />,
+//     description:
+//       "Strengthen your online presence with robust, responsive websites tailored to your brand identity and business goals.",
+//     longDescription:
+//       "Our expert developers create custom websites that are not only visually stunning but also functionally powerful. We focus on responsive design, fast loading times, and intuitive user experiences.",
+//     features: [
+//       "Custom design and development",
+//       "Responsive for all devices",
+//       "SEO-friendly architecture",
+//       "Content management systems",
+//       "E-commerce solutions",
+//       "Website maintenance and support",
+//     ],
+//     technologies: [
+//       "HTML5, CSS3, JavaScript",
+//       "React, Next.js, Vue.js",
+//       "Node.js, Express",
+//       "WordPress, Shopify",
+//       "MongoDB, PostgreSQL",
+//       "AWS, Vercel, Netlify",
+//     ],
+//     benefits: [
+//       "Increased online visibility",
+//       "Better user experience",
+//       "Higher conversion rates",
+//       "Improved brand credibility",
+//       "Mobile-friendly experience",
+//       "24/7 online presence",
+//     ],
+//     caseStudies: [
+//       {
+//         title: "E-commerce Redesign",
+//         description: "Increased sales by 45% through improved UX and mobile optimization",
+//         image: "/placeholder.svg?height=300&width=500",
+//       },
+//       {
+//         title: "Corporate Website Overhaul",
+//         description: "Reduced bounce rate by 30% and increased lead generation by 25%",
+//         image: "/placeholder.svg?height=300&width=500",
+//       },
+//     ],
+//     faq: [
+//       {
+//         question: "How long does it take to develop a website?",
+//         answer:
+//           "The timeline for website development varies depending on the complexity of the project. A simple website can be completed in 2-4 weeks, while more complex projects may take 2-3 months or more. We'll provide you with a detailed timeline during our initial consultation.",
+//       },
+//       {
+//         question: "Do you provide website maintenance after launch?",
+//         answer:
+//           "Yes, we offer ongoing website maintenance services to ensure your website remains secure, up-to-date, and performing optimally. Our maintenance packages include regular updates, security monitoring, performance optimization, and technical support.",
+//       },
+//       {
+//         question: "Can you redesign my existing website?",
+//         answer:
+//           "We specialize in website redesigns that improve both aesthetics and functionality. We'll analyze your current website, identify areas for improvement, and create a modern, user-friendly design that aligns with your brand and business goals.",
+//       },
+//       {
+//         question: "Do you build e-commerce websites?",
+//         answer:
+//           "Yes, we have extensive experience building e-commerce websites on platforms like Shopify, WooCommerce, and custom solutions. We can help you create a seamless shopping experience with secure payment processing, inventory management, and more.",
+//       },
+//     ],
+//     process: [
+//       {
+//         title: "Discovery & Planning",
+//         description:
+//           "We start by understanding your business goals, target audience, and requirements to create a detailed project plan.",
+//         icon: <Target className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Design & Prototyping",
+//         description:
+//           "Our designers create wireframes and visual designs for your approval before moving to development.",
+//         icon: <Layers className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Development & Testing",
+//         description:
+//           "We build your website using modern technologies and thoroughly test it across devices and browsers.",
+//         icon: <Code className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Launch & Support",
+//         description: "After final approval, we launch your website and provide ongoing support and maintenance.",
+//         icon: <Rocket className="w-8 h-8 text-teal-600" />,
+//       },
+//     ],
+//     testimonials: [
+//       {
+//         name: "John Smith",
+//         position: "CEO, TechStart Inc.",
+//         content:
+//           "The website they developed for us exceeded our expectations. It's not only visually stunning but also performs exceptionally well. Our conversion rate has increased by 35% since launch.",
+//         avatar: "/placeholder.svg?height=80&width=80",
+//         rating: 5,
+//       },
+//       {
+//         name: "Lisa Johnson",
+//         position: "Marketing Director, GrowthHub",
+//         content:
+//           "Working with this team was a pleasure from start to finish. They understood our vision and translated it into a website that perfectly represents our brand. Highly recommended!",
+//         avatar: "/placeholder.svg?height=80&width=80",
+//         rating: 5,
+//       },
+//     ],
+//     stats: [
+//       { value: "98%", label: "Client Satisfaction" },
+//       { value: "45%", label: "Avg. Conversion Increase" },
+//       { value: "250+", label: "Websites Launched" },
+//       { value: "3s", label: "Avg. Load Time" },
+//     ],
+//     image: "/placeholder.svg?height=600&width=800",
+//   },
+//   {
+//     id: "seo",
+//     title: "SEO",
+//     icon: <Search className="w-12 h-12 text-teal-600" />,
+//     description:
+//       "Boost your business ranking with our expert SEO strategies that drive organic traffic and improve visibility.",
+//     longDescription:
+//       "Our comprehensive SEO services are designed to improve your website's visibility in search engine results pages. We use data-driven strategies to help your business rank higher and attract more qualified leads.",
+//     features: [
+//       "Keyword research and analysis",
+//       "On-page and off-page optimization",
+//       "Technical SEO audits",
+//       "Content strategy for SEO",
+//       "Local SEO for businesses",
+//       "Regular performance reporting",
+//     ],
+//     technologies: [
+//       "Google Analytics",
+//       "Google Search Console",
+//       "SEMrush, Ahrefs, Moz",
+//       "Schema markup",
+//       "Screaming Frog",
+//       "Google Tag Manager",
+//     ],
+//     benefits: [
+//       "Increased organic traffic",
+//       "Higher search engine rankings",
+//       "Better quality leads",
+//       "Improved user experience",
+//       "Enhanced brand visibility",
+//       "Long-term sustainable results",
+//     ],
+//     caseStudies: [
+//       {
+//         title: "Local Business SEO",
+//         description: "Achieved first page rankings for 15 target keywords in 3 months",
+//         image: "/placeholder.svg?height=300&width=500",
+//       },
+//       {
+//         title: "E-commerce SEO Campaign",
+//         description: "Increased organic traffic by 85% and conversions by 40% in 6 months",
+//         image: "/placeholder.svg?height=300&width=500",
+//       },
+//     ],
+//     faq: [
+//       {
+//         question: "How long does it take to see results from SEO?",
+//         answer:
+//           "SEO is a long-term strategy, and results typically take time to materialize. You may start seeing initial improvements in 3-6 months, but significant results often take 6-12 months. The timeline depends on factors like your industry competition, website history, and the scope of optimization needed.",
+//       },
+//       {
+//         question: "What's the difference between on-page and off-page SEO?",
+//         answer:
+//           "On-page SEO involves optimizing elements on your website, such as content, meta tags, headings, and site structure. Off-page SEO focuses on external factors like backlinks, social signals, and online mentions that improve your site's authority and reputation in the eyes of search engines.",
+//       },
+//       {
+//         question: "Do you guarantee first-page rankings?",
+//         answer:
+//           "We don't guarantee specific rankings because search algorithms are constantly changing and influenced by many factors outside our control. However, we do guarantee that we'll use industry best practices and proven strategies to improve your rankings and organic traffic over time.",
+//       },
+//       {
+//         question: "How do you measure SEO success?",
+//         answer:
+//           "We track multiple metrics to measure SEO success, including organic traffic growth, keyword rankings, conversion rates, bounce rates, and return on investment. We provide regular reports that show your progress and the impact of our SEO efforts on your business goals.",
+//       },
+//     ],
+//     process: [
+//       {
+//         title: "SEO Audit & Analysis",
+//         description:
+//           "We conduct a comprehensive audit of your website and analyze your competitors to identify opportunities.",
+//         icon: <Search className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Strategy Development",
+//         description: "Based on our findings, we create a customized SEO strategy tailored to your business goals.",
+//         icon: <PieChart className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Implementation",
+//         description:
+//           "We implement on-page and off-page optimizations to improve your website's search engine visibility.",
+//         icon: <Zap className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Monitoring & Refinement",
+//         description: "We continuously monitor your performance and refine our strategy to ensure optimal results.",
+//         icon: <TrendingUp className="w-8 h-8 text-teal-600" />,
+//       },
+//     ],
+//     testimonials: [
+//       {
+//         name: "Michael Brown",
+//         position: "Owner, Local Plumbing Co.",
+//         content:
+//           "Their SEO services transformed our business. We're now ranking for all our target keywords and getting consistent leads through our website. The ROI has been incredible.",
+//         avatar: "/placeholder.svg?height=80&width=80",
+//         rating: 5,
+//       },
+//       {
+//         name: "Sarah Williams",
+//         position: "E-commerce Manager, Fashion Boutique",
+//         content:
+//           "The SEO team delivered exceptional results for our online store. Our organic traffic has doubled, and we're seeing a significant increase in sales from search engine visitors.",
+//         avatar: "/placeholder.svg?height=80&width=80",
+//         rating: 5,
+//       },
+//     ],
+//     stats: [
+//       { value: "85%", label: "Avg. Traffic Increase" },
+//       { value: "65%", label: "First Page Rankings" },
+//       { value: "150+", label: "SEO Projects" },
+//       { value: "40%", label: "Avg. Conversion Growth" },
+//     ],
+//     image: "/placeholder.svg?height=600&width=800",
+//   },
+//   {
+//     id: "video-editing",
+//     title: "Video Editing",
+//     icon: <Video className="w-12 h-12 text-teal-600" />,
+//     description:
+//       "Engage users with our interactive video editing expertise that transforms your raw footage into compelling content.",
+//     longDescription:
+//       "Our video editing services help you create professional, engaging videos that capture your audience's attention. From promotional videos to social media content, we deliver high-quality results.",
+//     features: [
+//       "Professional video editing",
+//       "Motion graphics and animations",
+//       "Color grading and correction",
+//       "Sound design and audio mixing",
+//       "Video optimization for different platforms",
+//       "Custom intros and outros",
+//     ],
+//     technologies: [
+//       "Adobe Premiere Pro",
+//       "After Effects",
+//       "DaVinci Resolve",
+//       "Final Cut Pro",
+//       "Cinema 4D",
+//       "Adobe Audition",
+//     ],
+//     benefits: [
+//       "Increased engagement",
+//       "Professional brand image",
+//       "Higher conversion rates",
+//       "Better social media performance",
+//       "Improved message delivery",
+//       "Memorable brand experiences",
+//     ],
+//     caseStudies: [
+//       {
+//         title: "Product Launch Video",
+//         description: "Generated 250,000 views and 15,000 website visits in the first week",
+//         image: "/placeholder.svg?height=300&width=500",
+//       },
+//       {
+//         title: "Corporate Training Series",
+//         description: "Reduced training costs by 35% while improving information retention",
+//         image: "/placeholder.svg?height=300&width=500",
+//       },
+//     ],
+//     faq: [
+//       {
+//         question: "What types of videos do you edit?",
+//         answer:
+//           "We edit a wide range of videos, including promotional videos, social media content, product demonstrations, corporate videos, event coverage, training videos, testimonials, and more. Our team has experience with various styles and formats to suit your specific needs.",
+//       },
+//       {
+//         question: "How long does video editing take?",
+//         answer:
+//           "The timeline for video editing depends on the complexity and length of the project. Simple edits can be completed in a few days, while more complex projects with animations and special effects may take 1-2 weeks or more. We'll provide you with a specific timeline based on your project requirements.",
+//       },
+//       {
+//         question: "Do you provide raw footage filming services?",
+//         answer:
+//           "Yes, we offer professional videography services to capture high-quality raw footage for your projects. Our team can handle everything from planning and storyboarding to filming and post-production editing, ensuring a seamless process from start to finish.",
+//       },
+//       {
+//         question: "Can you optimize videos for different platforms?",
+//         answer:
+//           "We optimize videos for various platforms, including YouTube, Instagram, Facebook, TikTok, LinkedIn, and websites. This includes adjusting aspect ratios, durations, formats, and compression settings to ensure optimal performance and engagement on each platform.",
+//       },
+//     ],
+//     process: [
+//       {
+//         title: "Concept & Planning",
+//         description: "We discuss your vision, goals, and target audience to develop a clear concept for your video.",
+//         icon: <Lightbulb className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Footage Review",
+//         description: "We review your raw footage or create a filming plan if you need videography services.",
+//         icon: <Video className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Editing & Enhancement",
+//         description: "Our editors create a draft edit, adding graphics, music, and effects to enhance your message.",
+//         icon: <PenTool className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Finalization & Delivery",
+//         description:
+//           "After your feedback and revisions, we finalize the video and deliver it in your preferred formats.",
+//         icon: <CheckCircle className="w-8 h-8 text-teal-600" />,
+//       },
+//     ],
+//     testimonials: [
+//       {
+//         name: "Robert Chen",
+//         position: "Marketing Director, Tech Innovations",
+//         content:
+//           "The video editing team transformed our raw footage into a compelling story that resonated with our audience. The quality and creativity exceeded our expectations.",
+//         avatar: "/placeholder.svg?height=80&width=80",
+//         rating: 5,
+//       },
+//       {
+//         name: "Amanda Garcia",
+//         position: "Social Media Manager, Lifestyle Brand",
+//         content:
+//           "Their video editing services have been instrumental in our social media success. The videos they produce consistently outperform our other content in terms of engagement and conversions.",
+//         avatar: "/placeholder.svg?height=80&width=80",
+//         rating: 5,
+//       },
+//     ],
+//     stats: [
+//       { value: "500+", label: "Videos Produced" },
+//       { value: "95%", label: "Client Satisfaction" },
+//       { value: "40%", label: "Avg. Engagement Increase" },
+//       { value: "12M+", label: "Total Views Generated" },
+//     ],
+//     image: "/placeholder.svg?height=600&width=800",
+//   },
+//   {
+//     id: "digital-marketing",
+//     title: "Digital Marketing",
+//     icon: <BarChart2 className="w-12 h-12 text-teal-600" />,
+//     description:
+//       "Enhance your business with our comprehensive digital marketing strategies that drive growth and engagement.",
+//     longDescription:
+//       "Our digital marketing services help you reach your target audience, build brand awareness, and drive conversions. We create customized strategies that align with your business goals and deliver measurable results.",
+//     features: [
+//       "Social media marketing",
+//       "Email marketing campaigns",
+//       "Content marketing strategy",
+//       "PPC and display advertising",
+//       "Analytics and performance tracking",
+//       "Conversion rate optimization",
+//     ],
+//     technologies: [
+//       "Google Ads",
+//       "Facebook Ads Manager",
+//       "Mailchimp, HubSpot",
+//       "Google Analytics",
+//       "SEMrush, Ahrefs",
+//       "Hotjar, Optimizely",
+//     ],
+//     benefits: [
+//       "Increased brand awareness",
+//       "Higher conversion rates",
+//       "Better ROI on marketing spend",
+//       "Targeted audience reach",
+//       "Data-driven decision making",
+//       "Scalable marketing campaigns",
+//     ],
+//     caseStudies: [
+//       {
+//         title: "Multi-channel Campaign",
+//         description: "Achieved 320% ROI with integrated social, email, and PPC strategy",
+//         image: "/placeholder.svg?height=300&width=500",
+//       },
+//       {
+//         title: "Lead Generation Campaign",
+//         description: "Generated 150 qualified leads per month at 40% lower cost per acquisition",
+//         image: "/placeholder.svg?height=300&width=500",
+//       },
+//     ],
+//     faq: [
+//       {
+//         question: "What digital marketing services do you offer?",
+//         answer:
+//           "We offer a comprehensive range of digital marketing services, including social media marketing, email marketing, content marketing, search engine marketing (SEM), pay-per-click (PPC) advertising, display advertising, influencer marketing, and conversion rate optimization (CRO).",
+//       },
+//       {
+//         question: "How do you measure the success of digital marketing campaigns?",
+//         answer:
+//           "We track key performance indicators (KPIs) aligned with your business goals, such as website traffic, conversion rates, lead generation, sales, return on ad spend (ROAS), cost per acquisition (CPA), and customer lifetime value (CLV). We provide regular reports with insights and recommendations.",
+//       },
+//       {
+//         question: "Do you offer customized marketing strategies?",
+//         answer:
+//           "Yes, we create fully customized marketing strategies based on your specific business goals, target audience, industry, and budget. We don't believe in one-size-fits-all approaches and tailor our services to maximize your results and ROI.",
+//       },
+//       {
+//         question: "How often will I receive reports on my campaigns?",
+//         answer:
+//           "We provide detailed monthly reports on your campaign performance, along with insights and recommendations for optimization. For active campaigns, we also conduct weekly check-ins to discuss performance and make real-time adjustments as needed.",
+//       },
+//     ],
+//     process: [
+//       {
+//         title: "Research & Analysis",
+//         description: "We analyze your business, competitors, and target audience to identify opportunities.",
+//         icon: <Search className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Strategy Development",
+//         description: "We create a comprehensive marketing strategy aligned with your business goals.",
+//         icon: <Target className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Campaign Execution",
+//         description: "We implement and manage your marketing campaigns across relevant channels.",
+//         icon: <Zap className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Optimization & Scaling",
+//         description: "We continuously monitor, optimize, and scale successful campaigns for maximum ROI.",
+//         icon: <TrendingUp className="w-8 h-8 text-teal-600" />,
+//       },
+//     ],
+//     testimonials: [
+//       {
+//         name: "Jennifer Lee",
+//         position: "CEO, E-commerce Brand",
+//         content:
+//           "Their digital marketing expertise has been transformative for our business. They developed a strategy that significantly increased our online visibility and sales while reducing our overall marketing costs.",
+//         avatar: "/placeholder.svg?height=80&width=80",
+//         rating: 5,
+//       },
+//       {
+//         name: "David Wilson",
+//         position: "Director of Sales, B2B Software",
+//         content:
+//           "The lead generation campaigns they created for us have consistently delivered high-quality leads that convert. Their data-driven approach and continuous optimization have made a real difference to our bottom line.",
+//         avatar: "/placeholder.svg?height=80&width=80",
+//         rating: 5,
+//       },
+//     ],
+//     stats: [
+//       { value: "320%", label: "Avg. ROI" },
+//       { value: "200+", label: "Active Campaigns" },
+//       { value: "45%", label: "Avg. Conversion Increase" },
+//       { value: "65%", label: "Cost Reduction" },
+//     ],
+//     image: "/placeholder.svg?height=600&width=800",
+//   },
+//   {
+//     id: "graphics-designing",
+//     title: "Graphics Designing",
+//     icon: <PenTool className="w-12 h-12 text-teal-600" />,
+//     description: "Elevate your brand with impactful graphic design services that communicate your vision and values.",
+//     longDescription:
+//       "Our graphic design services help you create a visual identity that resonates with your audience. From logos to marketing materials, we deliver designs that make your brand stand out.",
+//     features: [
+//       "Logo design and branding",
+//       "Print and digital media design",
+//       "UI/UX design for websites and apps",
+//       "Social media graphics",
+//       "Packaging design",
+//       "Illustration and infographics",
+//     ],
+//     technologies: [
+//       "Adobe Photoshop",
+//       "Adobe Illustrator",
+//       "Adobe InDesign",
+//       "Figma, Sketch",
+//       "Procreate",
+//       "Affinity Designer",
+//     ],
+//     benefits: [
+//       "Consistent brand identity",
+//       "Improved brand recognition",
+//       "Enhanced user experience",
+//       "Better communication of ideas",
+//       "Professional brand image",
+//       "Increased engagement",
+//     ],
+//     caseStudies: [
+//       {
+//         title: "Brand Identity Redesign",
+//         description: "Increased brand recognition by 60% and customer trust by 45%",
+//         image: "/placeholder.svg?height=300&width=500",
+//       },
+//       {
+//         title: "Product Packaging Design",
+//         description: "Boosted retail sales by 35% through eye-catching packaging",
+//         image: "/placeholder.svg?height=300&width=500",
+//       },
+//     ],
+//     faq: [
+//       {
+//         question: "What graphic design services do you offer?",
+//         answer:
+//           "We offer a wide range of graphic design services, including logo design, brand identity development, marketing materials, social media graphics, website and app UI/UX design, packaging design, print materials, illustrations, infographics, and more.",
+//       },
+//       {
+//         question: "How does your design process work?",
+//         answer:
+//           "Our design process begins with understanding your brand, goals, and target audience. We then create concept designs based on your requirements, refine them based on your feedback, and deliver the final designs in all the formats you need for various applications.",
+//       },
+//       {
+//         question: "Do you provide brand guidelines?",
+//         answer:
+//           "Yes, we create comprehensive brand guidelines that include logo usage, color palettes, typography, imagery style, and application examples. These guidelines ensure consistency across all your marketing materials and help maintain your brand identity.",
+//       },
+//       {
+//         question: "What file formats will I receive for my designs?",
+//         answer:
+//           "We provide designs in all the formats you need for both digital and print applications. This typically includes vector files (AI, EPS, SVG), raster files (JPG, PNG), and PDF files. We also provide source files that you can edit or modify in the future.",
+//       },
+//     ],
+//     process: [
+//       {
+//         title: "Discovery & Research",
+//         description: "We learn about your brand, audience, and goals to inform our design approach.",
+//         icon: <Search className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Concept Development",
+//         description: "We create initial design concepts based on our research and your requirements.",
+//         icon: <Lightbulb className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Refinement & Feedback",
+//         description: "We refine the designs based on your feedback until they perfectly match your vision.",
+//         icon: <PenTool className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Finalization & Delivery",
+//         description: "We finalize the designs and deliver them in all the formats you need for various applications.",
+//         icon: <Briefcase className="w-8 h-8 text-teal-600" />,
+//       },
+//     ],
+//     testimonials: [
+//       {
+//         name: "Emily Rodriguez",
+//         position: "Founder, Artisan Crafts",
+//         content:
+//           "Their graphic design work completely transformed our brand identity. Our customers love our new look, and we've seen a significant increase in brand recognition and customer loyalty.",
+//         avatar: "/placeholder.svg?height=80&width=80",
+//         rating: 5,
+//       },
+//       {
+//         name: "Thomas Wright",
+//         position: "Marketing Manager, Retail Chain",
+//         content:
+//           "The packaging designs they created for our product line have made a huge difference in our retail sales. The attention to detail and creativity in their work is exceptional.",
+//         avatar: "/placeholder.svg?height=80&width=80",
+//         rating: 5,
+//       },
+//     ],
+//     stats: [
+//       { value: "1000+", label: "Design Projects" },
+//       { value: "98%", label: "Client Satisfaction" },
+//       { value: "60%", label: "Avg. Brand Recognition Increase" },
+//       { value: "35%", label: "Avg. Sales Increase" },
+//     ],
+//     image: "/placeholder.svg?height=600&width=800",
+//   },
+//   {
+//     id: "content-writing",
+//     title: "Content Writing",
+//     icon: <FileText className="w-12 h-12 text-teal-600" />,
+//     description:
+//       "Convey your business message with our expert content writing skills that engage and convert your audience.",
+//     longDescription:
+//       "Our content writing services help you create compelling, SEO-friendly content that engages your audience and drives action. From blog posts to website copy, we deliver content that converts.",
+//     features: [
+//       "Website copy and landing pages",
+//       "Blog posts and articles",
+//       "Email newsletters",
+//       "Product descriptions",
+//       "SEO content creation",
+//       "Social media content",
+//     ],
+//     technologies: [
+//       "SEO tools (SEMrush, Ahrefs)",
+//       "Grammarly, Hemingway Editor",
+//       "Content management systems",
+//       "Keyword research tools",
+//       "Google Docs, Microsoft Word",
+//       "Project management tools",
+//     ],
+//     benefits: [
+//       "Improved search engine rankings",
+//       "Increased website traffic",
+//       "Higher engagement rates",
+//       "Better conversion rates",
+//       "Established thought leadership",
+//       "Consistent brand voice",
+//     ],
+//     caseStudies: [
+//       {
+//         title: "Blog Content Strategy",
+//         description: "Increased organic traffic by 120% and lead generation by 45% in 6 months",
+//         image: "/placeholder.svg?height=300&width=500",
+//       },
+//       {
+//         title: "Website Copy Overhaul",
+//         description: "Improved conversion rate by 25% and reduced bounce rate by 30%",
+//         image: "/placeholder.svg?height=300&width=500",
+//       },
+//     ],
+//     faq: [
+//       {
+//         question: "What types of content do you write?",
+//         answer:
+//           "We create a wide variety of content, including website copy, landing pages, blog posts, articles, email newsletters, social media content, product descriptions, case studies, whitepapers, ebooks, press releases, and more. All content is tailored to your brand voice and target audience.",
+//       },
+//       {
+//         question: "How do you ensure content is SEO-friendly?",
+//         answer:
+//           "We conduct thorough keyword research to identify relevant terms for your industry and target audience. We then strategically incorporate these keywords into the content while maintaining readability and engagement. We also optimize meta descriptions, headings, and other on-page elements.",
+//       },
+//       {
+//         question: "Do you offer content strategy services?",
+//         answer:
+//           "Yes, we provide comprehensive content strategy services that include audience analysis, competitor research, content audits, editorial calendar development, and performance tracking. Our strategies are designed to align with your business goals and drive measurable results.",
+//       },
+//       {
+//         question: "How do you maintain consistency in brand voice?",
+//         answer:
+//           "We create detailed brand voice guidelines based on your company's personality, values, and target audience. These guidelines ensure that all content, regardless of the writer or channel, maintains a consistent tone and style that reflects your brand identity.",
+//       },
+//     ],
+//     process: [
+//       {
+//         title: "Research & Planning",
+//         description: "We research your industry, audience, and competitors to develop a content strategy.",
+//         icon: <Search className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Content Creation",
+//         description: "Our expert writers create engaging, SEO-friendly content tailored to your brand voice.",
+//         icon: <FileText className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Review & Refinement",
+//         description: "We review and refine the content based on your feedback to ensure it meets your expectations.",
+//         icon: <CheckCircle className="w-8 h-8 text-teal-600" />,
+//       },
+//       {
+//         title: "Publication & Analysis",
+//         description: "We help publish the content and analyze its performance to inform future content creation.",
+//         icon: <BarChart className="w-8 h-8 text-teal-600" />,
+//       },
+//     ],
+//     testimonials: [
+//       {
+//         name: "Mark Johnson",
+//         position: "Content Manager, SaaS Company",
+//         content:
+//           "Their content writing team has been instrumental in establishing our blog as a thought leadership platform in our industry. The quality, consistency, and SEO performance of their content is outstanding.",
+//         avatar: "/placeholder.svg?height=80&width=80",
+//         rating: 5,
+//       },
+//       {
+//         name: "Laura Thompson",
+//         position: "E-commerce Director, Retail Brand",
+//         content:
+//           "The product descriptions they've written for our online store have significantly improved our conversion rates. They have a talent for highlighting benefits and creating compelling copy that drives sales.",
+//         avatar: "/placeholder.svg?height=80&width=80",
+//         rating: 5,
+//       },
+//     ],
+//     stats: [
+//       { value: "2M+", label: "Words Written" },
+//       { value: "120%", label: "Avg. Traffic Increase" },
+//       { value: "45%", label: "Avg. Conversion Growth" },
+//       { value: "500+", label: "Content Projects" },
+//     ],
+//     image: "/placeholder.svg?height=600&width=800",
+//   },
+// ]
+
+// export default function ServicePage({ params }) {
+//   const { id } = params
+//   const service = services.find((s) => s.id === id) || services[0]
+
+//   const headerRef = useRef(null)
+//   const overviewRef = useRef(null)
+//   const featuresRef = useRef(null)
+//   const benefitsRef = useRef(null)
+//   const processRef = useRef(null)
+//   const caseStudiesRef = useRef(null)
+//   const testimonialsRef = useRef(null)
+//   const faqRef = useRef(null)
+//   const statsRef = useRef(null)
+//   const ctaRef = useRef(null)
+
+//   useEffect(() => {
+//     window.scrollTo(0, 0)
+
+//     // Header animation
+//     gsap.fromTo(headerRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" })
+
+//     // Overview animation
+//     gsap.fromTo(
+//       overviewRef.current,
+//       { opacity: 0, y: 30 },
+//       {
+//         opacity: 1,
+//         y: 0,
+//         duration: 0.8,
+//         delay: 0.2,
+//         ease: "power3.out",
+//       },
+//     )
+
+//     // Features animation
+//     gsap.fromTo(
+//       ".feature-card",
+//       { opacity: 0, y: 30 },
+//       {
+//         opacity: 1,
+//         y: 0,
+//         duration: 0.5,
+//         stagger: 0.1,
+//         ease: "power3.out",
+//         scrollTrigger: {
+//           trigger: featuresRef.current,
+//           start: "top 80%",
+//         },
+//       },
+//     )
+
+//     // Benefits animation
+//     gsap.fromTo(
+//       ".benefit-item",
+//       { opacity: 0, y: 20 },
+//       {
+//         opacity: 1,
+//         y: 0,
+//         duration: 0.5,
+//         stagger: 0.1,
+//         ease: "power3.out",
+//         scrollTrigger: {
+//           trigger: benefitsRef.current,
+//           start: "top 80%",
+//         },
+//       },
+//     )
+
+//     // Process animation
+//     gsap.fromTo(
+//       ".process-item",
+//       { opacity: 0, x: -30 },
+//       {
+//         opacity: 1,
+//         x: 0,
+//         duration: 0.5,
+//         stagger: 0.15,
+//         ease: "power3.out",
+//         scrollTrigger: {
+//           trigger: processRef.current,
+//           start: "top 80%",
+//         },
+//       },
+//     )
+
+//     // Case studies animation
+//     gsap.fromTo(
+//       ".case-study",
+//       { opacity: 0, y: 30 },
+//       {
+//         opacity: 1,
+//         y: 0,
+//         duration: 0.6,
+//         stagger: 0.2,
+//         ease: "power3.out",
+//         scrollTrigger: {
+//           trigger: caseStudiesRef.current,
+//           start: "top 80%",
+//         },
+//       },
+//     )
+
+//     // Testimonials animation
+//     gsap.fromTo(
+//       ".testimonial",
+//       { opacity: 0, x: 30 },
+//       {
+//         opacity: 1,
+//         x: 0,
+//         duration: 0.6,
+//         stagger: 0.2,
+//         ease: "power3.out",
+//         scrollTrigger: {
+//           trigger: testimonialsRef.current,
+//           start: "top 80%",
+//         },
+//       },
+//     )
+
+//     // FAQ animation
+//     gsap.fromTo(
+//       ".faq-item",
+//       { opacity: 0, y: 20 },
+//       {
+//         opacity: 1,
+//         y: 0,
+//         duration: 0.5,
+//         stagger: 0.1,
+//         ease: "power3.out",
+//         scrollTrigger: {
+//           trigger: faqRef.current,
+//           start: "top 80%",
+//         },
+//       },
+//     )
+
+//     // Stats animation
+//     gsap.fromTo(
+//       ".stat-item",
+//       { opacity: 0, scale: 0.9 },
+//       {
+//         opacity: 1,
+//         scale: 1,
+//         duration: 0.6,
+//         stagger: 0.1,
+//         ease: "back.out(1.7)",
+//         scrollTrigger: {
+//           trigger: statsRef.current,
+//           start: "top 80%",
+//         },
+//       },
+//     )
+
+//     // CTA animation
+//     gsap.fromTo(
+//       ctaRef.current,
+//       { opacity: 0, y: 30 },
+//       {
+//         opacity: 1,
+//         y: 0,
+//         duration: 0.8,
+//         ease: "power3.out",
+//         scrollTrigger: {
+//           trigger: ctaRef.current,
+//           start: "top 85%",
+//         },
+//       },
+//     )
+
+//     // Cleanup function
+//     return () => {
+//       ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+//     }
+//   }, [id])
+
+//   return (
+//     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-100 to-cyan-200">
+//       <div className="max-w-7xl mx-auto px-4 py-16 md:px-8">
+//         <Link href="/" className="inline-flex items-center text-teal-700 hover:text-teal-900 mb-8 transition-colors">
+//           <ArrowLeft className="mr-2 h-4 w-4" />
+//           <span>Back to Services</span>
+//         </Link>
+
+//         <div ref={headerRef} className="mb-16">
+//           <div className="flex flex-col lg:flex-row items-start gap-8 mb-8">
+//             <div className="lg:w-1/2">
+//               <div className="bg-white p-6 rounded-2xl shadow-md inline-block mb-6">{service.icon}</div>
+//               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{service.title}</h1>
+//               <p className="text-xl text-gray-700">{service.description}</p>
+//             </div>
+//             <div className="lg:w-1/2 rounded-xl overflow-hidden shadow-lg">
+//               <Image
+//                 src={service.image || "/placeholder.svg"}
+//                 alt={service.title}
+//                 width={800}
+//                 height={600}
+//                 className="w-full h-auto object-cover"
+//               />
+//             </div>
+//           </div>
+//         </div>
+
+//         <div ref={overviewRef} className="bg-white rounded-xl shadow-lg p-8 mb-16">
+//           <h2 className="text-2xl font-bold text-gray-900 mb-4">Overview</h2>
+//           <p className="text-gray-700 text-lg leading-relaxed">{service.longDescription}</p>
+//         </div>
+
+//         <div ref={featuresRef} className="mb-16">
+//           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">What We Offer</h2>
+//           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+//             <div className="feature-card bg-white rounded-xl shadow-lg p-8 h-full">
+//               <div className="flex items-center mb-6">
+//                 <CheckCircle className="w-8 h-8 text-teal-600 mr-3" />
+//                 <h3 className="text-xl font-bold text-gray-900">Key Features</h3>
+//               </div>
+//               <ul className="space-y-3">
+//                 {service.features.map((feature, index) => (
+//                   <li key={index} className="flex items-start">
+//                     <span className="text-teal-600 mr-2">•</span>
+//                     <span className="text-gray-700">{feature}</span>
+//                   </li>
+//                 ))}
+//               </ul>
+//             </div>
+
+//             <div className="feature-card bg-white rounded-xl shadow-lg p-8 h-full">
+//               <div className="flex items-center mb-6">
+//                 <BarChart className="w-8 h-8 text-teal-600 mr-3" />
+//                 <h3 className="text-xl font-bold text-gray-900">Technologies</h3>
+//               </div>
+//               <ul className="space-y-3">
+//                 {service.technologies.map((tech, index) => (
+//                   <li key={index} className="flex items-start">
+//                     <span className="text-teal-600 mr-2">•</span>
+//                     <span className="text-gray-700">{tech}</span>
+//                   </li>
+//                 ))}
+//               </ul>
+//             </div>
+//           </div>
+//         </div>
+
+//         <div ref={processRef} className="mb-16">
+//           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Our Process</h2>
+//           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+//             {service.process.map((step, index) => (
+//               <div
+//                 key={index}
+//                 className="process-item bg-white rounded-xl shadow-lg p-6 transform hover:scale-105 transition-transform duration-300"
+//               >
+//                 <div className="bg-teal-50 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+//                   {step.icon}
+//                 </div>
+//                 <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
+//                 <p className="text-gray-700">{step.description}</p>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+
+//         <div ref={benefitsRef} className="mb-16">
+//           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Benefits</h2>
+//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+//             {service.benefits.map((benefit, index) => (
+//               <div
+//                 key={index}
+//                 className="benefit-item bg-white rounded-xl shadow-md p-6 flex items-start transform hover:scale-105 transition-transform duration-300"
+//               >
+//                 <Award className="w-6 h-6 text-teal-600 mr-3 mt-1 flex-shrink-0" />
+//                 <p className="text-gray-700">{benefit}</p>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+
+//         <div ref={caseStudiesRef} className="mb-16">
+//           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Case Studies</h2>
+//           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+//             {service.caseStudies.map((caseStudy, index) => (
+//               <div
+//                 key={index}
+//                 className="case-study bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+//               >
+//                 <div className="relative h-48">
+//                   <Image
+//                     src={caseStudy.image || "/placeholder.svg"}
+//                     alt={caseStudy.title}
+//                     fill
+//                     className="object-cover"
+//                   />
+//                 </div>
+//                 <div className="p-6">
+//                   <h3 className="text-xl font-bold text-gray-900 mb-2">{caseStudy.title}</h3>
+//                   <p className="text-gray-700">{caseStudy.description}</p>
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+
+//         <div ref={testimonialsRef} className="mb-16">
+//           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Client Testimonials</h2>
+//           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+//             {service.testimonials.map((testimonial, index) => (
+//               <div key={index} className="testimonial bg-white rounded-xl shadow-lg p-8 relative overflow-hidden">
+//                 <div className="absolute top-0 right-0 w-24 h-24 bg-teal-50 rounded-bl-full z-0"></div>
+//                 <div className="relative z-10">
+//                   <div className="flex items-center mb-6">
+//                     <div className="mr-4 rounded-full overflow-hidden w-16 h-16 flex-shrink-0 border-2 border-teal-100">
+//                       <Image
+//                         src={testimonial.avatar || "/placeholder.svg"}
+//                         alt={testimonial.name}
+//                         width={64}
+//                         height={64}
+//                         className="object-cover"
+//                       />
+//                     </div>
+//                     <div>
+//                       <h4 className="text-lg font-bold text-gray-900">{testimonial.name}</h4>
+//                       <p className="text-gray-600">{testimonial.position}</p>
+//                       <div className="flex mt-1">
+//                         {[...Array(5)].map((_, i) => (
+//                           <Star
+//                             key={i}
+//                             className={`w-4 h-4 ${
+//                               i < testimonial.rating ? "text-amber-400 fill-amber-400" : "text-gray-300"
+//                             }`}
+//                           />
+//                         ))}
+//                       </div>
+//                     </div>
+//                   </div>
+//                   <p className="text-gray-700 italic">"{testimonial.content}"</p>
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+
+//         <div ref={statsRef} className="mb-16">
+//           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Performance Metrics</h2>
+//           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+//             {service.stats.map((stat, index) => (
+//               <div
+//                 key={index}
+//                 className="stat-item bg-white rounded-xl shadow-md p-6 text-center transform hover:scale-105 transition-transform duration-300"
+//               >
+//                 <div className="text-4xl md:text-5xl font-bold text-teal-600 mb-2">{stat.value}</div>
+//                 <div className="text-gray-700">{stat.label}</div>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+
+//         <div ref={faqRef} className="mb-16">
+//           <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
+//           <div className="space-y-6">
+//             {service.faq.map((item, index) => (
+//               <div key={index} className="faq-item bg-white rounded-xl shadow-md p-6">
+//                 <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
+//                   <MessageSquare className="w-5 h-5 text-teal-600 mr-2" />
+//                   {item.question}
+//                 </h3>
+//                 <p className="text-gray-700">{item.answer}</p>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+
+//         <div
+//           ref={ctaRef}
+//           className="bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl shadow-xl p-8 md:p-12 text-center"
+//         >
+//           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Ready to Transform Your Business?</h2>
+//           <p className="text-white text-lg mb-8 max-w-2xl mx-auto">
+//             Let's work together to create a tailored {service.title.toLowerCase()} solution that meets your business
+//             needs and helps you achieve your goals.
+//           </p>
+//           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+//             <Link
+//               href="/contact"
+//               className="inline-flex items-center justify-center px-6 py-3 bg-white text-teal-600 font-medium rounded-lg hover:bg-gray-100 transition-colors shadow-md"
+//             >
+//               <span>Schedule a Consultation</span>
+//               <ChevronRight className="ml-2 w-5 h-5" />
+//             </Link>
+//             <Link
+//               href="/"
+//               className="inline-flex items-center justify-center px-6 py-3 bg-transparent border-2 border-white text-white font-medium rounded-lg hover:bg-white/10 transition-colors"
+//             >
+//               <span>Explore Other Services</span>
+//             </Link>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
