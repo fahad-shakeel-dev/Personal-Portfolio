@@ -1,6 +1,8 @@
 "use client"
 
 import Link from "next/link"
+import Footer from "@/app/components/HomePage/FooterSection/footer"
+import Navbar from "@/app/components/HomePage/Navbar/Navbar"
 import { useState, useEffect } from "react"
 import { useParams, useRouter } from "next/navigation"
 import Image from "next/image"
@@ -147,6 +149,8 @@ export default function ProjectDetail() {
     : 0
 
   return (
+    <>
+    <Navbar/>
     <div className="min-h-screen bg-gradient-to-br from-cyan-200 via-teal-100 to-emerald-50">
       <div className="container mx-auto px-4 py-8">
         <motion.button
@@ -562,5 +566,7 @@ export default function ProjectDetail() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   )
 }

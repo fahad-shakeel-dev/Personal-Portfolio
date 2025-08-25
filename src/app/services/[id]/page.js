@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react"
 import Link from "next/link"
 import gsap from "gsap"
+import Footer from "@/app/components/HomePage/FooterSection/footer"
+import Navbar from "@/app/components/HomePage/Navbar/Navbar"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ServiceHeader } from "@/app/components/ServicesPage/service/service-header"
 import { ServiceOverview } from "@/app/components/ServicesPage/service/service-overview"
@@ -58,6 +60,8 @@ export default function ServicePage({ params }) {
   }, [id])
 
   return (
+    <>
+    <Navbar/>
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-100 to-cyan-200" ref={pageRef}>
       <div className="max-w-7xl mx-auto px-4 py-16 md:px-8 ">
         {/* Back Button */}
@@ -117,5 +121,7 @@ export default function ServicePage({ params }) {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   )
 }

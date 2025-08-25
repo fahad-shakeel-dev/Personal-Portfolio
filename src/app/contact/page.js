@@ -2,6 +2,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Phone, Mail, MapPin, MessageCircle, HelpCircle, Send, CheckCircle, Clock, Globe, Users, Award } from "lucide-react";
+import Navbar from "../components/HomePage/Navbar/Navbar";
+import Footer from "../components/HomePage/FooterSection/footer";
 
 export default function ContactPage() {
   // Form state for UI demo (no backend submission)
@@ -53,6 +55,8 @@ export default function ContactPage() {
   ];
 
   return (
+    <>
+    <Navbar/>
     <div className="max-w-7xl mx-auto px-4 py-12 md:px-8 font-sans bg-gradient-to-br from-emerald-50 via-teal-100 to-cyan-200 min-h-screen">
       {/* Hero Section */}
       <div className="text-center mb-12">
@@ -257,5 +261,7 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
