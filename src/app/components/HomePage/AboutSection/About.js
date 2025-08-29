@@ -400,7 +400,7 @@ export default function AboutSection() {
             {/* Description */}
             <div className="space-y-6">
               <p className="text-lg text-gray-600 leading-relaxed">
-                I'm a passionate creative developer with over 4 years of experience in crafting beautiful, functional,
+                I&apos;m a passionate creative developer with over 4 years of experience in crafting beautiful, functional,
                 and user-centered digital experiences. I combine technical expertise with creative vision to bring ideas
                 to life.
               </p>

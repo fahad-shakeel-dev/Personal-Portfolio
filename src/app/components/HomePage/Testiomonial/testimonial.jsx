@@ -422,7 +422,7 @@
 //           </h2>
 
 //           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-//             Don't just take my word for it. Here's what my clients have to say about working with me and the results
+//             Don't just take my word for it. Here&apos;s what my clients have to say about working with me and the results
 //             we've achieved together.
 //           </p>
 
@@ -678,7 +678,7 @@ export default function TestimonialsSection() {
           </h2>
 
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Don't just take my word for it. Here's what my clients have to say about working with me and the results
+            Don't just take my word for it. Here&apos;s what my clients have to say about working with me and the results
             we've achieved together.
           </p>
 

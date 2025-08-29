@@ -455,7 +455,7 @@
 //             <div className="flex flex-col sm:flex-row items-center gap-6">
 //               <button className="group relative px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/25 hover:scale-105">
 //                 <span className="relative z-10 flex items-center gap-2">
-//                   Let's Talk
+//                   Let&apos;s Talk
 //                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
 //                 </span>
 //                 <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

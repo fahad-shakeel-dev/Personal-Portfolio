@@ -20,7 +20,7 @@ export default function ContactsPage() {
       company: "Tech Solutions Inc.",
       subject: "Web Development Project",
       message:
-        "Hi, I'm interested in developing a modern e-commerce platform for my business. Could we discuss the requirements and timeline?",
+        "Hi, I&apos;m interested in developing a modern e-commerce platform for my business. Could we discuss the requirements and timeline?",
       status: "pending",
       priority: "high",
       submittedDate: "2024-01-20",
@@ -54,7 +54,7 @@ export default function ContactsPage() {
         {
           id: 1,
           message:
-            "Thank you for your interest! I'd love to discuss your mobile banking app project. Let's schedule a call to go over the requirements.",
+            "Thank you for your interest! I'd love to discuss your mobile banking app project. Let&apos;s schedule a call to go over the requirements.",
           sentDate: "2024-01-19",
           sentBy: "Admin",
         },
@@ -102,7 +102,7 @@ export default function ContactsPage() {
         {
           id: 1,
           message:
-            "I'd be happy to help with your nonprofit website redesign. Let's discuss your goals and requirements.",
+            "I'd be happy to help with your nonprofit website redesign. Let&apos;s discuss your goals and requirements.",
           sentDate: "2024-01-11",
           sentBy: "Admin",
         },
@@ -136,7 +136,7 @@ export default function ContactsPage() {
         {
           id: 1,
           message:
-            "Thank you for your interest. Unfortunately, I'm not available for this timeline. I'd recommend reaching out again in Q2.",
+            "Thank you for your interest. Unfortunately, I&apos;m not available for this timeline. I'd recommend reaching out again in Q2.",
           sentDate: "2024-01-14",
           sentBy: "Admin",
         },

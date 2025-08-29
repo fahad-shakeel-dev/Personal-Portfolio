@@ -818,7 +818,7 @@
 //           <div className="bg-gradient-to-r from-emerald-500/10 to-teal-500/10 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-emerald-500/20">
 //             <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">Ready to Build Something Amazing?</h3>
 //             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-//               Let's leverage these technologies to create your next project. I'm always excited to work with new tools
+//               Let&apos;s leverage these technologies to create your next project. I'm always excited to work with new tools
 //               and frameworks.
 //             </p>
 //             <button className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-full hover:shadow-xl hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105">
@@ -1007,7 +1007,7 @@ export default function TechnologiesSection() {
 
           <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
             I work with modern technologies and tools to create exceptional digital experiences. Here are the
-            technologies I'm proficient in.
+            technologies I&apos;m proficient in.
           </p>
 
           <div className="w-20 h-1 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full mx-auto mt-6"></div>
@@ -1098,7 +1098,7 @@ export default function TechnologiesSection() {
           <div className="bg-gradient-to-r from-emerald-500/10 to-teal-500/10 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-emerald-500/20">
             <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">Ready to Build Something Amazing?</h3>
             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              Let's leverage these technologies to create your next project. I'm always excited to work with new tools
+              Let&apos;s leverage these technologies to create your next project. I&apos;m always excited to work with new tools
               and frameworks.
             </p>
             <button className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-full hover:shadow-xl hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105">

@@ -15,7 +15,7 @@ export function ServiceCTA({ service }) {
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Get Started?</h2>
         <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
-          Let's work together to create a tailored {service.title.toLowerCase()} solution that meets your business needs
+          Let&apos;s work together to create a tailored {service.title.toLowerCase()} solution that meets your business needs
           and helps you achieve your goals.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

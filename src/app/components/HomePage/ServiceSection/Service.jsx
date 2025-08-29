@@ -382,7 +382,7 @@
 //             <div className="relative z-10">
 //               <h3 className="text-2xl lg:text-3xl font-bold mb-4">Ready to Start Your Project?</h3>
 //               <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-//                 Let's discuss your ideas and create something amazing together. I'm here to help bring your vision to
+//                 Let&apos;s discuss your ideas and create something amazing together. I'm here to help bring your vision to
 //                 life.
 //               </p>
 //               <button className="px-8 py-4 bg-white text-emerald-600 font-semibold rounded-full hover:shadow-xl transition-all duration-300 hover:scale-105">
@@ -575,7 +575,7 @@ export default function ServicesSection() {
             <div className="relative z-10">
               <h3 className="text-2xl lg:text-3xl font-bold mb-4">Ready to Start Your Project?</h3>
               <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-                Let's discuss your ideas and create something amazing together. I'm here to help bring your vision to
+                Let&apos;s discuss your ideas and create something amazing together. I&apos;m here to help bring your vision to
                 life.
               </p>
               <button className="px-8 py-4 bg-white text-emerald-600 font-semibold rounded-full hover:shadow-xl transition-all duration-300 hover:scale-105">

@@ -117,7 +117,7 @@ export const servicesData = [
       {
         question: "How long does it take to develop a website?",
         answer:
-          "The timeline for website development varies depending on the complexity of the project. A simple website can be completed in 2-4 weeks, while more complex projects may take 2-3 months or more. We'll provide you with a detailed timeline during our initial consultation.",
+          "The timeline for website development varies depending on the complexity of the project. A simple website can be completed in 2-4 weeks, while more complex projects may take 2-3 months or more. We&apos;ll provide you with a detailed timeline during our initial consultation.",
       },
       {
         question: "Do you provide website maintenance after launch?",
@@ -127,7 +127,7 @@ export const servicesData = [
       {
         question: "Can you redesign my existing website?",
         answer:
-          "We specialize in website redesigns that improve both aesthetics and functionality. We'll analyze your current website, identify areas for improvement, and create a modern, user-friendly design that aligns with your brand and business goals.",
+          "We specialize in website redesigns that improve both aesthetics and functionality. We&apos;ll analyze your current website, identify areas for improvement, and create a modern, user-friendly design that aligns with your brand and business goals.",
       },
       {
         question: "Do you build e-commerce websites?",
@@ -244,7 +244,7 @@ export const servicesData = [
       {
         question: "Do you guarantee first-page rankings?",
         answer:
-          "We don't guarantee specific rankings because search algorithms are constantly changing and influenced by many factors outside our control. However, we do guarantee that we'll use industry best practices and proven strategies to improve your rankings and organic traffic over time.",
+          "We don't guarantee specific rankings because search algorithms are constantly changing and influenced by many factors outside our control. However, we do guarantee that We&apos;ll use industry best practices and proven strategies to improve your rankings and organic traffic over time.",
       },
       {
         question: "How do you measure SEO success?",
@@ -357,7 +357,7 @@ export const servicesData = [
       {
         question: "How long does video production take?",
         answer:
-          "The timeline for video production depends on the complexity and length of the project. Simple edits can be completed in a few days, while more complex projects with animations and special effects may take 1-2 weeks or more. We'll provide you with a specific timeline based on your project requirements.",
+          "The timeline for video production depends on the complexity and length of the project. Simple edits can be completed in a few days, while more complex projects with animations and special effects may take 1-2 weeks or more. We&apos;ll provide you with a specific timeline based on your project requirements.",
       },
       {
         question: "Do you provide filming services?",
@@ -482,7 +482,7 @@ export const servicesData = [
       {
         question: "How often will I receive reports on my campaigns?",
         answer:
-          "We provide detailed monthly reports on your campaign performance, along with insights and recommendations for optimization. For active campaigns, we also conduct weekly check-ins to discuss performance and make real-time adjustments as needed. You'll also have access to a dashboard for real-time monitoring.",
+          "We provide detailed monthly reports on your campaign performance, along with insights and recommendations for optimization. For active campaigns, we also conduct weekly check-ins to discuss performance and make real-time adjustments as needed. You&apos;ll also have access to a dashboard for real-time monitoring.",
       },
     ],
     image: "/placeholder.svg?height=600&width=800",

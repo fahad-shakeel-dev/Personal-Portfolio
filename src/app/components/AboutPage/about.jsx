@@ -755,10 +755,10 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-6 text-gray-700">
               {[
-                "I am a dedicated Creative Developer with a passion for creating efficient, user-friendly web applications that solve real-world problems. My journey in technology began when I built my first website at the age of 15, and I've been continuously expanding my skills and knowledge ever since.",
+                "I am a dedicated Creative Developer with a passion for creating efficient, user-friendly web applications that solve real-world problems. My journey in technology began when I built my first website at the age of 15, and I&apos;ve been continuously expanding my skills and knowledge ever since.",
                 "With a strong foundation in both frontend and backend technologies, I pride myself on writing clean, maintainable code and creating intuitive user experiences. I believe in the power of technology to transform businesses and improve lives.",
-                "Throughout my career, I've worked with diverse teams across various industries, from startups to enterprise organizations. This experience has honed my ability to adapt to different environments and requirements.",
-                "When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community through blogs and tutorials.",
+                "Throughout my career, I&apos;ve worked with diverse teams across various industries, from startups to enterprise organizations. This experience has honed my ability to adapt to different environments and requirements.",
+                "When I&apos;m not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community through blogs and tutorials.",
               ].map((paragraph, index) => (
                 <AnimatedSection key={index} animation="fade-up">
                   <p className="text-base md:text-lg leading-relaxed">{paragraph}</p>

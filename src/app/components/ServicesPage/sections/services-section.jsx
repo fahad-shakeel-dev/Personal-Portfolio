@@ -160,7 +160,7 @@ export function ServicesSection() {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Proven Results</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Our track record speaks for itself. Here's how we've helped businesses like yours succeed.
+            Our track record speaks for itself. Here&apos;s how we've helped businesses like yours succeed.
           </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -190,7 +190,7 @@ export function ServicesSection() {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Client Success Stories</h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Don't just take our word for it. Here's what our clients have to say about working with us.
+            Don't just take our word for it. Here&apos;s what our clients have to say about working with us.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

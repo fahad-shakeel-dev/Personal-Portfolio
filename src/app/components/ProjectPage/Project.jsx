@@ -196,7 +196,7 @@
 //             <div className="relative z-10">
 //               <h3 className="text-2xl lg:text-3xl font-bold mb-4">Have a Project in Mind?</h3>
 //               <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-//                 Let's collaborate and bring your ideas to life. I'm always excited to work on new and challenging
+//                 Let&apos;s collaborate and bring your ideas to life. I'm always excited to work on new and challenging
 //                 projects.
 //               </p>
 //               <Link
@@ -398,7 +398,7 @@
 //             <div className="relative z-10">
 //               <h3 className="text-2xl lg:text-3xl font-bold mb-4">Have a Project in Mind?</h3>
 //               <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-//                 Let's collaborate and bring your ideas to life. I'm always excited to work on new and challenging
+//                 Let&apos;s collaborate and bring your ideas to life. I'm always excited to work on new and challenging
 //                 projects.
 //               </p>
 //               <Link
@@ -668,7 +668,7 @@ export default function ProjectsPage() {
             <div className="relative z-10">
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4">Have a Project in Mind?</h3>
               <p className="text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 opacity-90 max-w-xl sm:max-w-2xl mx-auto">
-                Let's collaborate and bring your ideas to life. I'm always excited to work on new and challenging projects.
+                Let&apos;s collaborate and bring your ideas to life. I&apos;m always excited to work on new and challenging projects.
               </p>
               <Link
                 href="/contact"
