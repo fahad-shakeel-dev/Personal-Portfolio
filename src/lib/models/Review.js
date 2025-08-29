@@ -37,7 +37,7 @@ const reviewSchema = new mongoose.Schema({
     min: [0, 'Likes cannot be negative'],
   },
 }, { timestamps: true });
-
+reviewSchema.index({ userId: 1, likesCount:1 }, { unique: true });
 // Prevent model overwrite
 const Review = mongoose.models.Review || mongoose.model('Review', reviewSchema);
 

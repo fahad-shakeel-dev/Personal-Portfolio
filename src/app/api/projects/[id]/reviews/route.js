@@ -93,6 +93,7 @@ import Like from "@/lib/models/Like"
 import { NextResponse } from "next/server"
 
 export async function POST(request, { params }) {
+  const { id } = await params
   await dbConnect()
   try {
     const { userId, name, comment, rating } = await request.json()
@@ -101,13 +102,13 @@ export async function POST(request, { params }) {
     }
 
     // Check if user already has a review for this project
-    const existingReview = await Review.findOne({ projectId: params.id, userId })
+    const existingReview = await Review.findOne({ projectId: id, userId })
     if (existingReview) {
       return NextResponse.json({ success: false, error: "One review per user" }, { status: 400 })
     }
 
     const review = new Review({
-      projectId: params.id,
+      projectId: id,
       userId,
       name,
       comment,
@@ -137,12 +138,13 @@ export async function POST(request, { params }) {
 }
 
 export async function GET(request, { params }) {
+  const { id } = await params
   await dbConnect()
   try {
     const { searchParams } = new URL(request.url)
     const userId = searchParams.get("userId")
 
-    const reviews = await Review.find({ projectId: params.id }).lean()
+    const reviews = await Review.find({ projectId: id }).lean()
     let userLikes = []
     if (userId) {
       userLikes = await Like.find({ userId, targetType: "review", targetId: { $in: reviews.map(r => r._id) } }).lean()

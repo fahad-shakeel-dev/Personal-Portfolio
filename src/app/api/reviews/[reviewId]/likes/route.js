@@ -26,73 +26,204 @@
 
 
 
+// // src/app/api/reviews/[reviewId]/likes/route.js
+// import { dbConnect } from "@/lib/dbCon"
+// import Review from "@/lib/models/Review"
+// import Like from "@/lib/models/Like"
+// import { NextResponse } from "next/server"
+
+// export async function POST(request, { params }) {
+//   await dbConnect()
+//   try {
+//     const { userId } = await request.json()
+//     if (!userId) {
+//       return NextResponse.json({ success: false, error: "User ID required" }, { status: 400 })
+//     }
+
+//     const review = await Review.findById(params.reviewId)
+//     if (!review) {
+//       return NextResponse.json({ success: false, error: "Review not found" }, { status: 404 })
+//     }
+
+//     const existingLike = await Like.findOne({ userId, targetType: "review", targetId: params.reviewId })
+//     if (existingLike) {
+//       return NextResponse.json({ success: false, error: "Already liked" }, { status: 400 })
+//     }
+
+//     const like = new Like({
+//       userId,
+//       targetType: "review",
+//       targetId: params.reviewId,
+//     })
+//     await like.save()
+
+//     review.likesCount = (await Like.countDocuments({ targetType: "review", targetId: params.reviewId })) || 0
+//     await review.save()
+
+//     return NextResponse.json({ success: true, data: { likes: review.likesCount } }, { status: 200 })
+//   } catch (error) {
+//     console.error("Error liking review:", error)
+//     return NextResponse.json({ success: false, error: error.message }, { status: 500 })
+//   }
+// }
+
+// export async function DELETE(request, { params }) {
+//   await dbConnect()
+//   try {
+//     const { userId } = await request.json()
+//     if (!userId) {
+//       return NextResponse.json({ success: false, error: "User ID required" }, { status: 400 })
+//     }
+
+//     const review = await Review.findById(params.reviewId)
+//     if (!review) {
+//       return NextResponse.json({ success: false, error: "Review not found" }, { status: 404 })
+//     }
+
+//     const like = await Like.findOne({ userId, targetType: "review", targetId: params.reviewId })
+//     if (!like) {
+//       return NextResponse.json({ success: false, error: "Not liked" }, { status: 400 })
+//     }
+
+//     await Like.deleteOne({ _id: like._id })
+
+//     review.likesCount = (await Like.countDocuments({ targetType: "review", targetId: params.reviewId })) || 0
+//     await review.save()
+
+//     return NextResponse.json({ success: true, data: { likes: review.likesCount } }, { status: 200 })
+//   } catch (error) {
+//     console.error("Error unliking review:", error)
+//     return NextResponse.json({ success: false, error: error.message }, { status: 500 })
+//   }
+// }
+
+
+
 // src/app/api/reviews/[reviewId]/likes/route.js
+
 import { dbConnect } from "@/lib/dbCon"
 import Review from "@/lib/models/Review"
 import Like from "@/lib/models/Like"
 import { NextResponse } from "next/server"
 
+// ✅ POST handler
 export async function POST(request, { params }) {
-  await dbConnect()
+  const { reviewId } = await params; // ✅ Await params in Next.js 15+
+  await dbConnect();
+
   try {
-    const { userId } = await request.json()
+    const { userId } = await request.json();
     if (!userId) {
-      return NextResponse.json({ success: false, error: "User ID required" }, { status: 400 })
+      return NextResponse.json(
+        { success: false, error: "User ID required" },
+        { status: 400 }
+      );
     }
 
-    const review = await Review.findById(params.reviewId)
+    const review = await Review.findById(reviewId);
     if (!review) {
-      return NextResponse.json({ success: false, error: "Review not found" }, { status: 404 })
+      return NextResponse.json(
+        { success: false, error: "Review not found" },
+        { status: 404 }
+      );
     }
 
-    const existingLike = await Like.findOne({ userId, targetType: "review", targetId: params.reviewId })
+    const existingLike = await Like.findOne({
+      userId,
+      targetType: "review",
+      targetId: reviewId,
+    });
+
     if (existingLike) {
-      return NextResponse.json({ success: false, error: "Already liked" }, { status: 400 })
+      return NextResponse.json(
+        { success: false, error: "Already liked" },
+        { status: 400 }
+      );
     }
 
     const like = new Like({
       userId,
       targetType: "review",
-      targetId: params.reviewId,
-    })
-    await like.save()
+      targetId: reviewId,
+    });
 
-    review.likesCount = (await Like.countDocuments({ targetType: "review", targetId: params.reviewId })) || 0
-    await review.save()
+    await like.save();
 
-    return NextResponse.json({ success: true, data: { likes: review.likesCount } }, { status: 200 })
+    review.likesCount =
+      (await Like.countDocuments({
+        targetType: "review",
+        targetId: reviewId,
+      })) || 0;
+
+    await review.save();
+
+    return NextResponse.json(
+      { success: true, data: { likes: review.likesCount } },
+      { status: 200 }
+    );
   } catch (error) {
-    console.error("Error liking review:", error)
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 })
+    console.error("Error liking review:", error);
+    return NextResponse.json(
+      { success: false, error: error.message },
+      { status: 500 }
+    );
   }
 }
 
+// ✅ DELETE handler
 export async function DELETE(request, { params }) {
-  await dbConnect()
+  const { reviewId } = await params; // ✅ Await params in Next.js 15+
+  await dbConnect();
+
   try {
-    const { userId } = await request.json()
+    const { userId } = await request.json();
     if (!userId) {
-      return NextResponse.json({ success: false, error: "User ID required" }, { status: 400 })
+      return NextResponse.json(
+        { success: false, error: "User ID required" },
+        { status: 400 }
+      );
     }
 
-    const review = await Review.findById(params.reviewId)
+    const review = await Review.findById(reviewId);
     if (!review) {
-      return NextResponse.json({ success: false, error: "Review not found" }, { status: 404 })
+      return NextResponse.json(
+        { success: false, error: "Review not found" },
+        { status: 404 }
+      );
     }
 
-    const like = await Like.findOne({ userId, targetType: "review", targetId: params.reviewId })
+    const like = await Like.findOne({
+      userId,
+      targetType: "review",
+      targetId: reviewId,
+    });
+
     if (!like) {
-      return NextResponse.json({ success: false, error: "Not liked" }, { status: 400 })
+      return NextResponse.json(
+        { success: false, error: "Not liked" },
+        { status: 400 }
+      );
     }
 
-    await Like.deleteOne({ _id: like._id })
+    await Like.deleteOne({ _id: like._id });
 
-    review.likesCount = (await Like.countDocuments({ targetType: "review", targetId: params.reviewId })) || 0
-    await review.save()
+    review.likesCount =
+      (await Like.countDocuments({
+        targetType: "review",
+        targetId: reviewId,
+      })) || 0;
 
-    return NextResponse.json({ success: true, data: { likes: review.likesCount } }, { status: 200 })
+    await review.save();
+
+    return NextResponse.json(
+      { success: true, data: { likes: review.likesCount } },
+      { status: 200 }
+    );
   } catch (error) {
-    console.error("Error unliking review:", error)
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 })
+    console.error("Error unliking review:", error);
+    return NextResponse.json(
+      { success: false, error: error.message },
+      { status: 500 }
+    );
   }
 }
