@@ -830,7 +830,16 @@ export async function GET(request) {
       query.status = 'approved';
       query.displayOnPortfolio = true;
     } else if (user) {
-      query.userId = user._id; // Return user's testimonial if authenticated
+      // query.userId = user._id; // Return user's testimonial if authenticated
+       query = {
+        $or: [
+          { userId: user._id }, // User's own testimonial
+          { 
+            status: 'approved', 
+            displayOnPortfolio: true 
+          } // Other approved testimonials
+        ]
+      };
     } else {
       // Public access: only approved and displayed testimonials
       query.status = 'approved';

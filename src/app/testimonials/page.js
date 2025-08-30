@@ -845,7 +845,7 @@ export default function TestimonialsPage() {
     'https://res.cloudinary.com/dit3dubrf/image/upload/v1756110277/avatar3_mepqpe.png',
     'https://res.cloudinary.com/dit3dubrf/image/upload/v1756110276/avatar1_qqhasy.png',
   ];
-  const defaultPlaceholder = 'https://via.placeholder.com/150';
+  const defaultPlaceholder = 'https://res.cloudinary.com/dit3dubrf/image/upload/v1756110276/avatar1_qqhasy.png';
 
   // Load Cloudinary Upload Widget script
   useEffect(() => {
