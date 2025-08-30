@@ -71,7 +71,7 @@ export default function ReviewsPage() {
       isHelpful: true,
       flagged: false,
       adminResponse: {
-        content: "Thank you for the wonderful feedback! I&apos;m glad the portfolio met your expectations.",
+        content: "Thank you for the wonderful feedback! I'm glad the portfolio met your expectations.",
         respondedDate: "2024-01-18",
       },
       tags: ["portfolio", "responsive", "animations"],
