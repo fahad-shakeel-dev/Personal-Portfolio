@@ -1,12 +1,10 @@
 "use client"
 
 import { useState } from "react"
-
 export default function AnalyticsPage() {
   const [selectedPeriod, setSelectedPeriod] = useState("30d")
   const [selectedMetric, setSelectedMetric] = useState("visitors")
 
-  // Mock analytics data - replace with actual data fetching
   const analyticsData = {
     overview: {
       totalVisitors: 12847,

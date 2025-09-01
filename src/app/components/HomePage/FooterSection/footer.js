@@ -333,7 +333,7 @@ export default function Footer() {
               {["About", "Services", "Portfolio", "Contact"].map((item, index) => (
                 <li key={index}>
                   <a
-                    href="#"
+                    href="/contact"
                     className="text-teal-200 hover:text-white transform hover:-translate-y-1 transition-all duration-300 inline-block"
                   >
                     {item}

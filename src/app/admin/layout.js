@@ -189,8 +189,6 @@ export default function AdminLayout({ children }) {
   ></div>
 )}
 
-
-        {/* Main Content */}
         <main className="flex-1 p-8 lg:ml-64">{children}</main>
       </div>
     </div>
