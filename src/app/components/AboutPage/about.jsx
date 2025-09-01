@@ -589,10 +589,10 @@ export default function AboutPage() {
   }, [])
 
   const stats = [
-    { icon: Award, label: "Awards Won", value: "15+" },
-    { icon: Users, label: "Happy Clients", value: "50+" },
-    { icon: Coffee, label: "Coffee Cups", value: "1000+" },
-    { icon: Heart, label: "Passion Projects", value: "25+" },
+    { icon: Award, label: "Awards Won", value: "5+" },
+    { icon: Users, label: "Happy Clients", value: "18+" },
+    { icon: Coffee, label: "Tea Cups", value: "1000+" },
+    { icon: Heart, label: "Passion Projects", value: "20+" },
   ]
 
   const experiences = [
@@ -641,19 +641,21 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-100 to-cyan-200">
-      <div className="container mx-auto px-4 py-8 lg:py-16 max-w-6xl">
+      <div className="container mx-auto px-4 py-8 lg:py-20 max-w-6xl">
         {/* Header Section */}
         <AnimatedSection animation="fade-up" className="mb-16">
           <div className="bg-white shadow-xl rounded-3xl p-6 md:p-10 border border-emerald-100">
             <div className="flex flex-col lg:flex-row gap-8 items-start">
               <div className="lg:w-1/3 w-full">
                 <AnimatedSection animation="scale-up">
-                  <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border-4 border-emerald-200">
+                  <div className="relative w-full aspect-[3.5/4] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border-4 border-emerald-200">
                     <Image
-                      src="/placeholder.svg?height=400&width=300"
+                      src="/images/about.png"
                       alt="Professional Portrait"
-                      fill
-                      className="object-cover"
+                         width={600}
+                  height={700}
+                      // fill
+                      // className="object-cover"
                       priority
                     />
                   </div>
@@ -696,11 +698,11 @@ export default function AboutPage() {
                   <div className="flex flex-wrap gap-4">
                     <div className="flex items-center gap-3 bg-emerald-50 px-4 py-3 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-emerald-100">
                       <Mail className="w-5 h-5 text-emerald-600 flex-shrink-0" />
-                      <span className="text-gray-700 text-sm md:text-base">hello@fahadjoyia.com</span>
+                      <span className="text-gray-700 text-sm md:text-base">fahad.shakeel.dev@gmail.com</span>
                     </div>
                     <div className="flex items-center gap-3 bg-emerald-50 px-4 py-3 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-emerald-100">
                       <span className="text-emerald-600 text-lg flex-shrink-0">📍</span>
-                      <span className="text-gray-700 text-sm md:text-base">New York, USA</span>
+                      <span className="text-gray-700 text-sm md:text-base">Faislabad, Pakistan</span>
                     </div>
                   </div>
                 </AnimatedSection>
@@ -755,10 +757,10 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-6 text-gray-700">
               {[
-                "I am a dedicated Creative Developer with a passion for creating efficient, user-friendly web applications that solve real-world problems. My journey in technology began when I built my first website at the age of 15, and I&apos;ve been continuously expanding my skills and knowledge ever since.",
+                "I am a dedicated Creative Developer with a passion for creating efficient, user-friendly web applications that solve real-world problems. My journey in technology began when I built my first website at the age of 17, and I've been continuously expanding my skills and knowledge ever since.",
                 "With a strong foundation in both frontend and backend technologies, I pride myself on writing clean, maintainable code and creating intuitive user experiences. I believe in the power of technology to transform businesses and improve lives.",
-                "Throughout my career, I&apos;ve worked with diverse teams across various industries, from startups to enterprise organizations. This experience has honed my ability to adapt to different environments and requirements.",
-                "When I&apos;m not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community through blogs and tutorials.",
+                "Throughout my career, I've worked with diverse teams across various startups organizations. This experience has honed my ability to adapt to different environments and requirements.",
+                "When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community through blogs and tutorials.",
               ].map((paragraph, index) => (
                 <AnimatedSection key={index} animation="fade-up">
                   <p className="text-base md:text-lg leading-relaxed">{paragraph}</p>

@@ -1,241 +1,16 @@
-// // 'use client'
-
-// // import React, { useRef, useEffect } from 'react'
-
-// // // Portfolio section showcasing project cards
-// // export default function PortfolioSection() {
-// //   const portfolioRef = useRef(null)
-// //   const portfolioItemsRef = useRef([])
-
-// //   // Add Intersection Observer for animations
-// //   useEffect(() => {
-// //     const observerOptions = {
-// //       root: null,
-// //       rootMargin: '0px',
-// //       threshold: 0.2,
-// //     }
-
-// //     // Animate portfolio items with stagger effect
-// //     const itemObserver = new IntersectionObserver((entries) => {
-// //       entries.forEach((entry, index) => {
-// //         if (entry.isIntersecting) {
-// //           setTimeout(() => {
-// //             entry.target.classList.add('animate')
-// //           }, index * 200) // Stagger animation by 200ms
-// //           itemObserver.unobserve(entry.target)
-// //         }
-// //       })
-// //     }, observerOptions)
-
-// //     // Observe portfolio items
-// //     portfolioItemsRef.current.forEach((item) => {
-// //       if (item) itemObserver.observe(item)
-// //     })
-
-// //     // Cleanup observer
-// //     return () => {
-// //       portfolioItemsRef.current.forEach((item) => {
-// //         if (item) itemObserver.unobserve(item)
-// //       })
-// //     }
-// //   }, [])
-
-// //   // Function to add elements to portfolioItemsRef
-// //   const addToRefs = (el) => {
-// //     if (el && !portfolioItemsRef.current.includes(el)) {
-// //       portfolioItemsRef.current.push(el)
-// //     }
-// //   }
-
-// //   return (
-// //     <section
-// //       ref={portfolioRef}
-// //       className="relative flex items-center px-4 sm:px-8 md:px-16 py-12 lg:py-16 z-10 bg-gradient-to-br from-cyan-200 via-teal-100 to-emerald-50"
-// //     >
-// //       {/* CSS for animations and responsive styling */}
-// //       <style jsx>{`
-// //         /* Animation for portfolio items */
-// //         .portfolio-item {
-// //           opacity: 0;
-// //           transform: translateY(100px);
-// //           transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-// //         }
-
-// //         .portfolio-item.animate {
-// //           opacity: 1;
-// //           transform: translateY(0);
-// //         }
-
-// //         /* Ensure section height is content-driven */
-// //         section {
-// //           min-height: fit-content;
-// //         }
-
-// //         /* Responsive adjustments */
-// //         @media (max-width: 640px) {
-// //           .portfolio-item {
-// //             transform: translateY(50px); /* Smaller translate for small screens */
-// //           }
-// //         }
-// //       `}</style>
-
-// //       {/* Container with max-width for large screens */}
-// //       <div className="w-full max-w-[1300px] mx-auto">
-// //         {/* Heading section */}
-// //         <div className="mb-12 sm:mb-16">
-// //           <span className="text-emerald-800 text-xs sm:text-sm tracking-widest uppercase mb-4 inline-block">
-// //             PORTFOLIO
-// //           </span>
-// //           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight text-teal-900">
-// //             from designs to
-// //             <span className="relative">
-// //               pixel perfect
-// //               <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-emerald-500 rounded-full"></span>
-// //             </span>
-// //             web
-// //           </h2>
-// //         </div>
-
-// //         {/* Portfolio grid */}
-// //         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-// //           {/* Portfolio Item 1 */}
-// //           <div className="portfolio-item group" ref={addToRefs}>
-// //             <div className="relative overflow-hidden rounded-xl bg-white p-4 h-[300px] transition-all duration-500 hover:bg-emerald-50 shadow-lg">
-// //               <div className="absolute inset-0 opacity-10">
-// //                 <div className="absolute top-0 left-0 w-full h-full border-[1px] border-emerald-500/30 rounded-xl"></div>
-// //                 <div className="absolute top-10 left-10 w-20 h-20 border-[1px] border-emerald-500/30 rounded-full"></div>
-// //                 <div className="absolute bottom-10 right-10 w-40 h-40 border-[1px] border-emerald-500/30 rounded-full"></div>
-// //               </div>
-// //               <div className="relative h-full bg-white rounded-lg overflow-hidden">
-// //                 <div className="h-8 bg-emerald-100 flex items-center px-2 gap-1">
-// //                   <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-// //                   <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
-// //                   <div className="w-2 h-2 rounded-full bg-green-500"></div>
-// //                   <div className="ml-4 h-4 w-32 bg-emerald-200 rounded-full"></div>
-// //                 </div>
-// //                 <div className="p-4">
-// //                   <div className="w-full h-[200px] bg-emerald-100 rounded-lg animate-pulse"></div>
-// //                 </div>
-// //               </div>
-// //             </div>
-// //             <div className="mt-4">
-// //               <h3 className="text-lg sm:text-xl font-medium text-teal-900">
-// //                 Building the future of HR software solutions
-// //               </h3>
-// //               <div className="flex flex-wrap gap-2 mt-2">
-// //                 <span className="text-xs bg-emerald-100 px-3 py-1 rounded-full text-teal-800">
-// //                   WORDPRESS
-// //                 </span>
-// //                 <span className="text-xs bg-emerald-100 px-3 py-1 rounded-full text-teal-800">
-// //                   JAVASCRIPT
-// //                 </span>
-// //                 <span className="text-xs bg-emerald-100 px-3 py-1 rounded-full text-teal-800">
-// //                   CSS3
-// //                 </span>
-// //               </div>
-// //             </div>
-// //           </div>
-
-// //           {/* Portfolio Item 2 */}
-// //           <div className="portfolio-item group" ref={addToRefs}>
-// //             <div className="relative overflow-hidden rounded-xl bg-white p-4 h-[300px] transition-all duration-500 hover:bg-emerald-50 shadow-lg">
-// //               <div className="absolute inset-0 opacity-10">
-// //                 <div className="absolute top-0 left-0 w-full h-full border-[1px] border-emerald-500/30 rounded-xl"></div>
-// //                 <div className="absolute top-10 left-10 w-20 h-20 border-[1px] border-emerald-500/30 rounded-full"></div>
-// //                 <div className="absolute bottom-10 right-10 w-40 h-40 border-[1px] border-emerald-500/30 rounded-full"></div>
-// //               </div>
-// //               <div className="relative h-full bg-white rounded-lg overflow-hidden">
-// //                 <div className="h-8 bg-emerald-100 flex items-center px-2 gap-1">
-// //                   <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-// //                   <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
-// //                   <div className="w-2 h-2 rounded-full bg-green-500"></div>
-// //                   <div className="ml-4 h-4 w-32 bg-emerald-200 rounded-full"></div>
-// //                 </div>
-// //                 <div className="p-4">
-// //                   <div className="w-full h-[200px] bg-emerald-100 rounded-lg animate-pulse"></div>
-// //                 </div>
-// //               </div>
-// //             </div>
-// //             <div className="mt-4">
-// //               <h3 className="text-lg sm:text-xl font-medium text-teal-900">
-// //                 Brother Film Co: where creativity meets code
-// //               </h3>
-// //               <div className="flex flex-wrap gap-2 mt-2">
-// //                 <span className="text-xs bg-emerald-100 px-3 py-1 rounded-full text-teal-800">
-// //                   WORDPRESS
-// //                 </span>
-// //                 <span className="text-xs bg-emerald-100 px-3 py-1 rounded-full text-teal-800">
-// //                   PHP
-// //                 </span>
-// //                 <span className 쉽게="text-xs bg-emerald-100 px-3 py-1 rounded-full text-teal-800">
-// //                   GSAP
-// //                 </span>
-// //               </div>
-// //             </div>
-// //           </div>
-
-// //           {/* Portfolio Item 3 */}
-// //           <div className="portfolio-item group" ref={addToRefs}>
-// //             <div className="relative overflow-hidden rounded-xl bg-white p-4 h-[300px] transition-all duration-500 hover:bg-emerald-50 shadow-lg">
-// //               <div className="absolute inset-0 opacity-10">
-// //                 <div className="absolute top-0 left-0 w-full h-full border-[1px] border-emerald-500/30 rounded-xl"></div>
-// //                 <div className="absolute top-10 left-10 w-20 h-20 border-[1px] border-emerald-500/30 rounded-full"></div>
-// //                 <div className="absolute bottom-10 right-10 w-40 h-40 border-[1px] border-emerald-500/30 rounded-full"></div>
-// //               </div>
-// //               <div className="relative h-full bg-white rounded-lg overflow-hidden">
-// //                 <div className="h-8 bg-emerald-100 flex items-center px-2 gap-1">
-// //                   <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-// //                   <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
-// //                   <div className="w-2 h-2 rounded-full bg-green-500"></div>
-// //                   <div className="ml-4 h-4 w-32 bg-emerald-200 rounded-full"></div>
-// //                 </div>
-// //                 <div className="p-4">
-// //                   <div className="w-full h-[200px] bg-emerald-100 rounded-lg animate-pulse"></div>
-// //                 </div>
-// //               </div>
-// //             </div>
-// //             <div className="mt-4">
-// //               <h3 className="text-lg sm:text-xl font-medium text-teal-900">
-// //                 Innovating the world of digital events
-// //               </h3>
-// //               <div className="flex flex-wrap gap-2 mt-2">
-// //                 <span className="text-xs bg-emerald-100 px-3 py-1 rounded-full text-teal-800">
-// //                   WEBFLOW
-// //                 </span>
-// //                 <span className="text-xs bg-emerald-100 px-3 py-1 rounded-full text-teal-800">
-// //                   JAVASCRIPT
-// //                 </span>
-// //                 <span className="text-xs bg-emerald-100 px-3 py-1 rounded-full text-teal-800">
-// //                   REACT
-// //                 </span>
-// //               </div>
-// //             </div>
-// //           </div>
-// //         </div>
-// //       </div>
-// //     </section>
-// //   )
-// // }
-
-
-
-
-
-
-
-
-
-
-
 // "use client"
 
-// import { useRef, useEffect, useState } from "react"
+// import { useRef, useEffect, useState, useMemo } from "react"
 // import { ExternalLink, Github, ArrowRight } from "lucide-react"
 // import Image from "next/image"
+// import Link from "next/link"
 
 // export default function PortfolioSection() {
 //   const [isVisible, setIsVisible] = useState(false)
 //   const [activeFilter, setActiveFilter] = useState("All")
+//   const [projects, setProjects] = useState([])
+//   const [loading, setLoading] = useState(true)
+//   const [error, setError] = useState(null)
 //   const sectionRef = useRef(null)
 
 //   useEffect(() => {
@@ -246,7 +21,7 @@
 //           observer.unobserve(entry.target)
 //         }
 //       },
-//       { threshold: 0.2 },
+//       { threshold: 0.2, rootMargin: "100px" },
 //     )
 
 //     if (sectionRef.current) {
@@ -256,98 +31,98 @@
 //     return () => observer.disconnect()
 //   }, [])
 
+//   useEffect(() => {
+//     const fetchProjects = async () => {
+//       try {
+//         setLoading(true)
+//         const res = await fetch("/api/projects", { next: { revalidate: 60 } })
+//         if (!res.ok) throw new Error("Failed to fetch projects")
+//         const { success, data } = await res.json()
+//         if (!success) throw new Error("API error")
+//         setProjects(
+//           data.map((project) => ({
+//             id: project.id,
+//             title: project.title,
+//             category: project.category,
+//             description: project.description,
+//             image: project.image || "/placeholder.svg",
+//             features: project.features || project.technologies || [],
+//             liveUrl: project.liveUrl || "#",
+//             githubUrl: project.githubUrl || "#",
+//             featured: project.status === "completed",
+//           }))
+//         )
+//       } catch (err) {
+//         setError(err.message)
+//       } finally {
+//         setLoading(false)
+//       }
+//     }
+//     fetchProjects()
+//   }, [])
+
 //   const filters = ["All", "Web Apps", "E-commerce", "Mobile Apps", "UI/UX"]
 
-//   const projects = [
-//     {
-//       id: 1,
-//       title: "E-commerce Platform",
-//       category: "E-commerce",
-//       description: "A modern e-commerce platform with advanced features and seamless user experience.",
-//       image: "/placeholder.svg?height=400&width=600",
-//       technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-//       liveUrl: "#",
-//       githubUrl: "#",
-//       featured: true,
-//     },
-//     {
-//       id: 2,
-//       title: "Task Management App",
-//       category: "Web Apps",
-//       description: "Collaborative task management application with real-time updates and team features.",
-//       image: "/placeholder.svg?height=400&width=600",
-//       technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
-//       liveUrl: "#",
-//       githubUrl: "#",
-//       featured: false,
-//     },
-//     {
-//       id: 3,
-//       title: "Mobile Banking App",
-//       category: "Mobile Apps",
-//       description: "Secure mobile banking application with biometric authentication and real-time transactions.",
-//       image: "/placeholder.svg?height=400&width=600",
-//       technologies: ["React Native", "Firebase", "Node.js", "Express"],
-//       liveUrl: "#",
-//       githubUrl: "#",
-//       featured: true,
-//     },
-//     {
-//       id: 4,
-//       title: "Restaurant Website",
-//       category: "Web Apps",
-//       description: "Beautiful restaurant website with online ordering and reservation system.",
-//       image: "/placeholder.svg?height=400&width=600",
-//       technologies: ["WordPress", "PHP", "MySQL", "JavaScript"],
-//       liveUrl: "#",
-//       githubUrl: "#",
-//       featured: false,
-//     },
-//     {
-//       id: 5,
-//       title: "Fitness App Design",
-//       category: "UI/UX",
-//       description: "Complete UI/UX design for a fitness tracking mobile application.",
-//       image: "/placeholder.svg?height=400&width=600",
-//       technologies: ["Figma", "Adobe XD", "Prototyping", "User Research"],
-//       liveUrl: "#",
-//       githubUrl: "#",
-//       featured: false,
-//     },
-//     {
-//       id: 6,
-//       title: "SaaS Dashboard",
-//       category: "Web Apps",
-//       description: "Comprehensive SaaS dashboard with analytics, user management, and reporting features.",
-//       image: "/placeholder.svg?height=400&width=600",
-//       technologies: ["Vue.js", "Laravel", "MySQL", "Chart.js"],
-//       liveUrl: "#",
-//       githubUrl: "#",
-//       featured: true,
-//     },
-//   ]
+//   const filteredProjects = useMemo(() => {
+//     return activeFilter === "All"
+//       ? projects
+//       : projects.filter((project) => project.category === activeFilter)
+//   }, [projects, activeFilter])
 
-//   const filteredProjects =
-//     activeFilter === "All" ? projects : projects.filter((project) => project.category === activeFilter)
+//   const displayedProjects = filteredProjects.slice(0, typeof window !== "undefined" && window.innerWidth < 640 ? 3 : 6)
+
+//   const structuredData = {
+//     "@context": "https://schema.org",
+//     "@type": "ItemList",
+//     itemListElement: displayedProjects.map((project, index) => ({
+//       "@type": "CreativeWork",
+//       name: project.title,
+//       description: project.description,
+//       url: `/projects/${project.id}`,
+//       image: project.image,
+//       position: index + 1,
+//     })),
+//   }
 
 //   return (
 //     <section
 //       ref={sectionRef}
-//       className="py-20 lg:py-32 bg-gradient-to-br from-white via-gray-50 to-emerald-50 relative overflow-hidden"
+//       className="no-js py-20 lg:py-32 bg-gradient-to-br from-white via-gray-50 to-emerald-50 relative min-h-fit overflow-visible"
+//       role="region"
+//       aria-label="Portfolio Section"
+//       data-testid="portfolio-section"
+//       itemscope
+//       itemtype="https://schema.org/ItemList"
 //     >
+//       <style jsx>{`
+//         .no-js .transform {
+//           opacity: 1 !important;
+//           transform: none !important;
+//         }
+//         button:focus {
+//           outline: 2px solid #0d9488;
+//           outline-offset: 2px;
+//         }
+//       `}</style>
+
+//       <script
+//         type="application/ld+json"
+//         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+//       />
+
 //       {/* Background Elements */}
-//       <div className="absolute inset-0">
+//       <div className="absolute inset-0 pointer-events-none overflow-visible">
 //         <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-emerald-100/20 to-teal-100/20 rounded-full blur-3xl"></div>
 //         <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-tr from-cyan-100/20 to-emerald-100/20 rounded-full blur-3xl"></div>
 //       </div>
 
 //       <div className="container mx-auto px-6 lg:px-8 relative z-10">
 //         {/* Section Header */}
-//         <div
-//           className={`text-center mb-16 transform transition-all duration-1000 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+//         <header
+//           className={`text-center mb-16 transform transition-all duration-1000 will-change-transform ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
 //         >
 //           <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium mb-4">
-//             <ArrowRight className="w-4 h-4" />
+//             <ArrowRight className="w-4 h-4" aria-hidden="true" />
 //             Portfolio
 //           </div>
 
@@ -362,109 +137,159 @@
 //           </p>
 
 //           <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mx-auto mt-6"></div>
-//         </div>
+//         </header>
 
 //         {/* Filter Buttons */}
 //         <div
-//           className={`flex flex-wrap justify-center gap-4 mb-12 transform transition-all duration-1000 delay-200 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+//           className={`flex flex-wrap justify-center gap-4 mb-12 transform transition-all duration-1000 delay-200 will-change-transform ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
 //         >
 //           {filters.map((filter) => (
 //             <button
 //               key={filter}
+//               type="button"
 //               onClick={() => setActiveFilter(filter)}
 //               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
 //                 activeFilter === filter
 //                   ? "bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/25"
 //                   : "bg-white text-gray-600 hover:bg-emerald-50 hover:text-emerald-600 shadow-md"
 //               }`}
+//               aria-label={`Filter by ${filter}`}
 //             >
 //               {filter}
 //             </button>
 //           ))}
 //         </div>
 
+//         {/* Loading State */}
+//         {loading && (
+//           <div className="text-center text-gray-600 text-lg">Loading projects...</div>
+//         )}
+
+//         {/* Error State */}
+//         {error && (
+//           <div className="text-center text-red-600 text-lg">Error: {error}</div>
+//         )}
+
 //         {/* Projects Grid */}
-//         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-//           {filteredProjects.map((project, index) => (
-//             <div
-//               key={project.id}
-//               className={`group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 transform ${
-//                 isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-//               } ${project.featured ? "md:col-span-2 lg:col-span-1" : ""}`}
-//               style={{ transitionDelay: `${index * 100}ms` }}
-//             >
-//               {/* Project Image */}
-//               <div className="relative h-64 overflow-hidden">
-//                 <Image
-//                   src={project.image || "/placeholder.svg"}
-//                   alt={project.title}
-//                   fill
-//                   className="object-cover group-hover:scale-110 transition-transform duration-700"
-//                 />
-//                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+//         {!loading && !error && (
+//           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 w-full">
+//             {displayedProjects.map((project, index) => (
+//               <Link
+//                 key={project.id}
+//                 href={`/projects/${project.id}`}
+//                 className="block"
+//                 data-testid={`project-card-${project.id}`}
+//               >
+//                 <article
+//                   className={`group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 transform w-full ${
+//                     isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+//                   } ${project.featured ? "md:col-span-2 lg:col-span-1" : ""}`}
+//                   style={{ transitionDelay: `${index * 100}ms` }}
+//                   itemscope
+//                   itemtype="https://schema.org/CreativeWork"
+//                 >
+//                   {/* Project Image */}
+//                   <div className="relative h-64 overflow-hidden">
+//                     <Image
+//                       src={project.image}
+//                       alt={project.title}
+//                       fill
+//                       className="object-cover group-hover:scale-110 transition-transform duration-700"
+//                       priority={index < 3}
+//                       loading={index >= 3 ? "lazy" : undefined}
+//                     />
+//                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-//                 {/* Overlay Links */}
-//                 <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-//                   <a
-//                     href={project.liveUrl}
-//                     className="p-3 bg-white/90 text-gray-800 rounded-full hover:bg-white transition-colors duration-300"
-//                     aria-label="View Live Project"
-//                   >
-//                     <ExternalLink className="w-5 h-5" />
-//                   </a>
-//                   <a
-//                     href={project.githubUrl}
-//                     className="p-3 bg-white/90 text-gray-800 rounded-full hover:bg-white transition-colors duration-300"
-//                     aria-label="View Source Code"
-//                   >
-//                     <Github className="w-5 h-5" />
-//                   </a>
-//                 </div>
+//                     {/* Overlay Links */}
+//                     <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+//                       <a
+//                         href={project.liveUrl}
+//                         className="p-3 bg-white/90 text-gray-800 rounded-full hover:bg-white transition-colors duration-300"
+//                         aria-label={`View Live Project: ${project.title}`}
+//                         onClick={(e) => e.stopPropagation()}
+//                       >
+//                         <ExternalLink className="w-5 h-5" />
+//                       </a>
+//                       <a
+//                         href={project.githubUrl}
+//                         className="p-3 bg-white/90 text-gray-800 rounded-full hover:bg-white transition-colors duration-300"
+//                         aria-label={`View Source Code: ${project.title}`}
+//                         onClick={(e) => e.stopPropagation()}
+//                       >
+//                         <Github className="w-5 h-5" />
+//                       </a>
+//                     </div>
 
-//                 {/* Featured Badge */}
-//                 {project.featured && (
-//                   <div className="absolute top-4 left-4 px-3 py-1 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-xs font-medium rounded-full">
-//                     Featured
+//                     {/* Featured Badge */}
+//                     {project.featured && (
+//                       <div className="absolute top-4 left-4 px-3 py-1 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-xs font-medium rounded-full">
+//                         Featured
+//                       </div>
+//                     )}
 //                   </div>
-//                 )}
-//               </div>
 
-//               {/* Project Content */}
-//               <div className="p-6 space-y-4">
-//                 <div className="flex items-center justify-between">
-//                   <span className="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full">
-//                     {project.category}
-//                   </span>
-//                 </div>
+//                   {/* Project Content */}
+//                   <div className="p-6 sm:p-6 md:p-8 space-y-4">
+//                     <div className="flex items-center justify-between">
+//                       <span
+//                         className="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full"
+//                         itemprop="category"
+//                       >
+//                         {project.category}
+//                       </span>
+//                     </div>
 
-//                 <h3 className="text-xl font-bold text-gray-800 group-hover:text-emerald-600 transition-colors duration-300">
-//                   {project.title}
-//                 </h3>
+//                     <h3
+//                       className="text-lg sm:text-base md:text-xl font-bold text-gray-800 group-hover:text-emerald-600 transition-colors duration-300"
+//                       id={`project-title-${project.id}`}
+//                       itemprop="name"
+//                     >
+//                       {project.title}
+//                     </h3>
 
-//                 <p className="text-gray-600 leading-relaxed text-sm">{project.description}</p>
+//                     <p
+//                       className="text-gray-600 leading-relaxed text-sm sm:text-xs md:text-base"
+//                       aria-describedby={`project-title-${project.id}`}
+//                       itemprop="description"
+//                     >
+//                       {project.description}
+//                     </p>
 
-//                 {/* Technologies */}
-//                 <div className="flex flex-wrap gap-2">
-//                   {project.technologies.map((tech, techIndex) => (
-//                     <span key={techIndex} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-md">
-//                       {tech}
-//                     </span>
-//                   ))}
-//                 </div>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
+//                     {/* Features (Technologies) */}
+//                     <div className="flex flex-wrap gap-2">
+//                       {project.features.map((feature, featureIndex) => (
+//                         <span
+//                           key={featureIndex}
+//                           className="px-2 py-1 bg-gray-100 text-gray-600 text-xs sm:text-[0.65rem] md:text-sm rounded-md"
+//                         >
+//                           {feature}
+//                         </span>
+//                       ))}
+//                     </div>
+//                   </div>
+//                 </article>
+//               </Link>
+//             ))}
+//           </div>
+//         )}
 
 //         {/* View All Projects Button */}
-//         <div
-//           className={`text-center mt-16 transform transition-all duration-1000 delay-500 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
-//         >
-//           <button className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold rounded-full hover:shadow-xl hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105">
-//             <span>View All Projects</span>
-//             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-//           </button>
-//         </div>
+//         {!loading && !error && filteredProjects.length > displayedProjects.length && (
+//           <div
+//             className={`text-center mt-12 sm:mt-16 transform transition-all duration-1000 delay-500 will-change-transform ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+//           >
+//             <Link href="/projects">
+//               <button
+//                 type="button"
+//                 className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold rounded-full hover:shadow-xl hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105"
+//                 aria-label="View All Projects"
+//               >
+//                 <span>View All Projects</span>
+//                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+//               </button>
+//             </Link>
+//           </div>
+//         )}
 //       </div>
 //     </section>
 //   )
@@ -472,23 +297,22 @@
 
 
 
-
-
-
-
-
-
-
 "use client"
 
-import { useRef, useEffect, useState } from "react"
+import { useRef, useEffect, useState, useMemo } from "react"
 import { ExternalLink, Github, ArrowRight } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export default function PortfolioSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [activeFilter, setActiveFilter] = useState("All")
+  const [projects, setProjects] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const sectionRef = useRef(null)
+  const router = useRouter()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -508,98 +332,105 @@ export default function PortfolioSection() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true)
+        const res = await fetch("/api/projects", { next: { revalidate: 60 } })
+        if (!res.ok) throw new Error("Failed to fetch projects")
+        const { success, data } = await res.json()
+        if (!success) throw new Error("API error")
+        setProjects(
+          data.map((project) => ({
+            id: project.id,
+            title: project.title,
+            category: project.category,
+            description: project.description,
+            image: project.image || "/placeholder.svg",
+            features: project.features || project.technologies || [],
+            liveUrl: project.liveUrl || "#",
+            githubUrl: project.githubUrl || "#",
+            featured: project.status === "completed",
+          }))
+        )
+      } catch (err) {
+        setError(err.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchProjects()
+  }, [])
+
   const filters = ["All", "Web Apps", "E-commerce", "Mobile Apps", "UI/UX"]
 
-  const projects = [
-    {
-      id: 1,
-      title: "E-commerce Platform",
-      category: "E-commerce",
-      description: "A modern e-commerce platform with advanced features and seamless user experience.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Task Management App",
-      category: "Web Apps",
-      description: "Collaborative task management application with real-time updates and team features.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false,
-    },
-    {
-      id: 3,
-      title: "Mobile Banking App",
-      category: "Mobile Apps",
-      description: "Secure mobile banking application with biometric authentication and real-time transactions.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["React Native", "Firebase", "Node.js", "Express"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: true,
-    },
-    {
-      id: 4,
-      title: "Restaurant Website",
-      category: "Web Apps",
-      description: "Beautiful restaurant website with online ordering and reservation system.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["WordPress", "PHP", "MySQL", "JavaScript"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false,
-    },
-    {
-      id: 5,
-      title: "Fitness App Design",
-      category: "UI/UX",
-      description: "Complete UI/UX design for a fitness tracking mobile application.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["Figma", "Adobe XD", "Prototyping", "User Research"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: false,
-    },
-    {
-      id: 6,
-      title: "SaaS Dashboard",
-      category: "Web Apps",
-      description: "Comprehensive SaaS dashboard with analytics, user management, and reporting features.",
-      image: "/placeholder.svg?height=400&width=600",
-      technologies: ["Vue.js", "Laravel", "MySQL", "Chart.js"],
-      liveUrl: "#",
-      githubUrl: "#",
-      featured: true,
-    },
-  ]
+  const filteredProjects = useMemo(() => {
+    return activeFilter === "All"
+      ? projects
+      : projects.filter((project) => project.category === activeFilter)
+  }, [projects, activeFilter])
 
-  const filteredProjects =
-    activeFilter === "All" ? projects : projects.filter((project) => project.category === activeFilter)
+  const displayedProjects = filteredProjects.slice(0, typeof window !== "undefined" && window.innerWidth < 640 ? 3 : 6)
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: displayedProjects.map((project, index) => ({
+      "@type": "CreativeWork",
+      name: project.title,
+      description: project.description,
+      url: `/projects/${project.id}`,
+      image: project.image,
+      position: index + 1,
+    })),
+  }
 
   return (
     <section
       ref={sectionRef}
-      className="py-20 lg:py-32 bg-gradient-to-br from-white via-gray-50 to-emerald-50 relative overflow-hidden"
+      className="no-js py-20 lg:py-32 bg-gradient-to-br from-white via-gray-50 to-emerald-50 relative min-h-fit overflow-visible"
+      role="region"
+      aria-label="Portfolio Section"
+      data-testid="portfolio-section"
+      itemScope
+      itemType="https://schema.org/ItemList"
     >
+      <style jsx>{`
+        .no-js .transform {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+        button:focus {
+          outline: 2px solid #0d9488;
+          outline-offset: 2px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .transform {
+            transition: none !important;
+            transform: none !important;
+            opacity: 1 !important;
+          }
+        }
+      `}</style>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
       {/* Background Elements */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 pointer-events-none overflow-visible">
         <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-emerald-100/20 to-teal-100/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-tr from-cyan-100/20 to-emerald-100/20 rounded-full blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div
-          className={`text-center mb-16 transform transition-all duration-1000 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+        <header
+          className={`text-center mb-16 transform transition-all duration-1000 will-change-transform,opacity ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"}`}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium mb-4">
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
             Portfolio
           </div>
 
@@ -614,109 +445,163 @@ export default function PortfolioSection() {
           </p>
 
           <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mx-auto mt-6"></div>
-        </div>
+        </header>
 
         {/* Filter Buttons */}
         <div
-          className={`flex flex-wrap justify-center gap-4 mb-12 transform transition-all duration-1000 delay-200 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
+          className={`flex flex-wrap justify-center gap-4 mb-12 transform transition-all duration-1000 delay-300 will-change-transform,opacity ${isVisible ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"}`}
         >
           {filters.map((filter) => (
             <button
               key={filter}
+              type="button"
               onClick={() => setActiveFilter(filter)}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                 activeFilter === filter
                   ? "bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/25"
                   : "bg-white text-gray-600 hover:bg-emerald-50 hover:text-emerald-600 shadow-md"
               }`}
+              aria-label={`Filter by ${filter}`}
             >
               {filter}
             </button>
           ))}
         </div>
 
+        {/* Loading State */}
+        {loading && (
+          <div className="text-center text-gray-600 text-lg">Loading projects...</div>
+        )}
+
+        {/* Error State */}
+        {error && (
+          <div className="text-center text-red-600 text-lg">Error: {error}</div>
+        )}
+
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
-            <div
-              key={project.id}
-              className={`group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 transform ${
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-              } ${project.featured ? "md:col-span-2 lg:col-span-1" : ""}`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              {/* Project Image */}
-              <div className="relative h-64 overflow-hidden">
-                <Image
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        {!loading && !error && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 w-full">
+            {displayedProjects.map((project, index) => (
+              <div
+                key={project.id}
+                onClick={() => router.push(`/projects/${project.id}`)}
+                className="cursor-pointer"
+                data-testid={`project-card-${project.id}`}
+              >
+                <article
+                  className={`group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-1000 hover:-translate-y-2 transform w-full ${
+                    isVisible ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"
+                  } ${project.featured ? "md:col-span-2 lg:col-span-1" : ""}`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                  itemScope
+                  itemType="https://schema.org/CreativeWork"
+                >
+                  {/* Project Image */}
+                  <div className="relative h-64 overflow-hidden">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      priority={index < 3}
+                      loading={index >= 3 ? "lazy" : undefined}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                {/* Overlay Links */}
-                <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <a
-                    href={project.liveUrl}
-                    className="p-3 bg-white/90 text-gray-800 rounded-full hover:bg-white transition-colors duration-300"
-                    aria-label="View Live Project"
-                  >
-                    <ExternalLink className="w-5 h-5" />
-                  </a>
-                  <a
-                    href={project.githubUrl}
-                    className="p-3 bg-white/90 text-gray-800 rounded-full hover:bg-white transition-colors duration-300"
-                    aria-label="View Source Code"
-                  >
-                    <Github className="w-5 h-5" />
-                  </a>
-                </div>
+                    {/* Overlay Links */}
+                    <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <a
+                        href={project.liveUrl}
+                        className="p-3 bg-white/90 text-gray-800 rounded-full hover:bg-white transition-colors duration-300"
+                        aria-label={`View Live Project: ${project.title}`}
+                        onClick={(e) => e.stopPropagation()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                      </a>
+                      <a
+                        href={project.githubUrl}
+                        className="p-3 bg-white/90 text-gray-800 rounded-full hover:bg-white transition-colors duration-300"
+                        aria-label={`View Source Code: ${project.title}`}
+                        onClick={(e) => e.stopPropagation()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="w-5 h-5" />
+                      </a>
+                    </div>
 
-                {/* Featured Badge */}
-                {project.featured && (
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-xs font-medium rounded-full">
-                    Featured
+                    {/* Featured Badge */}
+                    {project.featured && (
+                      <div className="absolute top-4 left-4 px-3 py-1 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-xs font-medium rounded-full">
+                        Featured
+                      </div>
+                    )}
                   </div>
-                )}
+
+                  {/* Project Content */}
+                  <div className="p-6 sm:p-6 md:p-8 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span
+                        className="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full"
+                        itemProp="category"
+                      >
+                        {project.category}
+                      </span>
+                    </div>
+
+                    <h3
+                      className="text-lg sm:text-base md:text-xl font-bold text-gray-800 group-hover:text-emerald-600 transition-colors duration-300"
+                      id={`project-title-${project.id}`}
+                      itemProp="name"
+                    >
+                      {project.title}
+                    </h3>
+
+                    <p
+                      className="text-gray-600 leading-relaxed text-sm sm:text-xs md:text-base"
+                      aria-describedby={`project-title-${project.id}`}
+                      itemProp="description"
+                    >
+                      {project.description}
+                    </p>
+
+                    {/* Features (Technologies) */}
+                    <div className="flex flex-wrap gap-2">
+                      {project.features.map((feature, featureIndex) => (
+                        <span
+                          key={featureIndex}
+                          className="px-2 py-1 bg-gray-100 text-gray-600 text-xs sm:text-[0.65rem] md:text-sm rounded-md"
+                        >
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </article>
               </div>
-
-              {/* Project Content */}
-              <div className="p-6 space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full">
-                    {project.category}
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-bold text-gray-800 group-hover:text-emerald-600 transition-colors duration-300">
-                  {project.title}
-                </h3>
-
-                <p className="text-gray-600 leading-relaxed text-sm">{project.description}</p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span key={techIndex} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-md">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* View All Projects Button */}
-        <div
-          className={`text-center mt-16 transform transition-all duration-1000 delay-500 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}`}
-        >
-          <button className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold rounded-full hover:shadow-xl hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105">
-            <span>View All Projects</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-          </button>
-        </div>
+        {!loading && !error && filteredProjects.length > displayedProjects.length && (
+          <div
+            className={`text-center mt-12 sm:mt-16 transform transition-all duration-1000 delay-300 will-change-transform,opacity ${isVisible ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"}`}
+          >
+            <Link href="/projects">
+              <button
+                type="button"
+                className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold rounded-full hover:shadow-xl hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105"
+                aria-label="View All Projects"
+              >
+                <span>View All Projects</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   )
