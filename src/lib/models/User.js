@@ -92,6 +92,10 @@ const userSchema = new mongoose.Schema({
     unique: true,
     sparse: true,
   },
+   userImg: {
+    type: String, // will store Google profile picture or manual upload URL
+    default: null,
+  },
   isVerified: {
     type: Boolean,
     default: false, // Email not verified by default

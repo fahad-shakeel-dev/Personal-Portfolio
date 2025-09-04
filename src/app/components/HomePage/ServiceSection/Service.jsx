@@ -1,3 +1,1456 @@
+// "use client"
+
+// import { useRef, useEffect, useState } from "react"
+// import { Code, Palette, Smartphone, Globe, Zap, Shield } from "lucide-react"
+// import Link from "next/link"
+
+// export default function ServicesSection() {
+//   const [isVisible, setIsVisible] = useState(false)
+//   const sectionRef = useRef(null)
+
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           setIsVisible(true)
+//           observer.unobserve(entry.target)
+//         }
+//       },
+//       { threshold: 0.2 },
+//     )
+
+//     if (sectionRef.current) {
+//       observer.observe(sectionRef.current)
+//     }
+
+//     return () => observer.disconnect()
+//   }, [])
+
+//   const services = [
+//     {
+//       icon: Code,
+//       title: "Web Development",
+//       description:
+//         "Building responsive, fast, and scalable web applications using modern technologies like React, Next.js, and Node.js.",
+//       features: ["React & Next.js", "Node.js Backend", "Database Design", "API Integration"],
+//       color: "from-blue-500 to-cyan-500",
+//       serviceType: "Web Development Service",
+//     },
+//     {
+//       icon: Palette,
+//       title: "UI/UX Design",
+//       description:
+//         "Creating beautiful, intuitive user interfaces and experiences that engage users and drive conversions.",
+//       features: ["User Research", "Wireframing", "Prototyping", "Visual Design"],
+//       color: "from-purple-500 to-pink-500",
+//       serviceType: "UI/UX Design Service",
+//     },
+// {
+//   icon: Smartphone,
+//   title: "Mobile Responsive Design",
+//   description:
+//     "I build responsive websites with Next.js that adapt seamlessly to mobile, tablet, and desktop devices for the best user experience.",
+//   features: [
+//     "Next.js & React",
+//     "Responsive Tailwind CSS layouts",
+//     "Cross-browser compatibility",
+//     "Optimized for speed & SEO"
+//   ],
+//   color: "from-emerald-500 to-teal-500",
+//   serviceType: "Responsive Web Design Service",
+// },
+//     {
+//       icon: Globe,
+//       title: "E-commerce Solutions",
+//       description:
+//         "Building complete e-commerce platforms with payment integration, inventory management, and analytics.",
+//       features: ["Wordpress Development", "WooCommerce", "Payment Gateway", "Inventory System"],
+//       color: "from-orange-500 to-red-500",
+//       serviceType: "E-commerce Development Service",
+//     },
+//     {
+//       icon: Zap,
+//       title: "Performance Optimization",
+//       description:
+//         "Optimizing websites and applications for speed, SEO, and better user experience across all devices.",
+//       features: ["Speed Optimization", "SEO Enhancement", "Core Web Vitals", "Analytics Setup"],
+//       color: "from-yellow-500 to-orange-500",
+//       serviceType: "Website Performance Optimization Service",
+//     },
+//     {
+//       icon: Shield,
+//       title: "Maintenance & Support",
+//       description:
+//         "Providing ongoing maintenance, updates, and technical support to keep your digital assets running smoothly.",
+//       features: ["Regular Updates", "Security Monitoring", "Bug Fixes", "24/7 Support"],
+//       color: "from-indigo-500 to-purple-500",
+//       serviceType: "Website Maintenance Service",
+//     },
+//   ]
+
+//   const structuredData = {
+//     "@context": "https://schema.org",
+//     "@type": "ItemList",
+//     itemListElement: services.map((service, index) => ({
+//       "@type": "Service",
+//       name: service.title,
+//       description: service.description,
+//       serviceType: service.serviceType,
+//       offers: {
+//         "@type": "Offer",
+//         availability: "https://schema.org/InStock",
+//       },
+//       position: index + 1,
+//     })),
+//   }
+
+//   return (
+//     <section
+//       ref={sectionRef}
+//       className="no-js py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-white to-emerald-50 relative min-h-fit overflow-visible"
+//       role="region"
+//       aria-label="Services Section"
+//       data-testid="services-section"
+//       itemScope
+//       itemType="https://schema.org/ItemList"
+//     >
+//       <style jsx>{`
+//         .no-js .transform {
+//           opacity: 1 !important;
+//           transform: none !important;
+//         }
+//         button:focus {
+//           outline: 2px solid #0d9488;
+//           outline-offset: 2px;
+//         }
+//         @media (prefers-reduced-motion: reduce) {
+//           .transform {
+//             transition: none !important;
+//             transform: none !important;
+//             opacity: 1 !important;
+//           }
+//         }
+//       `}</style>
+
+//       <script
+//         type="application/ld+json"
+//         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+//       />
+
+//       {/* Background Elements */}
+//       <div className="absolute inset-0 pointer-events-none overflow-visible">
+//         <div className="absolute top-1/4 left-4 sm:left-10 w-24 sm:w-48 h-24 sm:h-48 bg-gradient-to-br from-emerald-100/30 to-teal-100/30 rounded-full blur-2xl sm:blur-3xl"></div>
+//         <div className="absolute bottom-1/4 right-4 sm:right-10 w-24 sm:w-64 h-24 sm:h-64 bg-gradient-to-tr from-cyan-100/30 to-emerald-100/30 rounded-full blur-2xl sm:blur-3xl"></div>
+//       </div>
+
+//       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+//         {/* Section Header */}
+//         <header
+//           className={`text-center mb-12 transform transition-all duration-1000 will-change-transform,opacity ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"}`}
+//         >
+//           <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium mb-4">
+//             <Zap className="w-4 h-4" aria-hidden="true" />
+//             Services
+//           </div>
+
+//           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-6 leading-tight">
+//             What I Can Do
+//             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-600">
+//               {" "}
+//               For You
+//             </span>
+//           </h2>
+
+//           <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+//             I offer comprehensive digital solutions to help your business grow and succeed in the digital world. From
+//             concept to deployment, I've got you covered.
+//           </p>
+
+//           <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mx-auto mt-6"></div>
+//         </header>
+
+//         {/* Services Grid */}
+//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 w-full">
+//           {services.map((service, index) => (
+//             <article
+//               key={index}
+//               className={`group relative bg-white rounded-3xl p-6 sm:p-6 md:p-8 shadow-lg md:hover:shadow-2xl transition-all duration-1000 md:hover:-translate-y-2 border border-gray-100 transform will-change-transform,opacity w-full ${
+//                 isVisible ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"
+//               }`}
+//               style={{ transitionDelay: `${index * 100}ms` }}
+//               data-testid={`service-card-${index}`}
+//               itemScope
+//               itemType="https://schema.org/Service"
+//             >
+//               {/* Icon */}
+//               <div
+//                 className={`inline-flex p-3 sm:p-3 md:p-4 rounded-2xl bg-gradient-to-r ${service.color} mb-6 group-hover:scale-110 transition-transform duration-300`}
+//               >
+//                 <service.icon
+//                   className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 text-white"
+//                   aria-label={`${service.title} icon`}
+//                 />
+//               </div>
+
+//               {/* Content */}
+//               <div className="space-y-4">
+//                 <h3
+//                   className="text-lg sm:text-base md:text-xl font-bold text-gray-800 group-hover:text-emerald-600 transition-colors duration-300"
+//                   id={`service-title-${index}`}
+//                   itemProp="name"
+//                 >
+//                   {service.title}
+//                 </h3>
+
+//                 <p
+//                   className="text-gray-600 leading-relaxed text-sm sm:text-xs md:text-base"
+//                   aria-describedby={`service-title-${index}`}
+//                   itemProp="description"
+//                 >
+//                   {service.description}
+//                 </p>
+
+//                 {/* Features */}
+//                 <ul className="space-y-2" itemProp="hasOfferCatalog" itemScope itemType="https://schema.org/OfferCatalog">
+//                   {service.features.map((feature, featureIndex) => (
+//                     <li
+//                       key={featureIndex}
+//                       className="flex items-center gap-2"
+//                       itemProp="itemListElement"
+//                       itemScope
+//                       itemType="https://schema.org/Offer"
+//                     >
+//                       <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.color}`}></div>
+//                       <span className="text-xs sm:text-[0.65rem] md:text-sm text-gray-600" itemProp="name">
+//                         {feature}
+//                       </span>
+//                     </li>
+//                   ))}
+//                 </ul>
+//               </div>
+
+//               {/* Hover Effect */}
+//               <div
+//                 className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${service.color} opacity-0 md:group-hover:opacity-5 transition-opacity duration-300`}
+//               ></div>
+//             </article>
+//           ))}
+//         </div>
+
+//         {/* CTA Section */}
+//         <div
+//           className={`text-center mt-12 sm:mt-16 transform transition-all duration-1000 will-change-transform,opacity ${isVisible ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"}`}
+//           style={{ transitionDelay: "300ms" }}
+//         >
+//           <div className="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 text-white relative overflow-visible">
+//             <div className="absolute inset-0 bg-black/10 rounded-3xl"></div>
+//             <div className="relative z-10">
+//               <h3 className="text-xl sm:text-xl md:text-2xl lg:text-3xl font-bold mb-4">Ready to Start Your Project?</h3>
+//               <p className="text-base sm:text-base md:text-lg mb-6 sm:mb-8 opacity-90 max-w-2xl mx-auto">
+//                 Let&apos;s discuss your ideas and create something amazing together. I&apos;m here to help bring your vision to
+//                 life.
+//               </p>
+//               <Link href="/contact">
+//                 <button
+//                   type="button"
+//                   className="px-6 sm:px-6 md:px-8 py-3 sm:py-3 md:py-4 bg-white text-emerald-600 font-semibold rounded-full md:hover:shadow-xl transition-all duration-300 md:hover:scale-105"
+//                   aria-label="Get Started Today"
+//                   style={{ cursor: "pointer" }}
+//                 >
+//                   Get Started Today
+//                 </button>
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   )
+// }
+
+
+
+
+
+
+
+// "use client"
+
+// import { useRef, useEffect, useState } from "react"
+// import { Code, Palette, Smartphone, Globe, Zap, Shield } from "lucide-react"
+// import Link from "next/link"
+
+// export default function ServicesSection() {
+//   const [isVisible, setIsVisible] = useState(false)
+//   const sectionRef = useRef(null)
+
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           setIsVisible(true)
+//           observer.unobserve(entry.target)
+//         }
+//       },
+//       { threshold: 0.2 },
+//     )
+
+//     if (sectionRef.current) {
+//       observer.observe(sectionRef.current)
+//     }
+
+//     return () => observer.disconnect()
+//   }, [])
+
+//   const services = [
+//     {
+//       icon: Code,
+//       title: "Web Development",
+//       description:
+//         "Building responsive, fast, and scalable web applications using modern technologies like React, Next.js, and Node.js.",
+//       features: ["React & Next.js", "Node.js Backend", "Database Design", "API Integration"],
+//       color: "from-blue-500 to-cyan-500",
+//       serviceType: "Web Development Service",
+//     },
+//     {
+//       icon: Palette,
+//       title: "UI/UX Design",
+//       description:
+//         "Creating beautiful, intuitive user interfaces and experiences that engage users and drive conversions.",
+//       features: ["User Research", "Wireframing", "Prototyping", "Visual Design"],
+//       color: "from-purple-500 to-pink-500",
+//       serviceType: "UI/UX Design Service",
+//     },
+//     {
+//       icon: Smartphone,
+//       title: "Mobile Responsive Design",
+//       description:
+//         "I build responsive websites with Next.js that adapt seamlessly to mobile, tablet, and desktop devices for the best user experience.",
+//       features: [
+//         "Next.js & React",
+//         "Responsive Tailwind CSS layouts",
+//         "Cross-browser compatibility",
+//         "Optimized for speed & SEO"
+//       ],
+//       color: "from-emerald-500 to-teal-500",
+//       serviceType: "Responsive Web Design Service",
+//     },
+//     {
+//       icon: Globe,
+//       title: "E-commerce Solutions",
+//       description:
+//         "Building complete e-commerce platforms with payment integration, inventory management, and analytics.",
+//       features: ["Wordpress Development", "WooCommerce", "Payment Gateway", "Inventory System"],
+//       color: "from-orange-500 to-red-500",
+//       serviceType: "E-commerce Development Service",
+//     },
+//     {
+//       icon: Zap,
+//       title: "Performance Optimization",
+//       description:
+//         "Optimizing websites and applications for speed, SEO, and better user experience across all devices.",
+//       features: ["Speed Optimization", "SEO Enhancement", "Core Web Vitals", "Analytics Setup"],
+//       color: "from-yellow-500 to-orange-500",
+//       serviceType: "Website Performance Optimization Service",
+//     },
+//     {
+//       icon: Shield,
+//       title: "Maintenance & Support",
+//       description:
+//         "Providing ongoing maintenance, updates, and technical support to keep your digital assets running smoothly.",
+//       features: ["Regular Updates", "Security Monitoring", "Bug Fixes", "24/7 Support"],
+//       color: "from-indigo-500 to-purple-500",
+//       serviceType: "Website Maintenance Service",
+//     },
+//   ]
+
+//   const structuredData = {
+//     "@context": "https://schema.org",
+//     "@type": "ItemList",
+//     itemListElement: services.map((service, index) => ({
+//       "@type": "Service",
+//       name: service.title,
+//       description: service.description,
+//       serviceType: service.serviceType,
+//       offers: {
+//         "@type": "Offer",
+//         availability: "https://schema.org/InStock",
+//       },
+//       position: index + 1,
+//     })),
+//   }
+
+//   return (
+//     <section
+//       ref={sectionRef}
+//       className="no-js py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-white to-emerald-50 relative min-h-fit overflow-x-hidden"
+//       role="region"
+//       aria-label="Services Section"
+//       data-testid="services-section"
+//       itemScope
+//       itemType="https://schema.org/ItemList"
+//     >
+//       <style jsx>{`
+//         * {
+//           box-sizing: border-box;
+//         }
+//         .no-js .transform {
+//           opacity: 1 !important;
+//           transform: none !important;
+//         }
+//         button:focus {
+//           outline: 2px solid #0d9488;
+//           outline-offset: 2px;
+//         }
+//         @media (prefers-reduced-motion: reduce) {
+//           .transform {
+//             transition: none !important;
+//             transform: none !important;
+//             opacity: 1 !important;
+//           }
+//         }
+//       `}</style>
+
+//       <script
+//         type="application/ld+json"
+//         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+//       />
+
+//       {/* Background Elements */}
+//       <div className="absolute inset-0 pointer-events-none overflow-hidden">
+//         <div className="absolute top-1/4 left-4 w-20 sm:w-32 h-20 sm:h-32 bg-gradient-to-br from-emerald-100/30 to-teal-100/30 rounded-full blur-2xl"></div>
+//         <div className="absolute bottom-1/4 right-4 w-20 sm:w-48 h-20 sm:h-48 bg-gradient-to-tr from-cyan-100/30 to-emerald-100/30 rounded-full blur-2xl"></div>
+//       </div>
+
+//       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full relative z-10">
+//         {/* Section Header */}
+//         <header
+//           className={`text-center mb-10 sm:mb-12 transform transition-all duration-1000 will-change-transform,opacity ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"}`}
+//         >
+//           <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium mb-4">
+//             <Zap className="w-4 h-4" aria-hidden="true" />
+//             Services
+//           </div>
+
+//           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 leading-tight">
+//             What I Can Do
+//             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-600">
+//               {" "}
+//               For You
+//             </span>
+//           </h2>
+
+//           <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+//             I offer comprehensive digital solutions to help your business grow and succeed in the digital world. From
+//             concept to deployment, I've got you covered.
+//           </p>
+
+//           <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mx-auto mt-4 sm:mt-6"></div>
+//         </header>
+
+//         {/* Services Grid */}
+//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 w-full">
+//           {services.map((service, index) => (
+//             <article
+//               key={index}
+//               className={`group relative bg-white rounded-2xl p-4 sm:p-6 shadow-lg md:hover:shadow-2xl transition-all duration-1000 md:hover:-translate-y-2 border border-gray-100 transform will-change-transform,opacity w-full ${
+//                 isVisible ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"
+//               }`}
+//               style={{ transitionDelay: `${index * 100}ms` }}
+//               data-testid={`service-card-${index}`}
+//               itemScope
+//               itemType="https://schema.org/Service"
+//             >
+//               {/* Icon */}
+//               <div
+//                 className={`inline-flex p-2 sm:p-3 rounded-xl bg-gradient-to-r ${service.color} mb-4 sm:mb-6 group-hover:scale-105 transition-transform duration-300`}
+//               >
+//                 <service.icon
+//                   className="w-5 sm:w-6 h-5 sm:h-6 text-white"
+//                   aria-label={`${service.title} icon`}
+//                 />
+//               </div>
+
+//               {/* Content */}
+//               <div className="space-y-3 sm:space-y-4">
+//                 <h3
+//                   className="text-base sm:text-lg font-bold text-gray-800 group-hover:text-emerald-600 transition-colors duration-300"
+//                   id={`service-title-${index}`}
+//                   itemProp="name"
+//                 >
+//                   {service.title}
+//                 </h3>
+
+//                 <p
+//                   className="text-gray-600 leading-relaxed text-sm sm:text-base"
+//                   aria-describedby={`service-title-${index}`}
+//                   itemProp="description"
+//                 >
+//                   {service.description}
+//                 </p>
+
+//                 {/* Features */}
+//                 <ul className="space-y-2" itemProp="hasOfferCatalog" itemScope itemType="https://schema.org/OfferCatalog">
+//                   {service.features.map((feature, featureIndex) => (
+//                     <li
+//                       key={featureIndex}
+//                       className="flex items-center gap-2"
+//                       itemProp="itemListElement"
+//                       itemScope
+//                       itemType="https://schema.org/Offer"
+//                     >
+//                       <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.color}`}></div>
+//                       <span className="text-xs sm:text-sm text-gray-600" itemProp="name">
+//                         {feature}
+//                       </span>
+//                     </li>
+//                   ))}
+//                 </ul>
+//               </div>
+
+//               {/* Hover Effect */}
+//               <div
+//                 className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${service.color} opacity-0 md:group-hover:opacity-5 transition-opacity duration-300`}
+//               ></div>
+//             </article>
+//           ))}
+//         </div>
+
+//         {/* CTA Section */}
+//         <div
+//           className={`text-center mt-10 sm:mt-12 transform transition-all duration-1000 will-change-transform,opacity ${isVisible ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"}`}
+//           style={{ transitionDelay: "300ms" }}
+//         >
+//           <div className="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-4 sm:p-6 lg:p-8 text-white relative overflow-hidden">
+//             <div className="absolute inset-0 bg-black/10 rounded-2xl"></div>
+//             <div className="relative z-10">
+//               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4">Ready to Start Your Project?</h3>
+//               <p className="text-sm sm:text-base mb-4 sm:mb-6 opacity-90 max-w-2xl mx-auto">
+//                 Let&apos;s discuss your ideas and create something amazing together. I&apos;m here to help bring your vision to
+//                 life.
+//               </p>
+//               <Link href="/contact">
+//                 <button
+//                   type="button"
+//                   className="px-4 sm:px-6 py-2 sm:py-3 bg-white text-emerald-600 font-semibold rounded-full md:hover:shadow-xl transition-all duration-300 md:hover:scale-105"
+//                   aria-label="Get Started Today"
+//                   style={{ cursor: "pointer" }}
+//                 >
+//                   Get Started Today
+//                 </button>
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   )
+// }
+
+
+
+
+
+
+
+
+
+// "use client"
+
+// import { useRef, useEffect, useState } from "react"
+// import { Code, Palette, Smartphone, Globe, Zap, Shield } from "lucide-react"
+// import Link from "next/link"
+
+// export default function ServicesSection() {
+//   const [isVisible, setIsVisible] = useState(false)
+//   const sectionRef = useRef(null)
+
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           setIsVisible(true)
+//           observer.unobserve(entry.target)
+//         }
+//       },
+//       { threshold: 0.2 },
+//     )
+
+//     if (sectionRef.current) {
+//       observer.observe(sectionRef.current)
+//     }
+
+//     return () => observer.disconnect()
+//   }, [])
+
+//   const services = [
+//     {
+//       icon: Code,
+//       title: "Web Development",
+//       description:
+//         "Building responsive, fast, and scalable web applications using modern technologies like React, Next.js, and Node.js.",
+//       features: ["React & Next.js", "Node.js Backend", "Database Design", "API Integration"],
+//       color: "from-blue-500 to-cyan-500",
+//       serviceType: "Web Development Service",
+//     },
+//     {
+//       icon: Palette,
+//       title: "UI/UX Design",
+//       description:
+//         "Creating beautiful, intuitive user interfaces and experiences that engage users and drive conversions.",
+//       features: ["User Research", "Wireframing", "Prototyping", "Visual Design"],
+//       color: "from-purple-500 to-pink-500",
+//       serviceType: "UI/UX Design Service",
+//     },
+//     {
+//       icon: Smartphone,
+//       title: "Mobile Responsive Design",
+//       description:
+//         "I build responsive websites with Next.js that adapt seamlessly to mobile, tablet, and desktop devices for the best user experience.",
+//       features: [
+//         "Next.js & React",
+//         "Responsive Tailwind CSS layouts",
+//         "Cross-browser compatibility",
+//         "Optimized for speed & SEO"
+//       ],
+//       color: "from-emerald-500 to-teal-500",
+//       serviceType: "Responsive Web Design Service",
+//     },
+//     {
+//       icon: Globe,
+//       title: "E-commerce Solutions",
+//       description:
+//         "Building complete e-commerce platforms with payment integration, inventory management, and analytics.",
+//       features: ["Wordpress Development", "WooCommerce", "Payment Gateway", "Inventory System"],
+//       color: "from-orange-500 to-red-500",
+//       serviceType: "E-commerce Development Service",
+//     },
+//     {
+//       icon: Zap,
+//       title: "Performance Optimization",
+//       description:
+//         "Optimizing websites and applications for speed, SEO, and better user experience across all devices.",
+//       features: ["Speed Optimization", "SEO Enhancement", "Core Web Vitals", "Analytics Setup"],
+//       color: "from-yellow-500 to-orange-500",
+//       serviceType: "Website Performance Optimization Service",
+//     },
+//     {
+//       icon: Shield,
+//       title: "Maintenance & Support",
+//       description:
+//         "Providing ongoing maintenance, updates, and technical support to keep your digital assets running smoothly.",
+//       features: ["Regular Updates", "Security Monitoring", "Bug Fixes", "24/7 Support"],
+//       color: "from-indigo-500 to-purple-500",
+//       serviceType: "Website Maintenance Service",
+//     },
+//   ]
+
+//   const structuredData = {
+//     "@context": "https://schema.org",
+//     "@type": "ItemList",
+//     itemListElement: services.map((service, index) => ({
+//       "@type": "Service",
+//       name: service.title,
+//       description: service.description,
+//       serviceType: service.serviceType,
+//       offers: {
+//         "@type": "Offer",
+//         availability: "https://schema.org/InStock",
+//       },
+//       position: index + 1,
+//     })),
+//   }
+
+//   return (
+//     <section
+//       ref={sectionRef}
+//       className="no-js py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-white to-emerald-50 relative min-h-fit overflow-x-hidden"
+//       role="region"
+//       aria-label="Services Section"
+//       data-testid="services-section"
+//       itemScope
+//       itemType="https://schema.org/ItemList"
+//     >
+//       <style jsx>{`
+//         * {
+//           box-sizing: border-box;
+//         }
+//         .no-js .transform {
+//           opacity: 1 !important;
+//           transform: none !important;
+//         }
+//         button:focus {
+//           outline: 2px solid #0d9488;
+//           outline-offset: 2px;
+//         }
+//         @media (prefers-reduced-motion: reduce) {
+//           .transform {
+//             transition: none !important;
+//             transform: none !important;
+//             opacity: 1 !important;
+//           }
+//         }
+//       `}</style>
+
+//       <script
+//         type="application/ld+json"
+//         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+//       />
+
+//       {/* Background Elements */}
+//       <div className="absolute inset-0 pointer-events-none overflow-hidden">
+//         <div className="absolute top-1/4 left-4 w-20 sm:w-32 h-20 sm:h-32 bg-gradient-to-br from-emerald-100/30 to-teal-100/30 rounded-full blur-2xl"></div>
+//         <div className="absolute bottom-1/4 right-4 w-20 sm:w-48 h-20 sm:h-48 bg-gradient-to-tr from-cyan-100/30 to-emerald-100/30 rounded-full blur-2xl"></div>
+//       </div>
+
+//       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full relative z-10">
+//         {/* Section Header */}
+//         {isVisible && (
+//           <header className="text-center mb-10 sm:mb-12">
+//             <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium mb-4">
+//               <Zap className="w-4 h-4" aria-hidden="true" />
+//               Services
+//             </div>
+
+//             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 leading-tight">
+//               What I Can Do
+//               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-600">
+//                 {" "}
+//                 For You
+//               </span>
+//             </h2>
+
+//             <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+//               I offer comprehensive digital solutions to help your business grow and succeed in the digital world. From
+//               concept to deployment, I've got you covered.
+//             </p>
+
+//             <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mx-auto mt-4 sm:mt-6"></div>
+//           </header>
+//         )}
+
+//         {/* Services Grid */}
+//         {isVisible && (
+//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 w-full">
+//             {services.map((service, index) => (
+//               <article
+//                 key={index}
+//                 className="group relative bg-white rounded-2xl p-4 sm:p-6 shadow-lg md:hover:shadow-2xl border border-gray-100 w-full"
+//                 data-testid={`service-card-${index}`}
+//                 itemScope
+//                 itemType="https://schema.org/Service"
+//               >
+//                 {/* Icon */}
+//                 <div
+//                   className={`inline-flex p-2 sm:p-3 rounded-xl bg-gradient-to-r ${service.color} mb-4 sm:mb-6 group-hover:scale-105 transition-transform duration-300`}
+//                 >
+//                   <service.icon
+//                     className="w-5 sm:w-6 h-5 sm:h-6 text-white"
+//                     aria-label={`${service.title} icon`}
+//                   />
+//                 </div>
+
+//                 {/* Content */}
+//                 <div className="space-y-3 sm:space-y-4">
+//                   <h3
+//                     className="text-base sm:text-lg font-bold text-gray-800 group-hover:text-emerald-600 transition-colors duration-300"
+//                     id={`service-title-${index}`}
+//                     itemProp="name"
+//                   >
+//                     {service.title}
+//                   </h3>
+
+//                   <p
+//                     className="text-gray-600 leading-relaxed text-sm sm:text-base"
+//                     aria-describedby={`service-title-${index}`}
+//                     itemProp="description"
+//                   >
+//                     {service.description}
+//                   </p>
+
+//                   {/* Features */}
+//                   <ul className="space-y-2" itemProp="hasOfferCatalog" itemScope itemType="https://schema.org/OfferCatalog">
+//                     {service.features.map((feature, featureIndex) => (
+//                       <li
+//                         key={featureIndex}
+//                         className="flex items-center gap-2"
+//                         itemProp="itemListElement"
+//                         itemScope
+//                         itemType="https://schema.org/Offer"
+//                       >
+//                         <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.color}`}></div>
+//                         <span className="text-xs sm:text-sm text-gray-600" itemProp="name">
+//                           {feature}
+//                         </span>
+//                       </li>
+//                     ))}
+//                   </ul>
+//                 </div>
+
+//                 {/* Hover Effect */}
+//                 <div
+//                   className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${service.color} opacity-0 md:group-hover:opacity-5 transition-opacity duration-300`}
+//                 ></div>
+//               </article>
+//             ))}
+//           </div>
+//         )}
+
+//         {/* CTA Section */}
+//         {isVisible && (
+//           <div className="text-center mt-10 sm:mt-12">
+//             <div className="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-4 sm:p-6 lg:p-8 text-white relative overflow-hidden">
+//               <div className="absolute inset-0 bg-black/10 rounded-2xl"></div>
+//               <div className="relative z-10">
+//                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-3 sm:mb-4">Ready to Start Your Project?</h3>
+//                 <p className="text-sm sm:text-base mb-4 sm:mb-6 opacity-90 max-w-2xl mx-auto">
+//                   Let&apos;s discuss your ideas and create something amazing together. I&apos;m here to help bring your vision to
+//                   life.
+//                 </p>
+//                 <Link href="/contact">
+//                   <button
+//                     type="button"
+//                     className="px-4 sm:px-6 py-2 sm:py-3 bg-white text-emerald-600 font-semibold rounded-full md:hover:shadow-xl transition-all duration-300 md:hover:scale-105"
+//                     aria-label="Get Started Today"
+//                     style={{ cursor: "pointer" }}
+//                   >
+//                     Get Started Today
+//                   </button>
+//                 </Link>
+//               </div>
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     </section>
+//   )
+// }
+
+
+
+// "use client"
+
+// import { useRef, useEffect, useState } from "react"
+// import { Code, Palette, Smartphone, Globe, Zap, Shield } from "lucide-react"
+// import Link from "next/link"
+
+// export default function ServicesSection() {
+//   const [isVisible, setIsVisible] = useState(false)
+//   const sectionRef = useRef(null)
+
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           setIsVisible(true)
+//           observer.unobserve(entry.target)
+//         }
+//       },
+//       { threshold: 0.2 },
+//     )
+
+//     if (sectionRef.current) {
+//       observer.observe(sectionRef.current)
+//     }
+
+//     return () => observer.disconnect()
+//   }, [])
+
+//   const services = [
+//     {
+//       icon: Code,
+//       title: "Web Development",
+//       description:
+//         "Building responsive, fast, and scalable web applications using modern technologies like React, Next.js, and Node.js.",
+//       features: ["React & Next.js", "Node.js Backend", "Database Design", "API Integration"],
+//       color: "from-blue-500 to-cyan-500",
+//       serviceType: "Web Development Service",
+//     },
+//     {
+//       icon: Palette,
+//       title: "UI/UX Design",
+//       description:
+//         "Creating beautiful, intuitive user interfaces and experiences that engage users and drive conversions.",
+//       features: ["User Research", "Wireframing", "Prototyping", "Visual Design"],
+//       color: "from-purple-500 to-pink-500",
+//       serviceType: "UI/UX Design Service",
+//     },
+//     {
+//       icon: Smartphone,
+//       title: "Mobile Responsive Design",
+//       description:
+//         "I build responsive websites with Next.js that adapt seamlessly to mobile, tablet, and desktop devices for the best user experience.",
+//       features: [
+//         "Next.js & React",
+//         "Responsive Tailwind CSS layouts",
+//         "Cross-browser compatibility",
+//         "Optimized for speed & SEO"
+//       ],
+//       color: "from-emerald-500 to-teal-500",
+//       serviceType: "Responsive Web Design Service",
+//     },
+//     {
+//       icon: Globe,
+//       title: "E-commerce Solutions",
+//       description:
+//         "Building complete e-commerce platforms with payment integration, inventory management, and analytics.",
+//       features: ["Wordpress Development", "WooCommerce", "Payment Gateway", "Inventory System"],
+//       color: "from-orange-500 to-red-500",
+//       serviceType: "E-commerce Development Service",
+//     },
+//     {
+//       icon: Zap,
+//       title: "Performance Optimization",
+//       description:
+//         "Optimizing websites and applications for speed, SEO, and better user experience across all devices.",
+//       features: ["Speed Optimization", "SEO Enhancement", "Core Web Vitals", "Analytics Setup"],
+//       color: "from-yellow-500 to-orange-500",
+//       serviceType: "Website Performance Optimization Service",
+//     },
+//     {
+//       icon: Shield,
+//       title: "Maintenance & Support",
+//       description:
+//         "Providing ongoing maintenance, updates, and technical support to keep your digital assets running smoothly.",
+//       features: ["Regular Updates", "Security Monitoring", "Bug Fixes", "24/7 Support"],
+//       color: "from-indigo-500 to-purple-500",
+//       serviceType: "Website Maintenance Service",
+//     },
+//   ]
+
+//   return (
+//     <section
+//       ref={sectionRef}
+//       className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-white to-emerald-50 relative min-h-fit overflow-x-hidden"
+//     >
+//       {/* Background Elements */}
+//       <div className="absolute inset-0 pointer-events-none overflow-hidden">
+//         <div className="absolute top-1/4 left-4 w-20 sm:w-32 h-20 sm:h-32 bg-gradient-to-br from-emerald-100/30 to-teal-100/30 rounded-full blur-2xl"></div>
+//         <div className="absolute bottom-1/4 right-4 w-20 sm:w-48 h-20 sm:h-48 bg-gradient-to-tr from-cyan-100/30 to-emerald-100/30 rounded-full blur-2xl"></div>
+//       </div>
+
+//       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+//         {/* Section Header */}
+//         <header
+//           className={`text-center mb-10 sm:mb-12 transform transition-all duration-1000 ${
+//             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+//           }`}
+//         >
+//           <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium mb-4">
+//             <Zap className="w-4 h-4" aria-hidden="true" />
+//             Services
+//           </div>
+
+//           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 sm:mb-6 leading-tight">
+//             What I Can Do
+//             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-600">
+//               {" "}For You
+//             </span>
+//           </h2>
+
+//           <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+//             I offer comprehensive digital solutions to help your business grow and succeed in the digital world.
+//           </p>
+
+//           <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mx-auto mt-4 sm:mt-6"></div>
+//         </header>
+
+//         {/* Services Grid */}
+//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 w-full">
+//           {services.map((service, index) => (
+//             <article
+//               key={index}
+//               className={`group relative bg-white rounded-2xl p-6 shadow-lg border border-gray-100 w-full
+//               transform transition-all duration-1000 ${
+//                 isVisible
+//                   ? "opacity-100 translate-y-0"
+//                   : "opacity-0 translate-y-12"
+//               }`}
+//               style={{ transitionDelay: `${index * 150}ms` }} // stagger animation
+//             >
+//               {/* Icon */}
+//               <div
+//                 className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${service.color} mb-6 group-hover:scale-105 transition-transform duration-300`}
+//               >
+//                 <service.icon className="w-6 h-6 text-white" />
+//               </div>
+
+//               {/* Content */}
+//               <div className="space-y-4">
+//                 <h3 className="text-lg font-bold text-gray-800 group-hover:text-emerald-600 transition-colors duration-300">
+//                   {service.title}
+//                 </h3>
+
+//                 <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+//                   {service.description}
+//                 </p>
+
+//                 {/* Features */}
+//                 <ul className="space-y-2">
+//                   {service.features.map((feature, featureIndex) => (
+//                     <li key={featureIndex} className="flex items-center gap-2">
+//                       <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.color}`}></div>
+//                       <span className="text-xs sm:text-sm text-gray-600">
+//                         {feature}
+//                       </span>
+//                     </li>
+//                   ))}
+//                 </ul>
+//               </div>
+//             </article>
+//           ))}
+//         </div>
+
+//         {/* CTA Section */}
+//         <div
+//           className={`text-center mt-12 transform transition-all duration-1000 delay-500 ${
+//             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+//           }`}
+//         >
+//           <div className="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-6 lg:p-8 text-white relative overflow-hidden">
+//             <div className="absolute inset-0 bg-black/10 rounded-2xl"></div>
+//             <div className="relative z-10">
+//               <h3 className="text-xl lg:text-2xl font-bold mb-4">Ready to Start Your Project?</h3>
+//               <p className="text-base mb-6 opacity-90 max-w-2xl mx-auto">
+//                 Let&apos;s discuss your ideas and create something amazing together.
+//               </p>
+//               <Link href="/contact">
+//                 <button
+//                   type="button"
+//                   className="px-6 py-3 bg-white text-emerald-600 font-semibold rounded-full hover:shadow-xl transition-all duration-300 hover:scale-105"
+//                 >
+//                   Get Started Today
+//                 </button>
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   )
+// }
+
+
+
+
+
+
+
+// "use client"
+
+// import { useRef, useEffect, useState } from "react"
+// import { Code, Palette, Smartphone, Globe, Zap, Shield, ArrowRight } from "lucide-react"
+// import Link from "next/link"
+
+// export default function ServicesSection() {
+//   const [isVisible, setIsVisible] = useState(false)
+//   const sectionRef = useRef(null)
+
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           setIsVisible(true)
+//           observer.unobserve(entry.target)
+//         }
+//       },
+//       { threshold: 0.2 },
+//     )
+
+//     if (sectionRef.current) {
+//       observer.observe(sectionRef.current)
+//     }
+
+//     return () => observer.disconnect()
+//   }, [])
+
+//   const services = [
+//     {
+//       icon: Code,
+//       title: "Web Development",
+//       description:
+//         "Building responsive, fast, and scalable web applications using modern technologies like React, Next.js, and Node.js.",
+//       features: ["React & Next.js", "Node.js Backend", "Database Design", "API Integration"],
+//       color: "from-blue-500 to-cyan-500",
+//       serviceType: "Web Development Service",
+//     },
+//     {
+//       icon: Palette,
+//       title: "UI/UX Design",
+//       description:
+//         "Creating beautiful, intuitive user interfaces and experiences that engage users and drive conversions.",
+//       features: ["User Research", "Wireframing", "Prototyping", "Visual Design"],
+//       color: "from-purple-500 to-pink-500",
+//       serviceType: "UI/UX Design Service",
+//     },
+//     {
+//       icon: Smartphone,
+//       title: "Mobile Responsive Design",
+//       description:
+//         "I build responsive websites with Next.js that adapt seamlessly to mobile, tablet, and desktop devices for the best user experience.",
+//       features: [
+//         "Next.js & React",
+//         "Responsive Tailwind CSS layouts",
+//         "Cross-browser compatibility",
+//         "Optimized for speed & SEO"
+//       ],
+//       color: "from-emerald-500 to-teal-500",
+//       serviceType: "Responsive Web Design Service",
+//     },
+//     {
+//       icon: Globe,
+//       title: "E-commerce Solutions",
+//       description:
+//         "Building complete e-commerce platforms with payment integration, inventory management, and analytics.",
+//       features: ["Wordpress Development", "WooCommerce", "Payment Gateway", "Inventory System"],
+//       color: "from-orange-500 to-red-500",
+//       serviceType: "E-commerce Development Service",
+//     },
+//     {
+//       icon: Zap,
+//       title: "Performance Optimization",
+//       description:
+//         "Optimizing websites and applications for speed, SEO, and better user experience across all devices.",
+//       features: ["Speed Optimization", "SEO Enhancement", "Core Web Vitals", "Analytics Setup"],
+//       color: "from-yellow-500 to-orange-500",
+//       serviceType: "Website Performance Optimization Service",
+//     },
+//     {
+//       icon: Shield,
+//       title: "Maintenance & Support",
+//       description:
+//         "Providing ongoing maintenance, updates, and technical support to keep your digital assets running smoothly.",
+//       features: ["Regular Updates", "Security Monitoring", "Bug Fixes", "24/7 Support"],
+//       color: "from-indigo-500 to-purple-500",
+//       serviceType: "Website Maintenance Service",
+//     },
+//   ]
+
+//   const structuredData = {
+//     "@context": "https://schema.org",
+//     "@type": "ItemList",
+//     itemListElement: services.map((service, index) => ({
+//       "@type": "Service",
+//       name: service.title,
+//       description: service.description,
+//       serviceType: service.serviceType,
+//       offers: {
+//         "@type": "Offer",
+//         availability: "https://schema.org/InStock",
+//       },
+//       position: index + 1,
+//     })),
+//   }
+
+//   return (
+//     <section
+//       ref={sectionRef}
+//       className="py-20 lg:py-32 bg-gradient-to-br from-gray-50 via-white to-emerald-50 relative overflow-hidden"
+//     >
+//       {/* Background Elements */}
+//       <div className="absolute inset-0">
+//         <div className="absolute top-20 right-20 w-72 h-72 bg-gradient-to-br from-emerald-100/40 to-teal-100/40 rounded-full blur-3xl"></div>
+//         <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-tr from-cyan-100/40 to-emerald-100/40 rounded-full blur-3xl"></div>
+//       </div>
+
+//       <div className="container mx-auto px-6 lg:px-8 relative z-10">
+//         {/* Section Header */}
+//         <div
+//           className={`text-center mb-16 transform transition-all duration-1000 ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"}`}
+//         >
+//           <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium mb-4">
+//             <Zap className="w-4 h-4" />
+//             Services
+//           </div>
+
+//           <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6">
+//             What I Can Do
+//             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-600">
+//               {" "}
+//               For You
+//             </span>
+//           </h2>
+
+//           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+//             I offer comprehensive digital solutions to help your business grow and succeed in the digital world. From
+//             concept to deployment, I've got you covered.
+//           </p>
+
+//           <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mx-auto mt-6"></div>
+//         </div>
+
+//         {/* Services Grid */}
+//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+//           {services.map((service, index) => {
+//             const IconComponent = service.icon
+//             return (
+//               <div
+//                 key={index}
+//                 className={`group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 transform transition-all duration-1000 ${
+//                   isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+//                 }`}
+//                 style={{ transitionDelay: `${index * 100}ms` }}
+//               >
+//                 {/* Icon */}
+//                 <div
+//                   className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${service.color} mb-6 group-hover:scale-110 transition-transform duration-300`}
+//                 >
+//                   <IconComponent className="w-6 h-6 text-white" />
+//                 </div>
+
+//                 {/* Content */}
+//                 <div className="space-y-4">
+//                   <h3 className="text-xl font-bold text-gray-800 group-hover:text-emerald-600 transition-colors duration-300">
+//                     {service.title}
+//                   </h3>
+
+//                   <p className="text-gray-600 leading-relaxed">
+//                     {service.description}
+//                   </p>
+
+//                   {/* Features */}
+//                   <ul className="space-y-2">
+//                     {service.features.map((feature, featureIndex) => (
+//                       <li key={featureIndex} className="flex items-center gap-2">
+//                         <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.color}`}></div>
+//                         <span className="text-sm text-gray-600">{feature}</span>
+//                       </li>
+//                     ))}
+//                   </ul>
+//                 </div>
+
+//                 {/* Hover Effect */}
+//                 <div
+//                   className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
+//                 ></div>
+//               </div>
+//             )
+//           })}
+//         </div>
+
+//         {/* CTA Section */}
+//         <div
+//           className={`text-center mt-16 transform transition-all duration-1000 delay-500 ${
+//             isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
+//           }`}
+//         >
+//           <div className="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-8 text-white relative overflow-hidden">
+//             <div className="absolute inset-0 bg-black/10 rounded-2xl"></div>
+//             <div className="relative z-10">
+//               <h3 className="text-2xl font-bold mb-4">Ready to Start Your Project?</h3>
+//               <p className="mb-6 opacity-90 max-w-2xl mx-auto">
+//                 Let&apos;s discuss your ideas and create something amazing together. I&apos;m here to help bring your vision to
+//                 life.
+//               </p>
+//               <Link
+//                 href="/contact"
+//                 className="group inline-flex items-center gap-3 px-8 py-4 bg-white text-emerald-600 font-semibold rounded-full hover:shadow-xl transition-all duration-300 hover:scale-105"
+//               >
+//                 <span>Get Started Today</span>
+//                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       <script
+//         type="application/ld+json"
+//         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+//       />
+//     </section>
+//   )
+// }
+
+
+
+// "use client"
+
+// import { useRef, useEffect, useState } from "react"
+// import { Code, Palette, Smartphone, Globe, Zap, Shield } from "lucide-react"
+// import Link from "next/link"
+
+// export default function ServicesSection() {
+//   const [isVisible, setIsVisible] = useState(false)
+//   const sectionRef = useRef(null)
+
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           setIsVisible(true)
+//           observer.unobserve(entry.target)
+//         }
+//       },
+//       { threshold: 0.2 },
+//     )
+
+//     if (sectionRef.current) {
+//       observer.observe(sectionRef.current)
+//     }
+
+//     return () => observer.disconnect()
+//   }, [])
+
+//   const services = [
+//     {
+//       icon: Code,
+//       title: "Web Development",
+//       description:
+//         "Building responsive, fast, and scalable web applications using modern technologies like React, Next.js, and Node.js.",
+//       features: ["React & Next.js", "Node.js Backend", "Database Design", "API Integration"],
+//       color: "from-blue-500 to-cyan-500",
+//     },
+//     {
+//       icon: Palette,
+//       title: "UI/UX Design",
+//       description:
+//         "Creating beautiful, intuitive user interfaces and experiences that engage users and drive conversions.",
+//       features: ["User Research", "Wireframing", "Prototyping", "Visual Design"],
+//       color: "from-purple-500 to-pink-500",
+//     },
+//     {
+//       icon: Smartphone,
+//       title: "Mobile Responsive Design",
+//       description:
+//         "I build responsive websites with Next.js that adapt seamlessly to mobile, tablet, and desktop devices for the best user experience.",
+//       features: [
+//         "Next.js & React",
+//         "Responsive Tailwind CSS layouts",
+//         "Cross-browser compatibility",
+//         "Optimized for speed & SEO"
+//       ],
+//       color: "from-emerald-500 to-teal-500",
+//     },
+//     {
+//       icon: Globe,
+//       title: "E-commerce Solutions",
+//       description:
+//         "Building complete e-commerce platforms with payment integration, inventory management, and analytics.",
+//       features: ["Wordpress Development", "WooCommerce", "Payment Gateway", "Inventory System"],
+//       color: "from-orange-500 to-red-500",
+//     },
+//     {
+//       icon: Zap,
+//       title: "Performance Optimization",
+//       description:
+//         "Optimizing websites and applications for speed, SEO, and better user experience across all devices.",
+//       features: ["Speed Optimization", "SEO Enhancement", "Core Web Vitals", "Analytics Setup"],
+//       color: "from-yellow-500 to-orange-500",
+//     },
+//     {
+//       icon: Shield,
+//       title: "Maintenance & Support",
+//       description:
+//         "Providing ongoing maintenance, updates, and technical support to keep your digital assets running smoothly.",
+//       features: ["Regular Updates", "Security Monitoring", "Bug Fixes", "24/7 Support"],
+//       color: "from-indigo-500 to-purple-500",
+//     },
+//   ]
+
+//   return (
+//     <section
+//       ref={sectionRef}
+//       className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-white to-emerald-50 relative overflow-hidden"
+//     >
+//       {/* Background Elements */}
+//       <div className="absolute inset-0 pointer-events-none overflow-hidden">
+//         <div className="absolute top-1/4 left-4 w-24 sm:w-40 h-24 sm:h-40 bg-gradient-to-br from-emerald-100/30 to-teal-100/30 rounded-full blur-2xl"></div>
+//         <div className="absolute bottom-1/4 right-4 w-32 sm:w-48 h-32 sm:h-48 bg-gradient-to-tr from-cyan-100/30 to-emerald-100/30 rounded-full blur-2xl"></div>
+//       </div>
+
+//       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+//         {/* Section Header */}
+//         <header
+//           className={`text-center mb-12 transform transition-all duration-1000 ${
+//             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+//           }`}
+//         >
+//           <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium mb-4">
+//             <Zap className="w-4 h-4" />
+//             Services
+//           </div>
+
+//           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 leading-tight">
+//             What I Can Do
+//             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-600">
+//               {" "}For You
+//             </span>
+//           </h2>
+
+//           <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
+//             I offer comprehensive digital solutions to help your business grow and succeed in the digital world.
+//           </p>
+
+//           <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mx-auto mt-6"></div>
+//         </header>
+
+//         {/* Services Grid */}
+//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+//           {services.map((service, index) => (
+//             <article
+//               key={index}
+//               className={`group relative bg-white rounded-2xl p-6 shadow-lg border border-gray-100 transform transition-all duration-1000 ${
+//                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+//               }`}
+//               style={{ transitionDelay: `${index * 150}ms` }}
+//             >
+//               {/* Icon */}
+//               <div
+//                 className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${service.color} mb-6 group-hover:scale-105 transition-transform duration-300`}
+//               >
+//                 <service.icon className="w-6 h-6 text-white" />
+//               </div>
+
+//               {/* Content */}
+//               <div className="space-y-4">
+//                 <h3 className="text-lg font-bold text-gray-800 group-hover:text-emerald-600 transition-colors duration-300">
+//                   {service.title}
+//                 </h3>
+
+//                 <p className="text-gray-600 text-sm sm:text-base">
+//                   {service.description}
+//                 </p>
+
+//                 {/* Features */}
+//                 <ul className="space-y-2">
+//                   {service.features.map((feature, fIndex) => (
+//                     <li key={fIndex} className="flex items-center gap-2">
+//                       <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.color}`}></div>
+//                       <span className="text-xs sm:text-sm text-gray-600">{feature}</span>
+//                     </li>
+//                   ))}
+//                 </ul>
+//               </div>
+//             </article>
+//           ))}
+//         </div>
+
+//         {/* CTA Section */}
+//         <div
+//           className={`text-center mt-12 transform transition-all duration-1000 delay-500 ${
+//             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+//           }`}
+//         >
+//           <div className="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-8 text-white relative overflow-hidden">
+//             <div className="absolute inset-0 bg-black/10 rounded-2xl"></div>
+//             <div className="relative z-10">
+//               <h3 className="text-xl lg:text-2xl font-bold mb-4">Ready to Start Your Project?</h3>
+//               <p className="text-base mb-6 opacity-90 max-w-2xl mx-auto">
+//                 Let&apos;s discuss your ideas and create something amazing together.
+//               </p>
+//               <Link href="/contact">
+//                 <button className="px-6 py-3 bg-white text-emerald-600 font-semibold rounded-full hover:shadow-xl transition-all duration-300 hover:scale-105">
+//                   Get Started Today
+//                 </button>
+//               </Link>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   )
+// }
 "use client"
 
 import { useRef, useEffect, useState } from "react"
@@ -11,12 +1464,12 @@ export default function ServicesSection() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && entry.intersectionRatio > 0) { // Trigger as soon as section starts entering view
           setIsVisible(true)
           observer.unobserve(entry.target)
         }
       },
-      { threshold: 0.2 },
+      { threshold: 0.01 }, // Lower threshold to trigger early
     )
 
     if (sectionRef.current) {
@@ -34,7 +1487,6 @@ export default function ServicesSection() {
         "Building responsive, fast, and scalable web applications using modern technologies like React, Next.js, and Node.js.",
       features: ["React & Next.js", "Node.js Backend", "Database Design", "API Integration"],
       color: "from-blue-500 to-cyan-500",
-      serviceType: "Web Development Service",
     },
     {
       icon: Palette,
@@ -43,22 +1495,20 @@ export default function ServicesSection() {
         "Creating beautiful, intuitive user interfaces and experiences that engage users and drive conversions.",
       features: ["User Research", "Wireframing", "Prototyping", "Visual Design"],
       color: "from-purple-500 to-pink-500",
-      serviceType: "UI/UX Design Service",
     },
-{
-  icon: Smartphone,
-  title: "Mobile Responsive Design",
-  description:
-    "I build responsive websites with Next.js that adapt seamlessly to mobile, tablet, and desktop devices for the best user experience.",
-  features: [
-    "Next.js & React",
-    "Responsive Tailwind CSS layouts",
-    "Cross-browser compatibility",
-    "Optimized for speed & SEO"
-  ],
-  color: "from-emerald-500 to-teal-500",
-  serviceType: "Responsive Web Design Service",
-},
+    {
+      icon: Smartphone,
+      title: "Mobile Responsive Design",
+      description:
+        "I build responsive websites with Next.js that adapt seamlessly to mobile, tablet, and desktop devices for the best user experience.",
+      features: [
+        "Next.js & React",
+        "Responsive Tailwind CSS layouts",
+        "Cross-browser compatibility",
+        "Optimized for speed & SEO"
+      ],
+      color: "from-emerald-500 to-teal-500",
+    },
     {
       icon: Globe,
       title: "E-commerce Solutions",
@@ -66,7 +1516,6 @@ export default function ServicesSection() {
         "Building complete e-commerce platforms with payment integration, inventory management, and analytics.",
       features: ["Wordpress Development", "WooCommerce", "Payment Gateway", "Inventory System"],
       color: "from-orange-500 to-red-500",
-      serviceType: "E-commerce Development Service",
     },
     {
       icon: Zap,
@@ -75,7 +1524,6 @@ export default function ServicesSection() {
         "Optimizing websites and applications for speed, SEO, and better user experience across all devices.",
       features: ["Speed Optimization", "SEO Enhancement", "Core Web Vitals", "Analytics Setup"],
       color: "from-yellow-500 to-orange-500",
-      serviceType: "Website Performance Optimization Service",
     },
     {
       icon: Shield,
@@ -84,179 +1532,102 @@ export default function ServicesSection() {
         "Providing ongoing maintenance, updates, and technical support to keep your digital assets running smoothly.",
       features: ["Regular Updates", "Security Monitoring", "Bug Fixes", "24/7 Support"],
       color: "from-indigo-500 to-purple-500",
-      serviceType: "Website Maintenance Service",
     },
   ]
-
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    itemListElement: services.map((service, index) => ({
-      "@type": "Service",
-      name: service.title,
-      description: service.description,
-      serviceType: service.serviceType,
-      offers: {
-        "@type": "Offer",
-        availability: "https://schema.org/InStock",
-      },
-      position: index + 1,
-    })),
-  }
 
   return (
     <section
       ref={sectionRef}
-      className="no-js py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-white to-emerald-50 relative min-h-fit overflow-visible"
-      role="region"
-      aria-label="Services Section"
-      data-testid="services-section"
-      itemScope
-      itemType="https://schema.org/ItemList"
+      className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-white to-emerald-50 relative overflow-hidden"
     >
-      <style jsx>{`
-        .no-js .transform {
-          opacity: 1 !important;
-          transform: none !important;
-        }
-        button:focus {
-          outline: 2px solid #0d9488;
-          outline-offset: 2px;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .transform {
-            transition: none !important;
-            transform: none !important;
-            opacity: 1 !important;
-          }
-        }
-      `}</style>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-
       {/* Background Elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-visible">
-        <div className="absolute top-1/4 left-4 sm:left-10 w-24 sm:w-48 h-24 sm:h-48 bg-gradient-to-br from-emerald-100/30 to-teal-100/30 rounded-full blur-2xl sm:blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-4 sm:right-10 w-24 sm:w-64 h-24 sm:h-64 bg-gradient-to-tr from-cyan-100/30 to-emerald-100/30 rounded-full blur-2xl sm:blur-3xl"></div>
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-1/4 left-4 w-24 sm:w-40 h-24 sm:h-40 bg-gradient-to-br from-emerald-100/30 to-teal-100/30 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-1/4 right-4 w-32 sm:w-48 h-32 sm:h-48 bg-gradient-to-tr from-cyan-100/30 to-emerald-100/30 rounded-full blur-2xl"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <header
-          className={`text-center mb-12 transform transition-all duration-1000 will-change-transform,opacity ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"}`}
+          className={`text-center mb-12 transform transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium mb-4">
-            <Zap className="w-4 h-4" aria-hidden="true" />
+            <Zap className="w-4 h-4" />
             Services
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-6 leading-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 leading-tight">
             What I Can Do
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-600">
-              {" "}
-              For You
+              {" "}For You
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            I offer comprehensive digital solutions to help your business grow and succeed in the digital world. From
-            concept to deployment, I've got you covered.
+          <p className="text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
+            I offer comprehensive digital solutions to help your business grow and succeed in the digital world.
           </p>
 
           <div className="w-20 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full mx-auto mt-6"></div>
         </header>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, index) => (
             <article
               key={index}
-              className={`group relative bg-white rounded-3xl p-6 sm:p-6 md:p-8 shadow-lg md:hover:shadow-2xl transition-all duration-1000 md:hover:-translate-y-2 border border-gray-100 transform will-change-transform,opacity w-full ${
-                isVisible ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"
+              className={`group relative bg-white rounded-2xl p-6 shadow-lg border border-gray-100 transform transition-all duration-1000 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
               }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-              data-testid={`service-card-${index}`}
-              itemScope
-              itemType="https://schema.org/Service"
+              style={{ transitionDelay: `${index * 150}ms` }}
             >
               {/* Icon */}
               <div
-                className={`inline-flex p-3 sm:p-3 md:p-4 rounded-2xl bg-gradient-to-r ${service.color} mb-6 group-hover:scale-110 transition-transform duration-300`}
+                className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${service.color} mb-6 group-hover:scale-105 transition-transform duration-300`}
               >
-                <service.icon
-                  className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 text-white"
-                  aria-label={`${service.title} icon`}
-                />
+                <service.icon className="w-6 h-6 text-white" />
               </div>
 
               {/* Content */}
               <div className="space-y-4">
-                <h3
-                  className="text-lg sm:text-base md:text-xl font-bold text-gray-800 group-hover:text-emerald-600 transition-colors duration-300"
-                  id={`service-title-${index}`}
-                  itemProp="name"
-                >
+                <h3 className="text-lg font-bold text-gray-800 group-hover:text-emerald-600 transition-colors duration-300">
                   {service.title}
                 </h3>
 
-                <p
-                  className="text-gray-600 leading-relaxed text-sm sm:text-xs md:text-base"
-                  aria-describedby={`service-title-${index}`}
-                  itemProp="description"
-                >
+                <p className="text-gray-600 text-sm sm:text-base">
                   {service.description}
                 </p>
 
                 {/* Features */}
-                <ul className="space-y-2" itemProp="hasOfferCatalog" itemScope itemType="https://schema.org/OfferCatalog">
-                  {service.features.map((feature, featureIndex) => (
-                    <li
-                      key={featureIndex}
-                      className="flex items-center gap-2"
-                      itemProp="itemListElement"
-                      itemScope
-                      itemType="https://schema.org/Offer"
-                    >
+                <ul className="space-y-2">
+                  {service.features.map((feature, fIndex) => (
+                    <li key={fIndex} className="flex items-center gap-2">
                       <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.color}`}></div>
-                      <span className="text-xs sm:text-[0.65rem] md:text-sm text-gray-600" itemProp="name">
-                        {feature}
-                      </span>
+                      <span className="text-xs sm:text-sm text-gray-600">{feature}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-
-              {/* Hover Effect */}
-              <div
-                className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${service.color} opacity-0 md:group-hover:opacity-5 transition-opacity duration-300`}
-              ></div>
             </article>
           ))}
         </div>
 
         {/* CTA Section */}
         <div
-          className={`text-center mt-12 sm:mt-16 transform transition-all duration-1000 will-change-transform,opacity ${isVisible ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"}`}
-          style={{ transitionDelay: "300ms" }}
+          className={`text-center mt-12 transform transition-all duration-1000 delay-500 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+          }`}
         >
-          <div className="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 text-white relative overflow-visible">
-            <div className="absolute inset-0 bg-black/10 rounded-3xl"></div>
+          <div className="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-8 text-white relative overflow-hidden">
+            <div className="absolute inset-0 bg-black/10 rounded-2xl"></div>
             <div className="relative z-10">
-              <h3 className="text-xl sm:text-xl md:text-2xl lg:text-3xl font-bold mb-4">Ready to Start Your Project?</h3>
-              <p className="text-base sm:text-base md:text-lg mb-6 sm:mb-8 opacity-90 max-w-2xl mx-auto">
-                Let&apos;s discuss your ideas and create something amazing together. I&apos;m here to help bring your vision to
-                life.
+              <h3 className="text-xl lg:text-2xl font-bold mb-4">Ready to Start Your Project?</h3>
+              <p className="text-base mb-6 opacity-90 max-w-2xl mx-auto">
+                Let&apos;s discuss your ideas and create something amazing together.
               </p>
               <Link href="/contact">
-                <button
-                  type="button"
-                  className="px-6 sm:px-6 md:px-8 py-3 sm:py-3 md:py-4 bg-white text-emerald-600 font-semibold rounded-full md:hover:shadow-xl transition-all duration-300 md:hover:scale-105"
-                  aria-label="Get Started Today"
-                  style={{ cursor: "pointer" }}
-                >
+                <button className="px-6 py-3 bg-white text-emerald-600 font-semibold rounded-full hover:shadow-xl transition-all duration-300 hover:scale-105">
                   Get Started Today
                 </button>
               </Link>

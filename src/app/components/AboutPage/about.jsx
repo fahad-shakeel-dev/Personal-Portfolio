@@ -641,7 +641,7 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-100 to-cyan-200">
-      <div className="container mx-auto px-4 py-8 lg:py-20 max-w-6xl">
+      <div className="container mx-auto px-4 py-15 lg:py-20 max-w-6xl">
         {/* Header Section */}
         <AnimatedSection animation="fade-up" className="mb-16">
           <div className="bg-white shadow-xl rounded-3xl p-6 md:p-10 border border-emerald-100">

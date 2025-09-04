@@ -8105,7 +8105,7 @@ export default function ProjectDetail() {
       <Navbar />
       <div className="min-h-screen bg-gradient-to-br from-cyan-200 via-teal-100 to-emerald-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-          <motion.button
+          {/* <motion.button
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3 }}
@@ -8114,9 +8114,9 @@ export default function ProjectDetail() {
           >
             <ArrowLeft className="h-4 w-4" />
             <span className="text-sm sm:text-base">Back to Projects</span>
-          </motion.button>
+          </motion.button> */}
 
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-xl mt-8 overflow-hidden">
             <div className="relative h-48 sm:h-64 md:h-80 w-full">
               <Image
                 src={project.image || "/placeholder.svg?height=800&width=1200"}

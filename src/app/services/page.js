@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
     <Navbar/>
-    <main className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-100 to-cyan-200">
+    <main className="min-h-screen bg-gradient-to-br from-emerald-50 ">
       <ServicesSection />
     </main>
     <Footer/>

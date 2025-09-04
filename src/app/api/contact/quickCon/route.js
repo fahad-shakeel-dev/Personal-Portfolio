@@ -25,3 +25,16 @@ export async function GET() {
     return NextResponse.json({ error: err.message }, { status: 500 })
   }
 }
+
+
+export async function DELETE(req) {
+  try {
+    await dbConnect()
+    const { id } = await req.json()
+    await QuickContact.findByIdAndDelete(id)
+    return NextResponse.json({ message: "Contact deleted!" }, { status: 200 })
+  } catch (err) {
+    console.error("DELETE /api/contact/quickCon error:", err)
+    return NextResponse.json({ error: err.message }, { status: 500 })
+  }
+}
