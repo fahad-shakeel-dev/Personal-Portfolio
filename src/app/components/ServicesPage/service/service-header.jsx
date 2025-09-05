@@ -15,7 +15,7 @@ export function ServiceHeader({ service }) {
         </div>
         <div className="lg:w-1/2 rounded-2xl overflow-hidden shadow-xl">
           <Image
-            src={service.image || "/placeholder.svg"}
+            src={service.image }
             alt={service.title}
             width={800}
             height={600}

@@ -1,26 +1,4 @@
-// "use client"
 
-// import { usePathname } from "next/navigation"
-// import { useEffect, useState } from "react"
-// import Loading from "@/app/loading"
-
-// export default function GlobalLoaderWrapper({ children }) {
-//   const [loading, setLoading] = useState(false)
-//   const pathname = usePathname()
-
-//   useEffect(() => {
-//     setLoading(true)
-//     const timer = setTimeout(() => setLoading(false), 700) // smooth duration
-//     return () => clearTimeout(timer)
-//   }, [pathname])
-
-//   return (
-//     <>
-//       {loading && <Loading />}
-//       {children}
-//     </>
-//   )
-// }
 
 "use client"
 

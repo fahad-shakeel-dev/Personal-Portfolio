@@ -34,96 +34,44 @@ export const services = [
     ],
     image: "/placeholder.svg?height=400&width=600",
   },
-  {
-    id: "seo",
-    title: "SEO Optimization",
-    icon: <Search className="w-6 h-6" />,
-    description:
-      "Boost your search rankings and drive organic traffic with our data-driven SEO strategies and proven techniques.",
-    longDescription:
-      "Our comprehensive SEO services are designed to improve your website's visibility in search engine results pages. We use data-driven strategies to help your business rank higher and attract more qualified leads.",
-    features: [
-      "Keyword research and analysis",
-      "On-page and off-page optimization",
-      "Technical SEO audits",
-      "Content strategy for SEO",
-      "Local SEO for businesses",
-      "Regular performance reporting",
-    ],
-    image: "/placeholder.svg?height=400&width=600",
-  },
-  {
-    id: "video-editing",
-    title: "Video Production",
-    icon: <Video className="w-6 h-6" />,
-    description:
-      "Transform your ideas into compelling visual stories with professional video editing and motion graphics.",
-    longDescription:
-      "Our video editing services help you create professional, engaging videos that capture your audience's attention. From promotional videos to social media content, we deliver high-quality results.",
-    features: [
-      "Professional video editing",
-      "Motion graphics and animations",
-      "Color grading and correction",
-      "Sound design and audio mixing",
-      "Video optimization for different platforms",
-      "Custom intros and outros",
-    ],
-    image: "/placeholder.svg?height=400&width=600",
-  },
-  {
-    id: "digital-marketing",
-    title: "Digital Marketing",
-    icon: <BarChart2 className="w-6 h-6" />,
-    description:
-      "Grow your business with comprehensive digital marketing strategies that deliver measurable results and ROI.",
-    longDescription:
-      "Our digital marketing services help you reach your target audience, build brand awareness, and drive conversions. We create customized strategies that align with your business goals and deliver measurable results.",
-    features: [
-      "Social media marketing",
-      "Email marketing campaigns",
-      "Content marketing strategy",
-      "PPC and display advertising",
-      "Analytics and performance tracking",
-      "Conversion rate optimization",
-    ],
-    image: "/placeholder.svg?height=400&width=600",
-  },
-  {
-    id: "graphics-designing",
-    title: "Brand Design",
-    icon: <PenTool className="w-6 h-6" />,
-    description:
-      "Create a memorable brand identity with stunning graphics and visual designs that resonate with your audience.",
-    longDescription:
-      "Our graphic design services help you create a visual identity that resonates with your audience. From logos to marketing materials, we deliver designs that make your brand stand out.",
-    features: [
-      "Logo design and branding",
-      "Print and digital media design",
-      "UI/UX design for websites and apps",
-      "Social media graphics",
-      "Packaging design",
-      "Illustration and infographics",
-    ],
-    image: "/placeholder.svg?height=400&width=600",
-  },
-  {
-    id: "content-writing",
-    title: "Content Creation",
-    icon: <FileText className="w-6 h-6" />,
-    description:
-      "Engage your audience with compelling, SEO-optimized content that drives traffic and converts visitors into customers.",
-    longDescription:
-      "Our content writing services help you create compelling, SEO-friendly content that engages your audience and drives action. From blog posts to website copy, we deliver content that converts.",
-    features: [
-      "Website copy and landing pages",
-      "Blog posts and articles",
-      "Email newsletters",
-      "Product descriptions",
-      "SEO content creation",
-      "Social media content",
-    ],
-    image: "/placeholder.svg?height=400&width=600",
-  },
+{
+  id: "website-handling",
+  title: "Website Handling & Management",
+  icon: <Search className="w-6 h-6" />,
+  description:
+    "Experienced in managing websites, uploading and updating products, and keeping content organized across different platforms.",
+  longDescription:
+    "I have worked on website management tasks such as uploading products, updating descriptions, and keeping catalogs organized. Recently, I handled product updates for a pharmacy WordPress website, and before that, I managed my own e-commerce site with 1,000+ products. These projects gave me hands-on experience in keeping websites accurate, user-friendly, and up to date.",
+  features: [
+    "Product uploads and updates",
+    "Organizing categories and catalogs",
+    "Basic SEO-friendly descriptions",
+    "Image and media handling",
+    "Inventory and stock updates",
+    "Website content maintenance",
+  ],
+  image: "/placeholder.svg?height=400&width=600",
+}
+,
+ {
+  id: "video-editing",
+  title: "Video Editing",
+  icon: <Video className="w-6 h-6" />,
+  description:
+    "Edit your raw footage into polished, engaging videos using industry-standard tools like Premiere Pro and CapCut.",
+  longDescription:
+    "We specialize in professional video editing with Adobe Premiere Pro and CapCut, delivering content that’s optimized for YouTube, TikTok, Instagram, and other platforms. From cinematic edits to short-form viral content, we craft videos that connect with your audience.",
+  features: [
+    "Professional editing with Premiere Pro",
+    "Quick edits and trendy cuts using CapCut",
+    "Motion graphics and smooth transitions",
+    "Color correction and cinematic grading",
+    "Background music, sound effects, and audio mixing",
+    "Platform-optimized exports (YouTube, TikTok, Instagram, etc.)",
+  ],
+  image: "/placeholder.svg?height=400&width=600",
+},
+
 ]
 
 export const processSteps = [

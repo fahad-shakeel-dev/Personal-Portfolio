@@ -20,7 +20,6 @@ export async function dbConnect() {
     });
 
     isConnected = db.connections[0].readyState === 1;
-    console.log("✅ MongoDB connected:", db.connection.name);
   } catch (error) {
     console.error("❌ MongoDB connection error:", error);
     throw error;

@@ -27,7 +27,7 @@ export function CTASection() {
             <ChevronRight className="ml-2 w-5 h-5" />
           </Link>
           <Link
-            href="/"
+            href="/services"
             className="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors backdrop-blur-sm"
           >
             <span>View All Services</span>

@@ -1,15 +1,3 @@
-// import "./components/GlobalLoading/globalLoading.css";
-
-// export default function Loading() {
-//   return (
-//     <div className="fj-global-loading">
-//       <div className="fj-loader-circle">
-//         <span className="fj-loader-text">FJ</span>
-//       </div>
-//     </div>
-//   );
-// }
-
 import "./components/GlobalLoading/globalLoading.css"
 
 export default function Loading() {

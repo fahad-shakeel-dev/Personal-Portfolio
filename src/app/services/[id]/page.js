@@ -12,7 +12,7 @@ import { ServiceFeatures } from "@/app/components/ServicesPage/service/service-f
 import { ServiceProcess } from "@/app/components/ServicesPage/service/service-process"
 import { ServiceBenefits } from "@/app/components/ServicesPage/service/service-benefits"
 import { ServiceCaseStudies } from "@/app/components/ServicesPage/service/service-case-studies"
-import { ServiceTestimonials } from "@/app/components/ServicesPage/service/service-testimonials"
+// import { ServiceTestimonials } from "@/app/components/ServicesPage/service/service-testimonials"
 import { ServiceFAQ } from "@/app/components/ServicesPage/service/service-faq"
 import { ServiceStats } from "@/app/components/ServicesPage/service/service-stats"
 import { ServiceCTA } from "@/app/components/ServicesPage/service/service-cta"
@@ -101,9 +101,9 @@ export default function ServicePage({ params }) {
         </div>
 
         {/* Service Testimonials */}
-        <div className="service-section">
+        {/* <div className="service-section">
           <ServiceTestimonials service={service} />
-        </div>
+        </div> */}
 
         {/* Service Stats */}
         <div className="service-section">
