@@ -411,7 +411,7 @@ export default function ContactSection() {
       })),
       sameAs: socialLinks.map((social) => social.href),
     }),
-    []
+      [contactInfo, socialLinks]
   )
 
   return (

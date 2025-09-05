@@ -3616,7 +3616,7 @@ export default function TestimonialsPage() {
         <div className="max-w-7xl mx-auto space-y-12">
           <header className="text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-emerald-800" itemProp="headline">
-              Our Customer's Stories
+              Our Customer&apos;s Stories
             </h1>
             <p className="mt-4 text-lg sm:text-xl text-emerald-600" itemProp="description">
               Discover how our platform has empowered professionals across industries.

@@ -94,7 +94,7 @@ export const servicesData = [
         name: "John Smith",
         position: "CEO, TechStart Inc.",
         content:
-          "The website they developed for us exceeded our expectations. It's not only visually stunning but also performs exceptionally well. Our conversion rate has increased by 35% since launch.",
+          "The website they developed for us exceeded our expectations. It&apos;s not only visually stunning but also performs exceptionally well. Our conversion rate has increased by 35% since launch.",
         avatar: "/placeholder.svg?height=80&width=80",
         rating: 5,
       },
