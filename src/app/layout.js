@@ -1,6 +1,9 @@
-
+import GlobalLoaderWrapper from "./components/GlobalLoading/Wrapper";
 import { Geist, Geist_Mono } from "next/font/google";
 import SessionWrapper from "./components/SessionWrapper";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,9 +26,21 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <GlobalLoaderWrapper>
         <SessionWrapper>
         {children}
+        <ToastContainer
+  position="top-right"
+  autoClose={3000}
+  hideProgressBar={false}
+  closeOnClick
+  pauseOnHover
+  draggable
+  theme="colored"
+/>
+
         </SessionWrapper>
+        </GlobalLoaderWrapper>
       </body>
     </html>
   );

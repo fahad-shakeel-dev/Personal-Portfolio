@@ -10,9 +10,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
         port: '',
-        pathname: '/**',
+        // pathname: '/**',
+          pathname: '/dit3dubrf/image/upload/**',
       },
     ],
+      domains: ['res.cloudinary.com'],
   },
 };
 

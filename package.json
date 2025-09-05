@@ -22,8 +22,10 @@
     "next": "15.3.2",
     "next-auth": "^4.24.11",
     "nodemailer": "^7.0.5",
+    "rate-limiter-flexible": "^7.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-toastify": "^11.0.5",
     "swiper": "^11.2.10"
   },
   "devDependencies": {

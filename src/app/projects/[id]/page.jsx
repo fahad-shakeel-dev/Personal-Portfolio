@@ -7718,7 +7718,8 @@
 
 
 "use client"
-
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 import Link from "next/link"
 import Footer from "@/app/components/HomePage/FooterSection/footer"
 import Navbar from "@/app/components/HomePage/Navbar/Navbar"
@@ -7741,6 +7742,35 @@ import {
   Edit,
   Trash,
 } from "lucide-react"
+
+
+// Custom Image Component with better error handling
+const CustomImage = ({ src, alt, fill, className, ...props }) => {
+  const [imgSrc, setImgSrc] = useState(src);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setImgSrc(src);
+    setHasError(false);
+  }, [src]);
+
+  return (
+    <Image
+      {...props}
+      src={imgSrc}
+      alt={alt}
+      fill={fill}
+      className={className}
+      onError={() => {
+        if (!hasError) {
+          setHasError(true);
+          setImgSrc("/placeholder.svg?height=800&width=1200");
+        }
+      }}
+    />
+  );
+};
+
 
 export default function ProjectDetail() {
   const params = useParams()
@@ -7926,7 +7956,9 @@ export default function ProjectDetail() {
             r.id === reviewId ? { ...r, likesCount: previousLikesCount } : r
           )
         )
-        alert(data.error || `Failed to ${previousLiked ? "unlike" : "like"} review`)
+        toast.error(data.error || `❌ Failed to ${previousLiked ? "unlike" : "like"} review`)
+
+        // alert(data.error || `Failed to ${previousLiked ? "unlike" : "like"} review`)
       }
     } catch (err) {
       setLikedReviews(prev => ({ ...prev, [reviewId]: previousLiked }))
@@ -7973,8 +8005,10 @@ export default function ProjectDetail() {
         setReviews([data.data, ...reviews])
         setUserReview(data.data)
         setNewReview({ comment: "", title: "", rating: 5 })
+          toast.success("🎉 Review submitted successfully!")
       } else {
-        alert(data.error || "Failed to submit review")
+        // alert(data.error || "Failed to submit review")
+  toast.error(data.error || "❌ Failed to submit review")
       }
     } catch (err) {
       alert("Error submitting review: " + err.message)
@@ -8015,8 +8049,10 @@ export default function ProjectDetail() {
         setUserReview(data.data)
         setEditingReviewId(null)
         setNewReview({ comment: "", title: "", rating: 5 })
+             toast.success(" Review updated successfully!")
       } else {
-        alert(data.error || "Failed to update review")
+        // alert(data.error || "Failed to update review")
+        toast.error(data.error || " Failed to update review")
       }
     } catch (err) {
       alert("Error updating review: " + err.message)
@@ -8051,8 +8087,10 @@ export default function ProjectDetail() {
           delete newState[reviewId]
           return newState
         })
+        toast.success("🗑️ Review deleted successfully!")
       } else {
-        alert(data.error || "Failed to delete review")
+        // alert(data.error || "Failed to delete review")
+         toast.error(data.error || "❌ Failed to delete review")
       }
     } catch (err) {
       alert("Error deleting review: " + err.message)
@@ -8105,25 +8143,14 @@ export default function ProjectDetail() {
       <Navbar />
       <div className="min-h-screen bg-gradient-to-br from-cyan-200 via-teal-100 to-emerald-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-          {/* <motion.button
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={() => router.push("/projects")}
-            className="flex items-center gap-2 text-gray-600 hover:text-teal-600 transition-colors mb-6 sm:mb-8"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            <span className="text-sm sm:text-base">Back to Projects</span>
-          </motion.button> */}
-
-          <div className="bg-white rounded-2xl shadow-xl mt-8 overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-xl mt-10 overflow-hidden">
             <div className="relative h-48 sm:h-64 md:h-80 w-full">
-              <Image
+              <CustomImage
                 src={project.image || "/placeholder.svg?height=800&width=1200"}
                 alt={project.title}
                 fill
                 className="object-cover"
-                onError={(e) => { e.target.src = "/placeholder.svg?height=800&width=1200"; }}
+                // onError={(e) => { e.target.src = "/placeholder.svg?height=800&width=1200"; }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
               <div className="absolute bottom-0 left-0 p-3 sm:p-4 md:p-6 text-white">
@@ -8145,6 +8172,7 @@ export default function ProjectDetail() {
                     whileTap={{ scale: 1.2 }}
                     transition={{ duration: 0.2 }}
                     disabled={likeLoading}
+                    style={{cursor:"pointer"}}
                     className={`flex items-center gap-1.5 text-gray-600 hover:text-rose-500 transition-colors text-sm sm:text-base ${likeLoading ? "opacity-50 cursor-not-allowed" : ""}`}
                   >
                     <Heart className={`h-4 w-4 ${liked ? "fill-rose-500 text-rose-500" : ""}`} />
@@ -8351,22 +8379,24 @@ export default function ProjectDetail() {
                   <motion.div variants={fadeIn}>
                     <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800">Project Gallery</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                      {(project.gallery || ["/placeholder.svg?height=300&width=400"]).map((image, index) => (
-                        <motion.div
-                          key={index}
-                          variants={fadeIn}
-                          whileHover={{ y: -5, scale: 1.02 }}
-                          className="relative h-48 sm:h-64 rounded-xl overflow-hidden shadow-md"
-                        >
-                          <Image
-                            src={image}
-                            alt={`${project.title} gallery image ${index + 1}`}
-                            fill
-                            className="object-cover"
-                            onError={(e) => { e.target.src = "/placeholder.svg?height=300&width=400"; }}
-                          />
-                        </motion.div>
-                      ))}
+                      {
+                        (project.gallery || ["/placeholder.svg?height=300&width=400"]).map((image, index) => (
+  <motion.div
+    key={index}
+    variants={fadeIn}
+    whileHover={{ y: -5, scale: 1.02 }}
+    className="relative h-48 sm:h-64 rounded-xl overflow-hidden shadow-md"
+  >
+    <CustomImage
+      src={image}
+      alt={`${project.title} gallery image ${index + 1}`}
+      fill
+      className="object-cover"
+      onError={(e) => { e.target.src = "/placeholder.svg?height=300&width=400"; }}
+    />
+  </motion.div>
+))
+                      }
                     </div>
                     {!(project.gallery && project.gallery.length) && (
                       <p className="text-gray-500 text-sm sm:text-base mt-4">No gallery images available for this project.</p>
@@ -8396,6 +8426,7 @@ export default function ProjectDetail() {
                                   <button
                                     key={star}
                                     type="button"
+                                     style={{cursor:"pointer"}}
                                     onClick={() => handleRatingChange(star)}
                                     className="focus:outline-none"
                                   >
@@ -8430,7 +8461,7 @@ export default function ProjectDetail() {
                                 value={newReview.comment}
                                 onChange={handleReviewChange}
                                 rows={4}
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-base shadow-sm"
+                                className="w-full px-4 py-2 text-black border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent text-base shadow-sm"
                                 placeholder="Share your detailed thoughts about this project..."
                                 required
                               ></textarea>
@@ -8438,6 +8469,7 @@ export default function ProjectDetail() {
                             <div className="flex gap-3">
                               <button
                                 type="submit"
+                                 style={{cursor:"pointer"}}
                                 className="flex items-center gap-2 px-5 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors text-base font-medium shadow-md"
                               >
                                 <Send className="h-5 w-5" />
@@ -8500,8 +8532,9 @@ export default function ProjectDetail() {
                                 onClick={() => handleReviewLike(review.id)}
                                 whileTap={{ scale: 1.2 }}
                                 transition={{ duration: 0.2 }}
+                                 style={{cursor:"pointer"}}
                                 disabled={reviewLikeLoading[review.id]}
-                                className={`flex items-center gap-2 text-sm hover:text-rose-500 transition-colors ${reviewLikeLoading[review.id] ? "opacity-50 cursor-not-allowed" : ""}`}
+                                className={`flex items-center gap-2 text-sm text-black hover:text-rose-500 transition-colors ${reviewLikeLoading[review.id] ? "opacity-50 cursor-not-allowed" : ""}`}
                               >
                                 <Heart className={`h-5 w-5 ${likedReviews[review.id] ? "fill-rose-500 text-rose-500" : ""}`} />
                                 <span>{review.likesCount} likes</span>
@@ -8510,14 +8543,16 @@ export default function ProjectDetail() {
                                 <div className="flex gap-4">
                                   <button
                                     onClick={() => editReview(review)}
-                                    className="flex items-center gap-2 text-sm hover:text-teal-600 transition-colors"
+                                     style={{cursor:"pointer"}}
+                                    className="flex items-center gap-2 text-black text-sm hover:text-teal-600 transition-colors"
                                   >
                                     <Edit className="h-5 w-5" />
                                     Edit
                                   </button>
                                   <button
                                     onClick={() => deleteReview(review.id)}
-                                    className="flex items-center gap-2 text-sm hover:text-red-600 transition-colors"
+                                     style={{cursor:"pointer"}}
+                                    className="flex items-center gap-2 text-sm text-black hover:text-red-600 transition-colors"
                                   >
                                     <Trash className="h-5 w-5" />
                                     Delete
@@ -8549,13 +8584,15 @@ export default function ProjectDetail() {
                   className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all"
                 >
                   <div className="relative h-28 sm:h-32 w-full">
-                    <Image
-                      src={relatedProject.image || "/placeholder.svg?height=300&width=400"}
-                      alt={relatedProject.title}
-                      fill
-                      className="object-cover"
-                      onError={(e) => { e.target.src = "/placeholder.svg"; }}
-                    />
+                  <CustomImage
+  src={project.image || "/placeholder.svg?height=800&width=1200"}
+  alt={project.title}
+  fill
+  className="object-cover"
+  onError={(e) => {
+    e.target.src = "/placeholder.svg?height=800&width=1200";
+  }}
+/>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-0 left-0 p-2 sm:p-3 text-white">
                       <h3 className="font-bold text-sm sm:text-base">{relatedProject.title}</h3>

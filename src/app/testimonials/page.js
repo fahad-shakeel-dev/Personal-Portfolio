@@ -3265,8 +3265,8 @@
 
 
 
-
 'use client';
+import { toast } from 'react-toastify';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { gsap } from 'gsap';
@@ -3290,7 +3290,7 @@ export default function TestimonialsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAvatarModalOpen, setIsAvatarModalOpen] = useState(false);
   const [formData, setFormData] = useState({ fullName: '', email: '', company: '', role: '', quote: '', rating: 5, avatar: '' });
-  const [message, setMessage] = useState('');
+  // const [message, setMessage] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
   const router = useRouter();
   const cardsRef = useRef([]);
@@ -3515,7 +3515,13 @@ export default function TestimonialsPage() {
       const data = await res.json();
       if (res.ok) {
         setUserTestimonial(data.testimonial || userTestimonial);
-        setMessage(userTestimonial ? 'Testimonial updated successfully!' : 'Testimonial submitted for approval!');
+        // setMessage(userTestimonial ? 'Testimonial updated successfully!' : 'Testimonial submitted for approval!');
+        toast.success(
+  userTestimonial
+    ? " Testimonial updated successfully!"
+    : " Testimonial submitted for approval!"
+);
+
         setTimeout(() => setIsModalOpen(false), 2000);
 
         // Refresh testimonials
@@ -3537,7 +3543,9 @@ export default function TestimonialsPage() {
           setUserTestimonial(userTest || null);
         }
       } else {
-        setMessage(data.message || 'Failed to submit/update testimonial.');
+        toast.error(data.message || "❌ Failed to submit/update testimonial.");
+
+        // setMessage(data.message || 'Failed to submit/update testimonial.');
       }
     } catch (error) {
       console.error('Submit testimonial error:', error);
@@ -3567,7 +3575,9 @@ export default function TestimonialsPage() {
       if (res.ok) {
         setUserTestimonial(null);
         setFormData({ ...formData, company: '', role: '', quote: '', rating: 5, avatar: '' });
-        setMessage('Testimonial deleted successfully!');
+        // setMessage('Testimonial deleted successfully!');
+        toast.success("🗑️ Testimonial deleted successfully!");
+
         setTimeout(() => setIsModalOpen(false), 2000);
 
         // Refresh testimonials
@@ -3581,7 +3591,9 @@ export default function TestimonialsPage() {
         }
       } else {
         const data = await res.json();
-        setMessage(data.message || 'Failed to delete testimonial.');
+        toast.error(data.message || "❌ Failed to delete testimonial.");
+
+        // setMessage(data.message || 'Failed to delete testimonial.');
       }
     } catch (error) {
       console.error('Delete testimonial error:', error);
@@ -3651,6 +3663,7 @@ export default function TestimonialsPage() {
                         <p className="text-xs text-gray-500 mt-2">{new Date(testimonial.date).toLocaleDateString()}</p>
                         <button
                           onClick={() => router.push('/contact')}
+                           style={{cursor:"pointer"}}
                           className="mt-4 py-2 px-4 bg-emerald-600 text-white font-semibold rounded-lg shadow-md hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 cta-button"
                         >
                           Contact Now
@@ -3692,6 +3705,7 @@ export default function TestimonialsPage() {
                       <p className="text-xs text-gray-500 mt-2">{new Date(testimonial.date).toLocaleDateString()}</p>
                       <button
                         onClick={() => router.push('/contact')}
+                         style={{cursor:"pointer"}}
                         className="mt-4 py-2 px-4 bg-emerald-600 text-white font-semibold rounded-lg shadow-md hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 cta-button"
                       >
                         Contact Now
@@ -3730,6 +3744,7 @@ export default function TestimonialsPage() {
                           <p className="text-xs text-gray-500 mt-2">{new Date(testimonial.date).toLocaleDateString()}</p>
                           <button
                             onClick={() => router.push('/contact')}
+                             style={{cursor:"pointer"}}
                             className="mt-4 py-2 px-4 bg-emerald-600 text-white font-semibold rounded-lg shadow-md hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 cta-button"
                           >
                             Contact Now
@@ -3760,6 +3775,7 @@ export default function TestimonialsPage() {
               {isAuthenticated && !userTestimonial && (
                 <button
                   onClick={() => setIsModalOpen(true)}
+                   style={{cursor:"pointer"}}
                   className="py-3 px-6 bg-emerald-600 text-white font-semibold rounded-lg shadow-md hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition duration-150 ease-in-out cta-button"
                 >
                   Share Your Experience
@@ -3768,6 +3784,7 @@ export default function TestimonialsPage() {
               {isAuthenticated && userTestimonial && (
                 <button
                   onClick={() => setIsModalOpen(true)}
+                   style={{cursor:"pointer"}}
                   className="py-3 px-6 bg-emerald-600 text-white font-semibold rounded-lg shadow-md hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition duration-150 ease-in-out cta-button"
                 >
                   Update Your Testimonial
@@ -3776,6 +3793,7 @@ export default function TestimonialsPage() {
               {!isAuthenticated && (
                 <button
                   onClick={() => router.push('/signup')}
+                   style={{cursor:"pointer"}}
                   className="py-3 px-6 bg-emerald-800 text-white font-semibold rounded-lg shadow-md hover:bg-emerald-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition duration-150 ease-in-out cta-button"
                 >
                   Get Started
@@ -3945,7 +3963,7 @@ export default function TestimonialsPage() {
                     )}
                   </div>
                 </form>
-                {message && <p className="mt-4 text-center text-emerald-600 px-4">{message}</p>}
+                {/* {message && <p className="mt-4 text-center text-emerald-600 px-4">{message}</p>} */}
               </div>
             </div>
           )}

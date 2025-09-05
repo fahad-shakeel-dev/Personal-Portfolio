@@ -861,7 +861,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-20">
             <Link
               href="/"
-              className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+              className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 logoLink"
             >
               FJ.
             </Link>
@@ -916,6 +916,7 @@ export default function Navbar() {
                 {isAuthenticated ? (
                   <button
                     onClick={handleLogout}
+                    style={{cursor:"pointer"}}
                     className="px-6 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold rounded-full hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-300 hover:scale-105"
                   >
                     Logout

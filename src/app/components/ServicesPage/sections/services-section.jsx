@@ -831,13 +831,26 @@ export function ServicesSection() {
                       </p>
 
                       {/* Rating */}
-                      <div className="flex justify-center lg:justify-start gap-1 mb-4" itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
+                      {/* <div className="flex justify-center lg:justify-start gap-1 mb-4" itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
                         {[...Array(testimonial.rating)].map((_, i) => (
                           <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                         ))}
                         <meta itemProp="ratingValue" content={testimonial.rating.toString()} />
                         <meta itemProp="bestRating" content="5" />
-                      </div>
+                      </div> */}
+                      <div 
+  className="flex justify-center lg:justify-start gap-1 mb-4" 
+  itemProp="reviewRating" 
+  itemScope 
+  itemType="https://schema.org/Rating"
+>
+  {Array.from({ length: Math.max(0, Number(testimonial.rating) || 0) }).map((_, i) => (
+    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+  ))}
+  <meta itemProp="ratingValue" content={String(testimonial.rating || 0)} />
+  <meta itemProp="bestRating" content="5" />
+</div>
+
 
                       <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm font-medium" itemProp="itemReviewed" itemScope itemType="https://schema.org/CreativeWork">
                         <span itemProp="name">{testimonial.project}</span>
