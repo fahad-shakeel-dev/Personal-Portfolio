@@ -3,8 +3,8 @@ export const contactConfig = {
     {
       icon: "Phone",
       title: "Phone",
-      details: ["+92 123 456 7890"],
-      description: "Mon-Fri 9AM-6PM PKT",
+      details: ["+923707140829"],
+      description: "Anytime you want",
     },
     {
       icon: "Mail",
@@ -25,7 +25,7 @@ export const contactConfig = {
     },
   ],
   stats: [
-    { icon: "Users", value: "500+", label: "Happy Clients" },
+    { icon: "Users", value: "25+", label: "Happy Clients" },
     // { icon: "Globe", value: "50+", label: "Countries Served" },
     { icon: "Award", value: "5+", label: "Years Experience" },
     { icon: "Clock", value: "24/7", label: "Support Available" },
