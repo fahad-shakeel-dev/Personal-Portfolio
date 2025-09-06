@@ -197,6 +197,18 @@ useEffect(() => {
           .force-small {
             font-size: 18px !important;
           }
+               @media (max-width: 769px) {
+          .force-large {
+            font-size: 2.8rem !important;
+          }
+        }
+               @media (max-width: 640px) {
+          .count-small {
+            font-size: 1.5rem !important;
+          }
+          .count-small-p {
+            font-size: .65rem !important;
+          }
         }
         `}</style>
 
@@ -220,7 +232,7 @@ useEffect(() => {
                 Hi! I Am
                 
               </h2>
-              <h1 className="text-4xl sm:text-6x md:text-6xl lg:text-7xl font-bold text-teal-900 fade-in">
+              <h1 className="text-9xl sm:text-9xl md:text-6xl lg:text-7xl font-bold text-teal-900 fade-in force-large">
                 {displayedText}
                 <span className={showCursor ? "cursor" : ""}>|</span>
               </h1>
@@ -236,22 +248,22 @@ useEffect(() => {
               style={{ animationDelay: "0.5s" }}
             >
               <div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-teal-900">
+                <h3 className="text-2xl sm:text-3xl font-bold text-teal-900 count-small">
                   <Counter from={0} to={4} />+
                 </h3>
-                <p className="text-xs sm:text-sm text-teal-700">Years of Experience</p>
+                <p className="text-xs sm:text-sm text-teal-700 count-small-p">Years of Experience</p>
               </div>
               <div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-teal-900">
+                <h3 className="text-2xl sm:text-3xl font-bold text-teal-900 count-small">
                   <Counter from={0} to={20} />+
                 </h3>
-                <p className="text-xs sm:text-sm text-teal-700">Projects Completed</p>
+                <p className="text-xs sm:text-sm text-teal-700 count-small-p">Projects Completed</p>
               </div>
               <div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-teal-900">
+                <h3 className="text-2xl sm:text-3xl font-bold text-teal-900 count-small">
                   <Counter from={0} to={18} />+
                 </h3>
-                <p className="text-xs sm:text-sm text-teal-700">Happy Clients</p>
+                <p className="text-xs sm:text-sm text-teal-700 count-small-p">Happy Clients</p>
               </div>
             </div>
 
