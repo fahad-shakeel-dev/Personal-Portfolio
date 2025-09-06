@@ -53,7 +53,7 @@ export default function Footer() {
 
   {/* Instagram */}
   <a
-    href="https://www.linkedin.com/in/muhammad-fahad-shakeel-69569a371/"
+    href="https://www.instagram.com/its_fahadjoyia/"
     target="_blank"
     rel="noopener noreferrer"
     className="text-teal-200 hover:text-white transform hover:-translate-y-1 transition-all duration-300 cursor-pointer"

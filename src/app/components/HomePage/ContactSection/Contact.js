@@ -108,10 +108,10 @@ export default function ContactSection() {
   ]
 
   const socialLinks = [
-    { icon: Github, name: "GitHub", href: "#", color: "hover:text-gray-800" },
-    { icon: Linkedin, name: "LinkedIn", href: "#", color: "hover:text-blue-600" },
+    { icon: Github, name: "GitHub", href: "https://github.com/fahad-shakeel-dev", color: "hover:text-gray-800" },
+    { icon: Linkedin, name: "LinkedIn", href: "https://www.linkedin.com/in/muhammad-fahad-shakeel-69569a371/", color: "hover:text-blue-600" },
     { icon: Twitter, name: "Twitter", href: "#", color: "hover:text-blue-400" },
-    { icon: Instagram, name: "Instagram", href: "#", color: "hover:text-pink-500" },
+    { icon: Instagram, name: "Instagram", href: "https://www.instagram.com/its_fahadjoyia/", color: "hover:text-pink-500" },
   ]
 
   const structuredData = useMemo(

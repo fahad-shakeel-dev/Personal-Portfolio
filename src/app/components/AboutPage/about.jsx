@@ -4,7 +4,7 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { Download, Mail, Github, Linkedin, Twitter, Award, Users, Coffee, Heart } from "lucide-react"
-
+import { Instagram } from "lucide-react"
 // Custom hook for intersection observer animations
 function useIntersectionObserver(options = {}) {
   const [isIntersecting, setIsIntersecting] = useState(false)
@@ -213,9 +213,9 @@ export default function AboutPage() {
                 <AnimatedSection animation="fade-up">
                   <div className="flex gap-3">
                     {[
-                      { icon: Github, label: "GitHub", href: "#" },
-                      { icon: Linkedin, label: "LinkedIn", href: "#" },
-                      { icon: Twitter, label: "Twitter", href: "#" },
+                      { icon: Github, label: "GitHub", href: "https://github.com/fahad-shakeel-dev" },
+                      { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/muhammad-fahad-shakeel-69569a371/" },
+                      { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/its_fahadjoyia/" },
                     ].map((social, index) => (
                       <a
                         key={social.label}
