@@ -342,7 +342,7 @@ export default function SignupPage() {
 
         {showResendLink && signupSuccess && (
           <div className="text-center">
-            <p className="text-sm text-gray-600 mb-2">Didn't receive the verification email?</p>
+            <p className="text-sm text-gray-600 mb-2">Didn&apos;t receive the verification email?</p>
             <a
               href="#"
               onClick={handleResendEmail}
