@@ -75,6 +75,10 @@ export default function ProjectDetail() {
   const [currentUser, setCurrentUser] = useState(null)
   const [userId, setUserId] = useState(null)
   const isAdmin = false // Placeholder; replace with auth
+const [refreshKey, setRefreshKey] = useState(0);
+const [selectedImage, setSelectedImage] = useState(null);
+const [zoom, setZoom] = useState(1); // 1 = 100%
+
 
   useEffect(() => {
     const fetchCurrentUser = async () => {
@@ -632,7 +636,7 @@ export default function ProjectDetail() {
                       </div>
                     </motion.div>
                   </div>
-                  <motion.div variants={fadeIn}>
+                  {/* <motion.div variants={fadeIn}>
                     <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-gray-800">Key Features</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
                       {(project.features || []).map((feature, index) => (
@@ -650,7 +654,31 @@ export default function ProjectDetail() {
                         <p className="text-gray-500 text-sm sm:text-base col-span-full">No features listed for this project.</p>
                       )}
                     </div>
-                  </motion.div>
+                  </motion.div> */}
+                  <motion.div variants={fadeIn}>
+  <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-gray-800">
+    Key Features
+  </h3>
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
+    {(project.features || []).slice(0, 4).map((feature, index) => (
+      <div
+        key={index}
+        className="bg-gray-50 border border-gray-200 rounded-lg p-3 sm:p-4 flex items-start gap-2 sm:gap-3"
+      >
+        <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 text-xs sm:text-sm">
+          {index + 1}
+        </div>
+        <p className="text-gray-600 text-sm sm:text-base">{feature}</p>
+      </div>
+    ))}
+    {!(project.features && project.features.length) && (
+      <p className="text-gray-500 text-sm sm:text-base col-span-full">
+        No features listed for this project.
+      </p>
+    )}
+  </div>
+</motion.div>
+
                 </motion.div>
               )}
 
@@ -683,7 +711,7 @@ export default function ProjectDetail() {
                 </motion.div>
               )}
 
-              {activeTab === "gallery" && (
+              {/* {activeTab === "gallery" && (
                 <motion.div variants={staggerContainer} initial="hidden" animate="visible">
                   <motion.div variants={fadeIn}>
                     <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-gray-800">Project Gallery</h2>
@@ -712,7 +740,179 @@ export default function ProjectDetail() {
                     )}
                   </motion.div>
                 </motion.div>
-              )}
+              )} */}
+              {/* {activeTab === "gallery" && (
+  <motion.div variants={staggerContainer} initial="hidden" animate="visible">
+    <motion.div variants={fadeIn}>
+      <div className="flex items-center justify-between mb-4 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Project Gallery</h2>
+        <button
+          onClick={() => setRefreshKey(prev => prev + 1)}
+          className="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base bg-teal-500 text-white rounded-lg shadow hover:bg-teal-600 transition"
+        >
+          Refresh
+        </button>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        {(project.gallery || ["/placeholder.svg?height=300&width=400"]).map((image, index) => (
+          <motion.div
+            key={`${index}-${refreshKey}`} // 👈 force re-render on refresh
+            variants={fadeIn}
+            whileHover={{ y: -5, scale: 1.02 }}
+            className="relative h-48 sm:h-64 rounded-xl overflow-hidden shadow-md"
+          >
+            <CustomImage
+              src={image}
+              alt={`${project.title} gallery image ${index + 1}`}
+              fill
+              className="object-cover"
+              onError={(e) => {
+                e.target.src = "/placeholder.svg?height=300&width=400";
+              }}
+            />
+          </motion.div>
+        ))}
+      </div>
+
+      {!(project.gallery && project.gallery.length) && (
+        <p className="text-gray-500 text-sm sm:text-base mt-4">
+          No gallery images available for this project.
+        </p>
+      )}
+    </motion.div>
+  </motion.div>
+)} */}
+{activeTab === "gallery" && (
+  <motion.div variants={staggerContainer} initial="hidden" animate="visible">
+    <motion.div variants={fadeIn}>
+      <div className="flex items-center justify-between mb-4 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Project Gallery</h2>
+        <button
+          onClick={() => setRefreshKey(prev => prev + 1)}
+          className="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base bg-teal-500 text-white rounded-lg shadow hover:bg-teal-600 transition"
+        >
+          Refresh
+        </button>
+      </div>
+
+  
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        {(project.gallery || ["/placeholder.svg?height=300&width=400"]).map((image, index) => (
+          <motion.div
+            key={`${index}-${refreshKey}`}
+            variants={fadeIn}
+            whileHover={{ y: -5, scale: 1.02 }}
+            className="relative h-48 sm:h-64 rounded-xl overflow-hidden shadow-md cursor-pointer"
+            onClick={() => setSelectedImage(image)} // 👈 open preview
+          >
+            <CustomImage
+              src={image}
+              alt={`${project.title} gallery image ${index + 1}`}
+              fill
+              className="object-cover"
+              onError={(e) => {
+                e.target.src = "/placeholder.svg?height=300&width=400";
+              }}
+            />
+          </motion.div>
+        ))}
+      </div>
+
+      {!(project.gallery && project.gallery.length) && (
+        <p className="text-gray-500 text-sm sm:text-base mt-4">
+          No gallery images available for this project.
+        </p>
+      )}
+    </motion.div>
+  </motion.div>
+)}
+
+{/* {selectedImage && (
+  <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
+    <div className="relative max-w-4xl w-full">
+      <img
+        src={selectedImage}
+        alt="Full preview"
+        className="w-full h-auto max-h-[90vh] rounded-lg shadow-lg"
+      />
+      <button
+        onClick={() => setSelectedImage(null)}
+        className="absolute top-2 right-2 bg-gray-800 text-white rounded-full p-2 hover:bg-gray-700 transition"
+      >
+        ✕
+      </button>
+    </div>
+  </div>
+)} */}
+
+{/* Fullscreen Image Preview */}
+{selectedImage && (
+  <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4">
+    <div className="relative max-w-6xl w-full flex flex-col items-center">
+      
+      {/* Image Wrapper */}
+      <div className="overflow-auto max-h-[90vh] max-w-full flex justify-center items-center">
+        <img
+          src={selectedImage}
+          alt="Full preview"
+          className="max-h-[90vh] max-w-full rounded-lg shadow-lg transition-transform duration-300"
+          style={{
+            transform: `scale(${zoom})`,
+            objectFit: "contain",
+            cursor: zoom > 1 ? "grab" : "default",
+          }}
+          draggable={false}
+          onMouseDown={(e) => {
+            if (zoom <= 1) return;
+            const img = e.target;
+            let startX = e.pageX - img.offsetLeft;
+            let startY = e.pageY - img.offsetTop;
+            const onMouseMove = (moveEvent) => {
+              img.parentElement.scrollLeft = moveEvent.pageX - startX;
+              img.parentElement.scrollTop = moveEvent.pageY - startY;
+            };
+            const onMouseUp = () => {
+              document.removeEventListener("mousemove", onMouseMove);
+              document.removeEventListener("mouseup", onMouseUp);
+            };
+            document.addEventListener("mousemove", onMouseMove);
+            document.addEventListener("mouseup", onMouseUp);
+          }}
+        />
+      </div>
+
+      {/* Controls */}
+      <div className="flex gap-3 mt-4">
+        <button
+          onClick={() => setZoom((z) => Math.max(0.5, z - 0.25))}
+          className="px-4 py-2 bg-gray-700 text-white rounded-lg shadow hover:bg-gray-600 transition"
+        >
+          -
+        </button>
+        <span className="text-white">{Math.round(zoom * 100)}%</span>
+        <button
+          onClick={() => setZoom((z) => Math.min(3, z + 0.25))}
+          className="px-4 py-2 bg-gray-700 text-white rounded-lg shadow hover:bg-gray-600 transition"
+        >
+          +
+        </button>
+        <button
+          onClick={() => setZoom(1)}
+          className="px-4 py-2 bg-teal-500 text-white rounded-lg shadow hover:bg-teal-600 transition"
+        >
+          Reset
+        </button>
+        <button
+          onClick={() => setSelectedImage(null)}
+          className="px-4 py-2 bg-red-600 text-white rounded-lg shadow hover:bg-red-700 transition"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+)}
 
               {activeTab === "reviews" && (
                 <motion.div variants={staggerContainer} initial="hidden" animate="visible">
