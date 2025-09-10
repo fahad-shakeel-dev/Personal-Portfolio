@@ -612,13 +612,13 @@ const [zoom, setZoom] = useState(1); // 1 = 100%
                             <p className="text-gray-600 text-xs sm:text-sm">{project.createdDate ? new Date(project.createdDate).toLocaleDateString() : "N/A"}</p>
                           </div>
                         </div>
-                        <div className="flex items-start gap-2 sm:gap-3">
+                        {/* <div className="flex items-start gap-2 sm:gap-3">
                           <Calendar className="h-4 w-4 sm:h-5 sm:w-5 text-teal-600 mt-0.5" />
                           <div>
                             <p className="font-medium text-gray-700 text-sm sm:text-base">Completed</p>
                             <p className="text-gray-600 text-xs sm:text-sm">{project.completedDate ? new Date(project.completedDate).toLocaleDateString() : "N/A"}</p>
                           </div>
-                        </div>
+                        </div> */}
                         <div className="flex items-start gap-2 sm:gap-3">
                           <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-teal-600 mt-0.5" />
                           <div>
