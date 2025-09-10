@@ -78,18 +78,25 @@ export default function Footer() {
           {/* Quick Links */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold animate-fade-in">Quick Links</h3>
-            <ul className="space-y-2 animate-fade-in">
-              {["About", "Services", "Portfolio", "Contact"].map((item, index) => (
-                <li key={index}>
-                  <a
-                    href="/contact"
-                    className="text-teal-200 hover:text-white transform hover:-translate-y-1 transition-all duration-300 inline-block cursor-pointer"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
+           <ul className="space-y-2 animate-fade-in">
+  {[
+    { label: "About", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Portfolio", href: "/projects" },
+    { label: "Testimonials", href: "/testimonials" },
+    { label: "Contact", href: "/contact" },
+  ].map((item, index) => (
+    <li key={index}>
+      <a
+        href={item.href}
+        className="text-teal-200 hover:text-white transform hover:-translate-y-1 transition-all duration-300 inline-block cursor-pointer"
+      >
+        {item.label}
+      </a>
+    </li>
+  ))}
+</ul>
+
           </div>
 
           {/* Contact Info */}

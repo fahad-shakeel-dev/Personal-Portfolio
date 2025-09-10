@@ -212,7 +212,7 @@ export default function ContactSection() {
             }`}
           >
             {/* Contact Cards */}
-            <div className="grid sm:grid-cols-2 gap-6">
+            {/* <div className="grid sm:grid-cols-2 gap-6">
               {contactInfo.map((info, index) => (
                 <div
                   key={index}
@@ -238,7 +238,35 @@ export default function ContactSection() {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
+            <div className="grid sm:grid-cols-2 gap-6">
+  {contactInfo.map((info, index) => (
+    <div
+      key={index}
+      className="group p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100"
+      itemProp="contactPoint"
+      itemScope
+      itemType="https://schema.org/ContactPoint"
+    >
+      <div className="flex items-start gap-4">
+        <div className="p-3 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-xl group-hover:scale-110 transition-transform duration-300">
+          <info.icon className="w-6 h-6 text-emerald-600" aria-hidden="true" />
+        </div>
+        <div className="w-full">
+          <h4 className="font-bold text-gray-800 mb-1" itemProp="contactType">{info.title}</h4>
+          <p
+            className="text-emerald-600 font-medium mb-1 break-words overflow-hidden"
+            style={{ overflowWrap: 'break-word', wordBreak: 'break-all' }}
+            itemProp={info.title === "Email" ? "email" : info.title === "Phone" ? "telephone" : "description"}
+          >
+            {info.value}
+          </p>
+          <p className="text-sm text-gray-600">{info.description}</p>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
 
             {/* Social Links */}
             {/* <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
