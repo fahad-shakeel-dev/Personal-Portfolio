@@ -657,7 +657,7 @@ export default function TestimonialsPage() {
                       onChange={(e) => setFormData({ ...formData, quote: e.target.value })}
                       required
                       rows={4}
-                      className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="mt-1 text-black block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
                       placeholder="Share your experience..."
                     />
                   </div>
@@ -669,7 +669,7 @@ export default function TestimonialsPage() {
                       id="rating"
                       value={formData.rating}
                       onChange={(e) => setFormData({ ...formData, rating: Number(e.target.value) })}
-                      className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                      className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 text-black"
                     >
                       <option value={5}>5 Stars</option>
                       <option value={4.5}>4.5 Stars</option>
