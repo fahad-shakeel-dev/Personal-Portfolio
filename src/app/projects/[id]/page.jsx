@@ -25,6 +25,7 @@ import {
 } from "lucide-react"
 
 
+
 // Custom Image Component with better error handling
 const CustomImage = ({ src, alt, fill, className, ...props }) => {
   const [imgSrc, setImgSrc] = useState(src);
@@ -54,6 +55,7 @@ const CustomImage = ({ src, alt, fill, className, ...props }) => {
 
 
 export default function ProjectDetail() {
+  
   const params = useParams()
   const router = useRouter()
   const [project, setProject] = useState(null)
@@ -421,7 +423,29 @@ export default function ProjectDetail() {
 
   return (
     <>
+    
       <Navbar />
+                       <style jsx>{`
+      @media (max-width: 799px) {
+    .forcesmallh1 {
+      font-size: 1.5rem;
+    }
+      .forcesmallp {
+      font-size: .8rem;
+    }
+  }
+    @media (max-width: 640px) {
+    .forcesmallh1 {
+      font-size: 1.2rem;
+    }
+      .forcesmallp {
+      font-size: .7rem;
+      }
+         .forcesmallweb{
+        font-size: .6rem;
+    }
+      }
+      `}</style>
       <div className="min-h-screen bg-gradient-to-br from-cyan-200 via-teal-100 to-emerald-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
           <div className="bg-white rounded-2xl shadow-xl mt-10 overflow-hidden">
@@ -433,14 +457,18 @@ export default function ProjectDetail() {
                 className="object-cover"
                 // onError={(e) => { e.target.src = "/placeholder.svg?height=800&width=1200"; }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/40 to-transparent" />
               <div className="absolute bottom-0 left-0 p-3 sm:p-4 md:p-6 text-white">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-                  <div className="flex items-center gap-1.5 mb-1 sm:mb-2">
-                    <span className="px-2 py-1 bg-teal-500 text-white text-xs sm:text-sm rounded-full">{project.category?.replace("-", " ")?.replace(/\b\w/g, (l) => l.toUpperCase()) || "N/A"}</span>
+                  <div className="flex items-center gap-1.5 mb-1 sm:mb-2 ">
+                    <span className="px-2 py-1 bg-teal-500 text-white text-xs sm:text-sm rounded-full forcesmallweb">{project.category?.replace("-", " ")?.replace(/\b\w/g, (l) => l.toUpperCase()) || "N/A"}</span>
                   </div>
-                  <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">{project.title}</h1>
-                  <p className="text-white/80 text-xs sm:text-sm max-w-md sm:max-w-xl">{project.description || "No description available"}</p>
+  
+                  <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2 forcesmallh1">{project.title}</h1>
+                  {/* <p className="text-white/80 text-xs sm:text-sm max-w-md sm:max-w-xl">{project.description || "No description available"}</p> */}
+                  <p className="text-white/80 text-xs sm:text-sm max-w-md sm:max-w-xl line-clamp-3 forcesmallp">
+  {project.description || "No description available"}
+</p>
                 </motion.div>
               </div>
             </div>
@@ -866,8 +894,8 @@ export default function ProjectDetail() {
                 >
                   <div className="relative h-28 sm:h-32 w-full">
                   <CustomImage
-  src={project.image || "/placeholder.svg?height=800&width=1200"}
-  alt={project.title}
+  src={relatedProject.image || "/placeholder.svg?height=800&width=1200"}
+  alt={relatedProject.title}
   fill
   className="object-cover"
   onError={(e) => {
@@ -876,7 +904,7 @@ export default function ProjectDetail() {
 />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     <div className="absolute bottom-0 left-0 p-2 sm:p-3 text-white">
-                      <h3 className="font-bold text-sm sm:text-base">{relatedProject.title}</h3>
+                      <h3 className="font-bold text-sm sm:text-base forcesmallh1">{relatedProject.title}</h3>
                       <p className="text-xs sm:text-sm text-white/80">{relatedProject.category?.replace("-", " ")?.replace(/\b\w/g, (l) => l.toUpperCase()) || "N/A"}</p>
                     </div>
                   </div>
