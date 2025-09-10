@@ -3,8 +3,10 @@
 
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
-import { Download, Mail, Github, Linkedin, Twitter, Award, Users, Coffee, Heart } from "lucide-react"
-import { Instagram } from "lucide-react"
+import { Download, Mail, Github, Linkedin, Instagram } from "lucide-react"
+import { Award } from "lucide-react"
+import { Users } from "lucide-react"
+import { Heart } from "lucide-react"
 // Custom hook for intersection observer animations
 function useIntersectionObserver(options = {}) {
   const [isIntersecting, setIsIntersecting] = useState(false)
@@ -92,44 +94,44 @@ export default function AboutPage() {
   }, [])
 
   const stats = [
-    { icon: Award, label: "Awards Won", value: "5+" },
-    { icon: Users, label: "Happy Clients", value: "18+" },
-    { icon: Coffee, label: "Tea Cups", value: "1000+" },
-    { icon: Heart, label: "Passion Projects", value: "20+" },
+    { icon: Github, label: "Projects", value: "10+" },
+    { icon: Users, label: "Clients", value: "5+" },
+    { icon: Award, label: "Successful Deployments", value: "8+" },
+    { icon: Heart, label: "Open Source Contributions", value: "15+" },
   ]
 
   const experiences = [
     {
-      title: "Senior Frontend Developer",
-      company: "TechCorp Inc., San Francisco",
-      period: "Jan 2021 - Present",
+      title: "Freelancer Web Developer",
+      company: "Self-Employed",
+      period: "2022 - 2025",
       achievements: [
-        "Lead a team of 5 frontend developers in building responsive web applications using React and Next.js",
-        "Implemented state management solutions and optimized performance, resulting in a 40% improvement in load times",
-        "Collaborated with UX designers to create intuitive user interfaces that increased user engagement by 25%",
-        "Mentored junior developers and conducted code reviews to ensure high code quality and best practices",
+        "Built full-stack web applications using MERN stack & Next.js",
+        "Designed responsive, user-friendly UIs with React & TailwindCSS",
+        "Implemented REST APIs, authentication (JWT, OAuth2), and database integration with MongoDB & SQL",
+        "Optimized websites, increasing traffic by 25%",
+        "Delivered UI/UX, boosting engagement by 30%",
       ],
     },
     {
-      title: "Full Stack Developer",
-      company: "WebSolutions Co., Boston",
-      period: "Mar 2018 - Dec 2020",
+      title: "Website & Product Management",
+      company: "Shop Manager | Editor",
+      period: "2025",
       achievements: [
-        "Developed and maintained full-stack applications using the MERN stack for clients across various industries",
-        "Built RESTful APIs and integrated third-party services to enhance application functionality",
-        "Implemented responsive designs that worked seamlessly across desktop and mobile devices",
-        "Optimized database queries, resulting in a 50% reduction in response times",
+        "Managed WordPress CMS products (add, edit, update, delete)",
+        "Enhanced websites with event pages, popups, and UI/UX improvements using plugins & custom styling",
+        "Ensured websites stayed updated, secure, responsive, and user-friendly across all platforms",
       ],
     },
     {
-      title: "Junior Web Developer",
-      company: "Digital Agency, New York",
-      period: "Jun 2016 - Feb 2018",
+      title: "Intern Developer",
+      company: "Edify College of IT, Faisalabad, Pakistan",
+      period: "2024 - 2025",
       achievements: [
-        "Built responsive websites for clients across various industries using HTML, CSS, and JavaScript",
-        "Created custom WordPress themes and plugins to meet specific client requirements",
-        "Collaborated with designers to implement pixel-perfect designs",
-        "Maintained and updated existing client websites, ensuring compatibility with modern browsers",
+        "Developed and deployed Next.js web applications",
+        "Optimized websites, reducing load times by 30%",
+        "Debugged and improved apps, cutting error rates by 20%",
+        "Assisted in implementing best coding practices",
       ],
     },
   ]
@@ -155,10 +157,8 @@ export default function AboutPage() {
                     <Image
                       src="/images/about.png"
                       alt="Professional Portrait"
-                         width={600}
-                  height={700}
-                      // fill
-                      // className="object-cover"
+                      width={600}
+                      height={700}
                       priority
                     />
                   </div>
@@ -169,14 +169,14 @@ export default function AboutPage() {
                 <AnimatedSection animation="fade-up">
                   <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
                     <div>
-                      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3">Fahad Joyia</h1>
+                      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3">Muhammad Fahad</h1>
                       <p className="text-xl md:text-2xl text-emerald-600 font-semibold">
-                        Creative Developer & Designer
+                        Full Stack MERN & Next.js Developer
                       </p>
                     </div>
                     <div className="mt-6 md:mt-0">
                       <a
-                        href="/resume.pdf"
+                        href="/Fahad-CV.pdf"
                         download
                         className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                       >
@@ -190,9 +190,7 @@ export default function AboutPage() {
                 <AnimatedSection animation="fade-up">
                   <div className="prose prose-lg max-w-none text-gray-700 mb-6">
                     <p className="text-base md:text-lg leading-relaxed">
-                      Experienced Creative Developer with over 4 years of expertise in building scalable web
-                      applications and digital solutions. Specializing in modern web technologies with a focus on user
-                      experience and performance optimization.
+                      Full Stack MERN & Next.js Developer with 4+ years of hands-on experience in designing, developing, and deploying scalable, high-performance web applications. Proficient in full-stack development, responsive UI/UX design, API integration, and database management. Strong expertise in modern JavaScript frameworks.
                     </p>
                   </div>
                 </AnimatedSection>
@@ -205,7 +203,11 @@ export default function AboutPage() {
                     </div>
                     <div className="flex items-center gap-3 bg-emerald-50 px-4 py-3 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-emerald-100">
                       <span className="text-emerald-600 text-lg flex-shrink-0">📍</span>
-                      <span className="text-gray-700 text-sm md:text-base">Faislabad, Pakistan</span>
+                      <span className="text-gray-700 text-sm md:text-base">Faisalabad, Pakistan</span>
+                    </div>
+                    <div className="flex items-center gap-3 bg-emerald-50 px-4 py-3 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-emerald-100">
+                      <span className="text-emerald-600 text-lg flex-shrink-0">📞</span>
+                      <span className="text-gray-700 text-sm md:text-base">+923707140829</span>
                     </div>
                   </div>
                 </AnimatedSection>
@@ -214,8 +216,8 @@ export default function AboutPage() {
                   <div className="flex gap-3">
                     {[
                       { icon: Github, label: "GitHub", href: "https://github.com/fahad-shakeel-dev" },
-                      { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/muhammad-fahad-shakeel-69569a371/" },
                       { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/its_fahadjoyia/" },
+                      { icon: Github, label: "Portfolio", href: "https://fahadlabs.vercel.app" },
                     ].map((social, index) => (
                       <a
                         key={social.label}
@@ -260,10 +262,10 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-6 text-gray-700">
               {[
-                "I am a dedicated Creative Developer with a passion for creating efficient, user-friendly web applications that solve real-world problems. My journey in technology began when I built my first website at the age of 17, and I've been continuously expanding my skills and knowledge ever since.",
-                "With a strong foundation in both frontend and backend technologies, I pride myself on writing clean, maintainable code and creating intuitive user experiences. I believe in the power of technology to transform businesses and improve lives.",
-                "Throughout my career, I've worked with diverse teams across various startups organizations. This experience has honed my ability to adapt to different environments and requirements.",
-                "When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community through blogs and tutorials.",
+                "I am a passionate Full Stack MERN & Next.js Developer with over 4 years of experience in building scalable, high-performance web applications. My journey in web development started with a curiosity for creating user-friendly digital solutions, which has grown into a career focused on delivering impactful projects.",
+                "Skilled in both frontend and backend technologies, I specialize in crafting responsive UI/UX designs and integrating robust APIs with databases like MongoDB and SQL. My work emphasizes clean code, performance optimization, and seamless user experiences.",
+                "I have worked on diverse projects, from freelance web applications to managing WordPress CMS products, always aiming to enhance functionality and user engagement. My experience includes optimizing websites for speed and implementing modern JavaScript frameworks.",
+                "Outside of coding, I enjoy contributing to open-source projects, exploring new technologies, and sharing knowledge through community engagement. I’m driven by the challenge of solving real-world problems through technology.",
               ].map((paragraph, index) => (
                 <AnimatedSection key={index} animation="fade-up">
                   <p className="text-base md:text-lg leading-relaxed">{paragraph}</p>
@@ -289,11 +291,10 @@ export default function AboutPage() {
                   </h3>
                 </AnimatedSection>
                 <div className="space-y-4">
-                  <SkillBar name="React & Next.js" level={95} color="emerald" />
-                  <SkillBar name="JavaScript/TypeScript" level={90} color="emerald" />
-                  <SkillBar name="HTML5/CSS3" level={98} color="emerald" />
-                  <SkillBar name="Tailwind CSS" level={92} color="emerald" />
-                  <SkillBar name="Vue.js" level={85} color="emerald" />
+                  <SkillBar name="React & Next.js" level={90} color="emerald" />
+                  <SkillBar name="JavaScript" level={85} color="emerald" />
+                  <SkillBar name="HTML5/CSS3" level={95} color="emerald" />
+                  <SkillBar name="TailwindCSS" level={90} color="emerald" />
                 </div>
               </div>
 
@@ -305,11 +306,11 @@ export default function AboutPage() {
                   </h3>
                 </AnimatedSection>
                 <div className="space-y-4">
-                  <SkillBar name="Node.js & Express" level={88} color="teal" />
-                  <SkillBar name="MongoDB & PostgreSQL" level={85} color="teal" />
-                  <SkillBar name="RESTful APIs" level={92} color="teal" />
+                  <SkillBar name="Node.js & Express" level={85} color="teal" />
+                  <SkillBar name="MongoDB & SQL" level={80} color="teal" />
+                  <SkillBar name="RESTful APIs" level={90} color="teal" />
                   <SkillBar name="Git & Version Control" level={95} color="teal" />
-                  <SkillBar name="AWS & Cloud Services" level={80} color="teal" />
+                  <SkillBar name="Postman" level={85} color="teal" />
                 </div>
               </div>
             </div>
@@ -324,13 +325,11 @@ export default function AboutPage() {
                   "UI/UX Design",
                   "Responsive Design",
                   "Performance Optimization",
-                  "SEO Best Practices",
-                  "Testing (Jest, Cypress)",
-                  "Docker",
-                  "CI/CD Pipelines",
-                  "Agile Methodologies",
-                  "GraphQL",
-                  "Webpack & Vite",
+                  "Testing & Debugging",
+                  "Socket.IO",
+                  "GSAP Animations",
+                  "Vercel Deployment",
+                  "WordPress CMS",
                 ].map((skill, index) => (
                   <span
                     key={skill}
@@ -378,12 +377,12 @@ export default function AboutPage() {
           </div>
         </AnimatedSection>
 
-        {/* Education & Certifications */}
+        {/* Education & Projects */}
         <AnimatedSection animation="fade-up">
           <div className="bg-white shadow-xl rounded-3xl p-6 md:p-10 border border-emerald-100">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-8 pb-4 border-b border-emerald-100 flex items-center">
               <span className="inline-block w-2 h-8 bg-gradient-to-b from-emerald-400 to-teal-500 mr-4 rounded-full" />
-              Education & Certifications
+              Education & Projects
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div>
@@ -396,16 +395,16 @@ export default function AboutPage() {
                 <div className="space-y-6">
                   {[
                     {
-                      degree: "Bachelor of Science in Computer Science",
-                      institution: "University of Technology",
-                      period: "2018 - 2022",
-                      details: "Graduated with honors. Specialized in Software Engineering and Web Technologies.",
+                      degree: "Bachelor of Computer Science",
+                      institution: "University of Central Punjab",
+                      period: "2022 - 2025",
+                      details: "Pursuing a degree with a focus on software engineering and web development technologies.",
                     },
                     {
-                      degree: "Full Stack Web Development Bootcamp",
-                      institution: "Code Academy",
-                      period: "2022",
-                      details: "Intensive 16-week program focused on modern web development technologies.",
+                      degree: "Intermediate in Computer Science (ICS)",
+                      institution: "Kips College",
+                      period: "2020 - 2022",
+                      details: "Completed with a strong foundation in computer science and programming fundamentals.",
                     },
                   ].map((edu, index) => (
                     <AnimatedSection key={edu.degree} animation="scale-up">
@@ -430,33 +429,42 @@ export default function AboutPage() {
                 <AnimatedSection animation="slide-left">
                   <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center">
                     <span className="inline-block w-2 h-6 bg-teal-500 mr-3 rounded-full" />
-                    Certifications
+                    Personal Projects
                   </h3>
                 </AnimatedSection>
                 <div className="space-y-4">
                   {[
                     {
-                      name: "AWS Certified Developer - Associate",
-                      date: "Issued: Jan 2023 • Expires: Jan 2026",
+                      name: "Real Time Chatapp",
+                      date: "Dec 2024 - Jan 2025",
+                      details: "Built a chat app with Next.js, Express.js, and Socket.IO. Implemented instant messaging with WebSockets. Designed responsive UI using Next.js & TailwindCSS. Deployed on Vercel with GitHub & Postman for testing.",
+                      url: "https://github.com/fahad-shakeel-dev/Real-time-chatapp-Next-react",
                     },
                     {
-                      name: "Google Professional Cloud Developer",
-                      date: "Issued: Mar 2023 • Expires: Mar 2025",
+                      name: "VersaNex",
+                      date: "Feb 2023 - May 2023",
+                      details: "Built a company portfolio website using Next.js. Optimized images & assets, cutting page load by 40%. Enhanced UI with GSAP animations & interactive elements. Deployed live on Vercel.",
+                      url: "https://versanex.vercel.app/",
                     },
-                    {
-                      name: "MongoDB Certified Developer",
-                      date: "Issued: Sep 2022 • No Expiration",
-                    },
-                  ].map((cert, index) => (
-                    <AnimatedSection key={cert.name} animation="scale-up">
+                  ].map((project, index) => (
+                    <AnimatedSection key={project.name} animation="scale-up">
                       <div className="p-6 rounded-2xl bg-gradient-to-r from-teal-50 to-emerald-50 border border-teal-100 hover:shadow-lg transition-all duration-300">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-bold text-lg shadow-md flex-shrink-0">
-                            {cert.name.charAt(0)}
+                            {project.name.charAt(0)}
                           </div>
                           <div>
-                            <h4 className="font-bold text-gray-800">{cert.name}</h4>
-                            <p className="text-sm text-gray-600">{cert.date}</p>
+                            <h4 className="font-bold text-gray-800">{project.name}</h4>
+                            <p className="text-sm text-gray-600">{project.date}</p>
+                            <p className="text-sm text-gray-700 mt-1">{project.details}</p>
+                            <a
+                              href={project.url}
+                              className="text-emerald-600 text-sm hover:underline mt-1 inline-block"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              View Project
+                            </a>
                           </div>
                         </div>
                       </div>

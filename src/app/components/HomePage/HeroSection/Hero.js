@@ -272,8 +272,8 @@ useEffect(() => {
               style={{ animationDelay: "0.6s" }}
             >
               <a
-                href="/CV-Fahad.pdf"
-                download="Fahad-Joyia-CV.pdf"
+                href="/Fahad's-Cv.pdf"
+                download="/Fahad's-Cv.pdf"
                 style={{ cursor: "pointer" }}
                 className="group flex bg-emerald-600 hover:bg-emerald-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full btn-hover text-sm sm:text-base"
               >
