@@ -156,28 +156,28 @@ const [zoom, setZoom] = useState(1); // 1 = 100%
     if (params.id && userId) fetchProject()
   }, [params.id, userId])
 
-  const checkAuth = useCallback(async () => {
-    try {
-      const response = await fetch("/api/auth/check", {
-        method: "GET",
-        credentials: "include",
-      })
-      const data = await response.json()
-      return data.message === "Authentication successful" && data.user
-    } catch (err) {
-      console.error("Error checking auth:", err)
-      return false
-    }
-  }, [])
+  // const checkAuth = useCallback(async () => {
+  //   try {
+  //     const response = await fetch("/api/auth/check", {
+  //       method: "GET",
+  //       credentials: "include",
+  //     })
+  //     const data = await response.json()
+  //     return data.message === "Authentication successful" && data.user
+  //   } catch (err) {
+  //     console.error("Error checking auth:", err)
+  //     return false
+  //   }
+  // }, [])
 
   const handleLike = useCallback(async () => {
     if (likeLoading) return
 
-    const isAuthenticated = await checkAuth()
-    if (!isAuthenticated) {
-      router.push("/login")
-      return
-    }
+    // const isAuthenticated = await checkAuth()
+    // if (!isAuthenticated) {
+    //   router.push("/login")
+    //   return
+    // }
 
     const previousLiked = liked
     const previousLikeCount = likeCount
@@ -205,16 +205,17 @@ const [zoom, setZoom] = useState(1); // 1 = 100%
     } finally {
       setLikeLoading(false)
     }
-  }, [liked, likeCount, params.id, userId, likeLoading, router, checkAuth])
+  // }, [liked, likeCount, params.id, userId, likeLoading, router, checkAuth])
+  }, [liked, likeCount, params.id, userId, likeLoading, router])
 
   const handleReviewLike = useCallback(async (reviewId) => {
     if (reviewLikeLoading[reviewId]) return
 
-    const isAuthenticated = await checkAuth()
-    if (!isAuthenticated) {
-      router.push("/login")
-      return
-    }
+    // const isAuthenticated = await checkAuth()
+    // if (!isAuthenticated) {
+    //   router.push("/login")
+    //   return
+    // }
 
     const previousLiked = likedReviews[reviewId] || false
     const previousLikesCount = reviews.find(r => r.id === reviewId)?.likesCount || 0
@@ -258,7 +259,8 @@ const [zoom, setZoom] = useState(1); // 1 = 100%
     } finally {
       setReviewLikeLoading(prev => ({ ...prev, [reviewId]: false }))
     }
-  }, [likedReviews, reviews, userId, reviewLikeLoading, router, checkAuth])
+  // }, [likedReviews, reviews, userId, reviewLikeLoading, router, checkAuth])
+  }, [likedReviews, reviews, userId, reviewLikeLoading, router])
 
   const handleReviewChange = (e) => {
     const { name, value } = e.target
@@ -271,11 +273,11 @@ const [zoom, setZoom] = useState(1); // 1 = 100%
 
   const submitReview = async (e) => {
     e.preventDefault()
-    const isAuthenticated = await checkAuth()
-    if (!isAuthenticated) {
-      router.push("/login")
-      return
-    }
+    // const isAuthenticated = await checkAuth()
+    // if (!isAuthenticated) {
+    //   router.push("/login")
+    //   return
+    // }
 
     if (!newReview.comment.trim() || !newReview.title || !userId || !currentUser) {
       alert("Please fill in the title and comment fields and ensure you are logged in")
@@ -314,11 +316,11 @@ const [zoom, setZoom] = useState(1); // 1 = 100%
 
   const saveEditedReview = async (e) => {
     e.preventDefault()
-    const isAuthenticated = await checkAuth()
-    if (!isAuthenticated) {
-      router.push("/login")
-      return
-    }
+    // const isAuthenticated = await checkAuth()
+    // if (!isAuthenticated) {
+    //   router.push("/login")
+    //   return
+    // }
 
     if (!newReview.comment.trim() || !newReview.title || !userId || !editingReviewId) {
       alert("Please fill in the title and comment fields and ensure you are logged in")
@@ -347,11 +349,11 @@ const [zoom, setZoom] = useState(1); // 1 = 100%
   }
 
   const deleteReview = async (reviewId) => {
-    const isAuthenticated = await checkAuth()
-    if (!isAuthenticated) {
-      router.push("/login")
-      return
-    }
+    // const isAuthenticated = await checkAuth()
+    // if (!isAuthenticated) {
+    //   router.push("/login")
+    //   return
+    // }
 
     if (!reviewId || !userId) {
       alert("Invalid review ID or user not logged in")
